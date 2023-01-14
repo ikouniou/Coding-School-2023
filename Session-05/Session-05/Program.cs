@@ -33,6 +33,33 @@ else
     Console.WriteLine(sumOrProduct.Product(number));
 }
 
+Console.WriteLine();
+
+Console.WriteLine("Give an integer:");
+var integer2 = Console.ReadLine();
+int number2;
+bool isNumerical2 = int.TryParse(integer2, out number2);
+while (!isNumerical2)
+{
+    Console.WriteLine("Not an integer, please try again");
+    integer2 = Console.ReadLine();
+    isNumerical2 = int.TryParse(integer2, out number2);
+}
+
+PrimeNumbers primeNumbers = new PrimeNumbers();
+Console.WriteLine("The prime numbers from 1 to " + number2 + " are:");
+if(number2 == 1) 
+{
+    Console.WriteLine("No prime numbers");
+}
+for(int i = 2; i <= number2; i++) 
+{
+    if (primeNumbers.Primes(i)) 
+    {
+        Console.WriteLine(i + " ");
+    }
+}
+
 
 
 
