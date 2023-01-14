@@ -4,7 +4,9 @@ public class ReverseString
 {
 	public string Reverse()
 	{
-		string name = "Ioanna";
+        //1. Write a C# program that reverses a given string (your name)
+
+        string name = "Ioanna";
 		char[] charArray = name.ToCharArray();
 		string reversedString = string.Empty;
 
