@@ -56,7 +56,7 @@ for(int i = 2; i <= number2; i++)
 {
     if (primeNumbers.Primes(i)) 
     {
-        Console.WriteLine(i + " ");
+        Console.WriteLine(i);
     }
 }
 
