@@ -65,6 +65,10 @@ Console.WriteLine();
 MultiplyArrays multiplyArrays = new MultiplyArrays();
 multiplyArrays.Multiply();
 
+Console.WriteLine();
+Bubblesort bubblesort = new Bubblesort();
+bubblesort.sort();
+
 
 
 
