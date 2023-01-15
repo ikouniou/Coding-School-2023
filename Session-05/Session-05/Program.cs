@@ -60,6 +60,12 @@ for(int i = 2; i <= number2; i++)
     }
 }
 
+Console.WriteLine();
+
+MultiplyArrays multiplyArrays = new MultiplyArrays();
+multiplyArrays.Multiply();
+
+
 
 
 
