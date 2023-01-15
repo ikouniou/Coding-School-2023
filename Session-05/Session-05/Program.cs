@@ -70,11 +70,5 @@ Bubblesort bubblesort = new Bubblesort();
 bubblesort.sort();
 
 
-
-
-
-
-
-
 Console.ReadLine();
 
