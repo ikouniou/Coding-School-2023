@@ -22,7 +22,7 @@ namespace Session_07 {
                 string binary = Convert.ToString((byte)result, (byte)2);
                 return binary;
             } else {
-                return text;
+                return string.Empty;
             }
         }
     }
@@ -43,7 +43,7 @@ namespace Session_07 {
                 }
                 return word.ToUpper();
             } else {
-                return text;
+                return string.Empty;
             }
         }
     }
@@ -61,7 +61,7 @@ namespace Session_07 {
                     return text;
 
             } else {
-                return text;
+                return string.Empty;
             }
         }
     }

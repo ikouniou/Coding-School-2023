@@ -36,15 +36,12 @@ namespace Session_07 {
 
                         // --- 2nd case I made
                         //Logger.Write(new Message("Input converted from decimal to binary"));
-                        Log("Input converted from decimal to binary");
                         break;
                     case ActionEnum.Uppercase:
                         response.Output = UppercaseStr(request.Input);
-                        Log("Biggest word from Input converted to uppercase");
                         break;
                     case ActionEnum.Reverse:
                         response.Output = ReverseStr(request.Input);
-                        Log("Input string is reversed");
                         break;
                     default:
                         Log("No action has taken place");
@@ -68,22 +65,41 @@ namespace Session_07 {
         public string ConvertStr(string input) {
             
             StringConvert convert = new StringConvert();
+            string result = convert.Manipulate(input);
+            if(result == string.Empty) {
+                Log("The input isn't a decimal. Couldn't be converted");
+            } else {
+                Log("Input converted from decimal to binary");
+            }
 
-            return convert.Manipulate(input);
+            return result;
         }
 
         public string UppercaseStr(string input) {
 
             StringUppercase uppercase = new StringUppercase();
+            string result = uppercase.Manipulate(input);
+            if (result == string.Empty) {
+                Log("The input isn't a string or it doen't have many words");
+            } else {
+                Log("Biggest word from Input converted to uppercase");
+            }
 
-            return uppercase.Manipulate(input);
+            return result;
         }
 
         public string ReverseStr(string input) {
 
             StringReverse reverse = new StringReverse();
 
-            return reverse.Manipulate(input);
+            string result = reverse.Manipulate(input);
+            if (result == string.Empty) {
+                Log("The input isn't a string");
+            } else {
+                Log("Input string is reversed");
+            }
+
+            return result;
         }
     }
 
