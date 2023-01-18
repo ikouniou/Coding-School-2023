@@ -17,9 +17,6 @@ namespace Session_07 {
         }
 
         public void Write(Message message) {
-            Messages[0].ID = message.ID;
-            Messages[0].TimeStamp = message.TimeStamp;
-            Messages[0].MessageDetails = message.MessageDetails;
 
         
         }

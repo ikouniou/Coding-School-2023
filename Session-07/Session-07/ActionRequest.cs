@@ -11,10 +11,9 @@ namespace Session_07 {
         public Guid RequestID { get; set; }
         public ActionEnum Action { get; set; }
         public string Input { get; set; }
-        string input = Console.ReadLine();
 
         public ActionRequest() {
-            Input = input;
+            
         }
 
 
