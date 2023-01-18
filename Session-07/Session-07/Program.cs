@@ -35,7 +35,7 @@ response = resolver.Execute(request);
 
 //}
 
-//Console.WriteLine(resolver.Logger.Messages[0].MessageText);         
+//Console.WriteLine(resolver.Logger.Messages[1].MessageText);         
 
 
 Console.ReadLine();

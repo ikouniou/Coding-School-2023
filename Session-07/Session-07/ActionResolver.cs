@@ -10,6 +10,7 @@ namespace Session_07 {
         
         //Properties
         public MessageLogger Logger { get; set; }
+        int i =0;
        
         //Constructor
         public ActionResolver() {
@@ -27,26 +28,32 @@ namespace Session_07 {
                 switch (request.Action) {
                     case ActionEnum.Covnert:
                         response.Output = ConvertStr(request.Input);
-                        Logger.Messages[0] = new Message("Input converted from decimal to binary");
+                        Logger.Messages[i] = new Message("Input converted from decimal to binary");
+                        i++;
                         break;
                     case ActionEnum.Uppercase:
                         response.Output = UppercaseStr(request.Input);
-                        Logger.Messages[0] = new Message("Biggest word from Input converted to uppercase");
+                        Logger.Messages[i] = new Message("Biggest word from Input converted to uppercase");
+                        i++;
                         break;
                     case ActionEnum.Reverse:
                         response.Output = ReverseStr(request.Input);
-                        Logger.Messages[0] = new Message("Input string is reversed");
+                        Logger.Messages[i] = new Message("Input string is reversed");
+                        i++;
                         break;
                     default:
-                        Logger.Messages[0] = new Message("No action has took place");
+                        Logger.Messages[i] = new Message("No action has took place");
+                        i++;
                         break;
                 }
 
             } catch (Exception ex) {
-                Logger.Messages[0] = new Message("shit");
+                Logger.Messages[i] = new Message("shit");
+                i++;
 
             } finally {
-                Logger.Messages[0] = new Message("End of procedure");
+                Logger.Messages[i] = new Message("End of procedure");
+                i++;
             }
 
             
