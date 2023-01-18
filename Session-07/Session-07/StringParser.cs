@@ -31,7 +31,7 @@ namespace Session_07 {
 
         public override string Manipulate(string text) {
 
-            if (text is string) {
+            if ( !text.Any(char.IsDigit) && text.Contains(" ")) {
                 string[] words = text.Split(new[] { " " }, StringSplitOptions.None);
                 string word = string.Empty;
                 int ctr = 0;
@@ -52,7 +52,7 @@ namespace Session_07 {
 
         public override string Manipulate(string text) {
 
-            if (text is string) {
+            if (!text.Any(char.IsDigit)) {
 
                 // reverse string with recursion
                 if (text.Length > 0)

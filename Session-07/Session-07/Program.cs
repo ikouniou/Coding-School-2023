@@ -1,8 +1,8 @@
 ﻿using Session_07;
 
 ActionRequest request = new ActionRequest() {
-    Input = "12",
-    Action = ActionEnum.Reverse
+    Input = "ioanna",
+    Action = ActionEnum.Uppercase
 };
 
 ActionResponse response = new ActionResponse();
