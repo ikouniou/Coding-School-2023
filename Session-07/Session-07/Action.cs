@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Session_07 {
+    public class Action {
 
-    public class ActionResponse : Action{
-        public Guid ResponseID { get; set; }
-        public string Output { get; set; }
+        public Guid RequestID { get; set; }
+
 
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Xml;
 
 namespace Session_07 {
-    public class ActionResolver : ActionRequest {
+    public class ActionResolver {
         
         //Properties
         public MessageLogger Logger { get; set; }
