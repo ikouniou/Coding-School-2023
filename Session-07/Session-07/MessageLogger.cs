@@ -12,11 +12,26 @@ namespace Session_07 {
         public MessageLogger() {
             Messages = new Message[1000];
         }
-        public void ReadAll() { 
-        
+        public void ReadAll() {
+
+            //display messages from logger
+
+            foreach (Message message in Messages) {
+
+                if(message != null) {
+                    Console.Write(message.ID);
+                    Console.Write(message.TimeStamp);
+                    Console.WriteLine(" " + message.MessageText);
+                }
+
+            }
+
         }
 
         public void Clear() {
+
+            Messages = new Message[1000];
+            _counter = 0;
         
         }
 

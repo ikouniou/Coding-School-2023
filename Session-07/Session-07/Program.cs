@@ -1,7 +1,7 @@
 ﻿using Session_07;
 
 ActionRequest request = new ActionRequest() {
-    Input = "Ioanna",
+    Input = "12",
     Action = ActionEnum.Reverse
 };
 
@@ -11,15 +11,8 @@ ActionResolver resolver = new ActionResolver();
 
 response = resolver.Execute(request);
 
-//DISPLAY MESSAGES FROM LOGGER
 
-//foreach (Message message in resolver.Logger.Messages) {
-
-//    Console.WriteLine(resolver.Logger.Messages);
-
-//}
-
-Console.WriteLine(resolver.Logger.Messages[1].MessageText);
+resolver.Logger.ReadAll();
 Console.WriteLine(response.Output);
 
 
