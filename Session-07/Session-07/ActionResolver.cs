@@ -10,7 +10,7 @@ namespace Session_07 {
         
         //Properties
         public MessageLogger Logger { get; set; }
-        int i =0;
+        //int i =0;
        
         //Constructor
         public ActionResolver() {
@@ -28,35 +28,30 @@ namespace Session_07 {
                 switch (request.Action) {
                     case ActionEnum.Covnert:
                         response.Output = ConvertStr(request.Input);
-                        Logger.Messages[i] = new Message("Input converted from decimal to binary");
-                        i++;
+                        // --- 1st case I made
+                        //Logger.Messages[i] = new Message("Input converted from decimal to binary");
+                        //i++;
+                        Logger.Write(new Message("Input converted from decimal to binary"));
                         break;
                     case ActionEnum.Uppercase:
                         response.Output = UppercaseStr(request.Input);
-                        Logger.Messages[i] = new Message("Biggest word from Input converted to uppercase");
-                        i++;
+                        Logger.Write(new Message("Biggest word from Input converted to uppercase"));
                         break;
                     case ActionEnum.Reverse:
                         response.Output = ReverseStr(request.Input);
-                        Logger.Messages[i] = new Message("Input string is reversed");
-                        i++;
+                        Logger.Write(new Message("Input string is reversed"));
                         break;
                     default:
-                        Logger.Messages[i] = new Message("No action has took place");
-                        i++;
+                        Logger.Write(new Message("No action has took place"));
                         break;
                 }
 
             } catch (Exception ex) {
-                Logger.Messages[i] = new Message("shit");
-                i++;
+                Logger.Write(new Message(ex.Message));
 
             } finally {
-                Logger.Messages[i] = new Message("End of procedure");
-                i++;
+                Logger.Write(new Message("End of procedure"));
             }
-
-            
 
             return response;
         }

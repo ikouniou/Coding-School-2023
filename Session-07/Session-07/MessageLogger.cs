@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace Session_07 {
     public class MessageLogger {
         public Message[] Messages { get; set; }
+        private int _counter = 0;
 
         public MessageLogger() {
             Messages = new Message[1000];
@@ -20,7 +21,8 @@ namespace Session_07 {
         }
 
         public void Write(Message message) {
-
+            Messages[_counter] = message;
+            _counter++;
         
         }
 
