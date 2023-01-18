@@ -9,6 +9,6 @@ namespace Session_07 {
     public enum ActionEnum {
         Covnert,
         Uppercase,
-        Revert
+        Reverse
     }
 }
