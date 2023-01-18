@@ -62,50 +62,46 @@ namespace Session_07 {
         }
 
         public string ConvertStr(string input) {
-            //    decimal result;
-            //    if (Decimal.TryParse(input, out result)) {
-            //        string binary = Convert.ToString((byte)result, (byte)2);
-            //        return binary;
-            //    } else {
-            //        return "Error: Cannot convert decimal to binary";
-            //    }
-            return "hi";
+            decimal result;
+            if (Decimal.TryParse(input, out result)) {
+                string binary = Convert.ToString((byte)result, (byte)2);
+                return binary;
+            } else {
+                return input;
+            }
         }
 
         public string UppercaseStr(string input) {
-            //    if ( input is string) {
-            //        string[] words = input.Split(new[] { " " }, StringSplitOptions.None);
-            //        string word = string.Empty;
-            //        int ctr = 0;
-            //        foreach (String s in words) {
-            //            if (s.Length > ctr) {
-            //                word = s;
-            //                ctr = s.Length;
-            //            }
-            //        }
-
-            //        return word.ToUpper();
-            //    }else {
-            //        return "Error: Cannot find biggest word";
-            //    }
-            return "hi2";
+            if (input is string) {
+                string[] words = input.Split(new[] { " " }, StringSplitOptions.None);
+                string word = string.Empty;
+                int ctr = 0;
+                foreach (String s in words) {
+                    if (s.Length > ctr) {
+                        word = s;
+                        ctr = s.Length;
+                    }
+                }
+                return word.ToUpper();
+            } else {
+                return input;
+            }
         }
 
         public string ReverseStr(string input) {
 
-            //    if (input is string) {
-            //        char[] charArray = input.ToCharArray();
-            //        string reversedString = string.Empty;
+            if (input is string) {
+                char[] charArray = input.ToCharArray();
+                string reversedString = string.Empty;
 
-            //        for (int i = charArray.Length - 1; i >= 0; i--) {
-            //            reversedString += charArray[i];
-            //        }
+                for (int i = charArray.Length - 1; i >= 0; i--) {
+                    reversedString += charArray[i];
+                }
 
-            //        return reversedString;
-            //    } else {
-            //        return "Error: Cannot reverse string";
-            //    }
-            return "hi3";
+                return reversedString;
+            } else {
+                return input;
+            }
         }
     }
 

@@ -17,8 +17,8 @@
 //}
 
 ActionRequest request = new ActionRequest() {
-    Input = "Ioanna",
-    Action = ActionEnum.Covnert
+    Input = "anastasia",
+    Action = ActionEnum.Reverse
 };
 
 ActionResponse response = new ActionResponse();
@@ -35,7 +35,8 @@ response = resolver.Execute(request);
 
 //}
 
-//Console.WriteLine(resolver.Logger.Messages[1].MessageText);         
+Console.WriteLine(resolver.Logger.Messages[1].MessageText); 
+Console.WriteLine(response.Output);
 
 
 Console.ReadLine();
