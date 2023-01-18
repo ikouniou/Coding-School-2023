@@ -49,7 +49,7 @@ public class University : Institute{
         Students = students;
         Courses = new Course[20];
         Courses = courses;
-        Grades = new Grade[50];
+        Grades = new Grade[20];
         Grades = grades;
         ScheduledCourse = new Schedule[60];
         ScheduledCourse = scheduledCourse;

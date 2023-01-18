@@ -25,7 +25,7 @@ public class Student : Person{
     }
 
     public Student(Guid id, string name, int age, int registrationNumber, Course[] courses) : base(id, name, age) {
-        registrationNumber = registrationNumber;
+        RegistrationNumber = registrationNumber;
         Courses = new Course[20];
         Courses = courses;
     }
