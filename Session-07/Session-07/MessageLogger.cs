@@ -20,6 +20,7 @@ namespace Session_07 {
 
                 if(message != null) {
                     Console.Write(message.ID);
+                    Console.Write(" ");
                     Console.Write(message.TimeStamp);
                     Console.WriteLine(" " + message.MessageText);
                 }
