@@ -66,45 +66,24 @@ namespace Session_07 {
             Logger.Write(new Message(text));
         }
         public string ConvertStr(string input) {
-            decimal result;
-            if (Decimal.TryParse(input, out result)) {
-                string binary = Convert.ToString((byte)result, (byte)2);
-                return binary;
-            } else {
-                return input;
-            }
+            
+            StringConvert convert = new StringConvert();
+
+            return convert.Manipulate(input);
         }
 
         public string UppercaseStr(string input) {
-            if (input is string) {
-                string[] words = input.Split(new[] { " " }, StringSplitOptions.None);
-                string word = string.Empty;
-                int ctr = 0;
-                foreach (String s in words) {
-                    if (s.Length > ctr) {
-                        word = s;
-                        ctr = s.Length;
-                    }
-                }
-                return word.ToUpper();
-            } else {
-                return input;
-            }
+
+            StringUppercase uppercase = new StringUppercase();
+
+            return uppercase.Manipulate(input);
         }
 
         public string ReverseStr(string input) {
 
-            if (input is string) {
-                
-                // reverse string with recursion
-                if (input.Length > 0)
-                    return input[input.Length - 1] + ReverseStr(input.Substring(0, input.Length - 1));
-                else
-                    return input;
+            StringReverse reverse = new StringReverse();
 
-            } else {
-                return input;
-            }
+            return reverse.Manipulate(input);
         }
     }
 
