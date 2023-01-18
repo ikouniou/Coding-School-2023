@@ -7,28 +7,51 @@ using System.Xml;
 
 namespace Session_07 {
     public class ActionResolver : ActionRequest {
+        
+        //Properties
         public MessageLogger Logger { get; set; }
+       
+        //Constructor
+        public ActionResolver() {
+            Logger = new MessageLogger();
+        }
 
+        //Methods
         public ActionResponse Execute(ActionRequest request) {
             
             ActionResponse response = new ActionResponse();
             response.RequestID = request.RequestID;
+            response.ResponseID = Guid.NewGuid();
 
-            switch (request.Action) {
-                case ActionEnum.Covnert:
-                    response.Output = ConvertStr(request.Input);
-                    break;
-                case ActionEnum.Uppercase:
-                    response.Output = UppercaseStr(request.Input);
-                    break;
-                case ActionEnum.Reverse:
-                    response.Output = ReverseStr(request.Input);
-                    break;
-                default:
-                    break;
+            try {
+                switch (request.Action) {
+                    case ActionEnum.Covnert:
+                        response.Output = ConvertStr(request.Input);
+                        Logger.Messages[0] = new Message("Input converted from decimal to binary");
+                        break;
+                    case ActionEnum.Uppercase:
+                        response.Output = UppercaseStr(request.Input);
+                        Logger.Messages[0] = new Message("Biggest word from Input converted to uppercase");
+                        break;
+                    case ActionEnum.Reverse:
+                        response.Output = ReverseStr(request.Input);
+                        Logger.Messages[0] = new Message("Input string is reversed");
+                        break;
+                    default:
+                        Logger.Messages[0] = new Message("No action has took place");
+                        break;
+                }
+
+            } catch (Exception ex) {
+                Logger.Messages[0] = new Message("shit");
+
+            } finally {
+                Logger.Messages[0] = new Message("End of procedure");
             }
 
-            return null;
+            
+
+            return response;
         }
 
         public string ConvertStr(string input) {
@@ -39,7 +62,7 @@ namespace Session_07 {
             //    } else {
             //        return "Error: Cannot convert decimal to binary";
             //    }
-            return string.Empty;
+            return "hi";
         }
 
         public string UppercaseStr(string input) {
@@ -58,7 +81,7 @@ namespace Session_07 {
             //    }else {
             //        return "Error: Cannot find biggest word";
             //    }
-            return string.Empty;
+            return "hi2";
         }
 
         public string ReverseStr(string input) {
@@ -75,7 +98,7 @@ namespace Session_07 {
             //    } else {
             //        return "Error: Cannot reverse string";
             //    }
-            return string.Empty;
+            return "hi3";
         }
     }
 

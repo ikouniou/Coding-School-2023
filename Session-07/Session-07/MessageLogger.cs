@@ -8,6 +8,9 @@ namespace Session_07 {
     public class MessageLogger {
         public Message[] Messages { get; set; }
 
+        public MessageLogger() {
+            Messages = new Message[1000];
+        }
         public void ReadAll() { 
         
         }

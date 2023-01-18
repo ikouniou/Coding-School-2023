@@ -9,7 +9,13 @@ namespace Session_07 {
         public Guid ID { get; set; }
         public DateTime TimeStamp { get; set; }
         public string MessageText { get; set; }
-        
 
+        public Message(string messageText) {
+            ID = Guid.NewGuid();
+            TimeStamp = DateTime.Now;
+            MessageText = messageText;
+        }
     }
+
+    
 }

@@ -13,7 +13,7 @@ namespace Session_07 {
         public string Input { get; set; }
 
         public ActionRequest() {
-            
+            RequestID = Guid.NewGuid();
         }
 
 
