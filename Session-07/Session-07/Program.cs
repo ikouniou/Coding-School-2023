@@ -17,7 +17,7 @@
 //}
 
 ActionRequest request = new ActionRequest() {
-    Input = "anastasia",
+    Input = "Ioanna",
     Action = ActionEnum.Reverse
 };
 

@@ -24,6 +24,8 @@ namespace Session_07 {
             response.RequestID = request.RequestID;
             response.ResponseID = Guid.NewGuid();
 
+            Log("Start of execution");
+
             try {
                 switch (request.Action) {
                     case ActionEnum.Covnert:
@@ -31,31 +33,38 @@ namespace Session_07 {
                         // --- 1st case I made
                         //Logger.Messages[i] = new Message("Input converted from decimal to binary");
                         //i++;
-                        Logger.Write(new Message("Input converted from decimal to binary"));
+
+                        // --- 2nd case I made
+                        //Logger.Write(new Message("Input converted from decimal to binary"));
+                        Log("Input converted from decimal to binary");
                         break;
                     case ActionEnum.Uppercase:
                         response.Output = UppercaseStr(request.Input);
-                        Logger.Write(new Message("Biggest word from Input converted to uppercase"));
+                        Log("Biggest word from Input converted to uppercase");
                         break;
                     case ActionEnum.Reverse:
                         response.Output = ReverseStr(request.Input);
-                        Logger.Write(new Message("Input string is reversed"));
+                        Log("Input string is reversed");
                         break;
                     default:
-                        Logger.Write(new Message("No action has took place"));
+                        Log("No action has taken place");
                         break;
                 }
 
             } catch (Exception ex) {
-                Logger.Write(new Message(ex.Message));
+                Log(ex.Message);
 
             } finally {
-                Logger.Write(new Message("End of procedure"));
+                Log("End of execution");
             }
 
             return response;
         }
 
+        public void Log(string text) {
+
+            Logger.Write(new Message(text));
+        }
         public string ConvertStr(string input) {
             decimal result;
             if (Decimal.TryParse(input, out result)) {
@@ -86,14 +95,13 @@ namespace Session_07 {
         public string ReverseStr(string input) {
 
             if (input is string) {
-                char[] charArray = input.ToCharArray();
-                string reversedString = string.Empty;
+                
+                // reverse string with recursion
+                if (input.Length > 0)
+                    return input[input.Length - 1] + ReverseStr(input.Substring(0, input.Length - 1));
+                else
+                    return input;
 
-                for (int i = charArray.Length - 1; i >= 0; i--) {
-                    reversedString += charArray[i];
-                }
-
-                return reversedString;
             } else {
                 return input;
             }
