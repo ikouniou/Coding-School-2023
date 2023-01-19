@@ -57,7 +57,7 @@
             decimal ret = 0;
 
             if (x != null && y != null) {
-                ret = (decimal) Math.Pow((double) x.Value, 2);
+                ret = (decimal) Math.Pow((double) x.Value, (double) y.Value);
             }
 
             return ret;
