@@ -324,6 +324,7 @@
             this.button19.TabIndex = 19;
             this.button19.Text = "Clear";
             this.button19.UseVisualStyleBackColor = false;
+            this.button19.Click += new System.EventHandler(this.button19_Click);
             // 
             // Form1
             // 

@@ -186,5 +186,9 @@ namespace Session_09 {
                 _value2 = number;
             }
         }
+
+        private void button19_Click(object sender, EventArgs e) {
+            textBox1.Text = string.Empty;
+        }
     }
 }
