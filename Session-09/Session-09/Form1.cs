@@ -160,7 +160,7 @@ namespace Session_09 {
         }
 
         private void button14_Click(object sender, EventArgs e) {
-            textBox1.Text += " ^(2) ";
+            textBox1.Text += " ^(x) ";
             _calcOperation = CalcOperation.Power;
         }
 
