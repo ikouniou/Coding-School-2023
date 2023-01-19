@@ -1,3 +1,5 @@
+using CalculatorLib;
+
 namespace Session_09 {
     public partial class Form1 : Form {
 
@@ -57,9 +59,9 @@ namespace Session_09 {
             switch (_calcOperation) {
                 case CalcOperation.Addition:
 
-                    //Addition addition = new Addition();
-                    //_result = addition.Do(_value1, _value2);
-                    _result = _value1 + _value2;
+                    Addition addition = new Addition();
+                    _result = addition.Do(_value1, _value2);
+                    //_result = _value1 + _value2;
                     break;
 
                 case CalcOperation.Substraction:
