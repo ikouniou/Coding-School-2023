@@ -66,29 +66,39 @@ namespace Session_09 {
 
                 case CalcOperation.Substraction:
 
-                    _result = _value1 - _value2;
+                    Substraction substraction = new Substraction();
+                    _result = substraction.Do(_value1, _value2);
+                    //_result = _value1 - _value2;
                     break;
 
                 case CalcOperation.Multiplication:
 
-                    _result = _value1 * _value2;
+                    Multiplication multiplication = new Multiplication();
+                    _result = multiplication.Do(_value1, _value2);
+                    //_result = _value1 * _value2;
                     break;
 
                  case CalcOperation.Division:
 
-                    if(_value2 != 0) {
-                        _result = _value1 / _value2;
-                    } 
+                    Division division = new Division();
+                    _result = division.Do(_value1, _value2);
+                    //if(_value2 != 0) {
+                    //    _result = _value1 / _value2;
+                    //} 
                     break;
 
                 case CalcOperation.Power:
 
-                    _result = (decimal)Math.Pow((double)_value1, (double)2);
+                    Power power = new Power();
+                    _result = power.Do(_value1, _value2);
+                    //_result = (decimal)Math.Pow((double)_value1, (double)2);
                     break;
 
                 case CalcOperation.Root:
 
-                    _result = (decimal)Math.Sqrt((double)_value1);
+                    Root root = new Root();
+                    _result = root.Do(_value1, _value2);
+                    //_result = (decimal)Math.Sqrt((double)_value1);
                     break;
 
                 default:
