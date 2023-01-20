@@ -83,10 +83,7 @@ namespace Session_10 {
             university.ScheduledCourse.Add(schedule2);
 
 
-            bsStudents.DataSource = university.Students;
-            bsCourses.DataSource = university.Courses;
-            bsGrades.DataSource = university.Grades;
-            bsScheduledCourse.DataSource = university.ScheduledCourse;
+            printDataToGrid();
 
 
         }
@@ -124,6 +121,17 @@ namespace Session_10 {
             university = serializer.DeserializeFromFile<University>("university.json");
 
             MessageBox.Show(university.Name + "Data Loaded!");
+
+            printDataToGrid();
+            
+        }
+
+        public void printDataToGrid() {
+
+            bsStudents.DataSource = university.Students;
+            bsCourses.DataSource = university.Courses;
+            bsGrades.DataSource = university.Grades;
+            bsScheduledCourse.DataSource = university.ScheduledCourse;
         }
     }
 }
