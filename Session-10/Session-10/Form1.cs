@@ -117,5 +117,13 @@ namespace Session_10 {
             MessageBox.Show("Save Done!");
 
         }
+
+        private void btnLoad_Click(object sender, EventArgs e) {
+
+            Serializer serializer = new Serializer();
+            university = serializer.DeserializeFromFile<University>("university.json");
+
+            MessageBox.Show(university.Name + "Data Loaded!");
+        }
     }
 }
