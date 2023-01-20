@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace University {
+namespace UniversityLib {
     public class Serializer {
         public void Serialize(object obj) {
             string jsonString = JsonSerializer.Serialize(obj);

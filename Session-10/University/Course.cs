@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace University {
+namespace UniversityLib {
     public class Course {
 
         public Guid ID { get; set; }

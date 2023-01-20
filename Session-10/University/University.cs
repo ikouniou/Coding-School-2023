@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace University {
+namespace UniversityLib {
     public class University : Institute {
 
         public List<Student> Students { get; set; }

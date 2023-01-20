@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace University {
+namespace UniversityLib {
     public class Institute {
 
         public Guid ID { get; set; }
@@ -12,7 +12,7 @@ namespace University {
         public int YearsInService { get; set; }
 
         public Institute() {
-
+            ID= Guid.NewGuid();
         }
 
         public void GetName() {
