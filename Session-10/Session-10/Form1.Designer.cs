@@ -48,6 +48,12 @@
             this.courseIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.professorIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.callendarDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnLoad = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             studentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(studentBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCourses)).BeginInit();
@@ -96,11 +102,11 @@
             this.iDDataGridViewTextBoxColumn,
             this.ageDataGridViewTextBoxColumn});
             this.dgvStudents.DataSource = studentBindingSource;
-            this.dgvStudents.Location = new System.Drawing.Point(12, 12);
+            this.dgvStudents.Location = new System.Drawing.Point(12, 32);
             this.dgvStudents.Name = "dgvStudents";
             this.dgvStudents.RowHeadersWidth = 51;
             this.dgvStudents.RowTemplate.Height = 29;
-            this.dgvStudents.Size = new System.Drawing.Size(752, 85);
+            this.dgvStudents.Size = new System.Drawing.Size(526, 102);
             this.dgvStudents.TabIndex = 0;
             // 
             // nameDataGridViewTextBoxColumn
@@ -146,11 +152,11 @@
             this.codeDataGridViewTextBoxColumn,
             this.subjectDataGridViewTextBoxColumn});
             this.dgvCourses.DataSource = this.bsCourses;
-            this.dgvCourses.Location = new System.Drawing.Point(12, 116);
+            this.dgvCourses.Location = new System.Drawing.Point(12, 160);
             this.dgvCourses.Name = "dgvCourses";
             this.dgvCourses.RowHeadersWidth = 51;
             this.dgvCourses.RowTemplate.Height = 29;
-            this.dgvCourses.Size = new System.Drawing.Size(752, 91);
+            this.dgvCourses.Size = new System.Drawing.Size(396, 103);
             this.dgvCourses.TabIndex = 1;
             // 
             // iDDataGridViewTextBoxColumn1
@@ -189,11 +195,11 @@
             this.courseIDDataGridViewTextBoxColumn,
             this.gradeCourseDataGridViewTextBoxColumn});
             this.dgvGrades.DataSource = this.bsGrades;
-            this.dgvGrades.Location = new System.Drawing.Point(12, 213);
+            this.dgvGrades.Location = new System.Drawing.Point(12, 289);
             this.dgvGrades.Name = "dgvGrades";
             this.dgvGrades.RowHeadersWidth = 51;
             this.dgvGrades.RowTemplate.Height = 29;
-            this.dgvGrades.Size = new System.Drawing.Size(752, 102);
+            this.dgvGrades.Size = new System.Drawing.Size(656, 106);
             this.dgvGrades.TabIndex = 2;
             // 
             // iDDataGridViewTextBoxColumn2
@@ -240,11 +246,11 @@
             this.professorIDDataGridViewTextBoxColumn,
             this.callendarDataGridViewTextBoxColumn});
             this.dgvScheduledCourse.DataSource = this.bsScheduledCourse;
-            this.dgvScheduledCourse.Location = new System.Drawing.Point(12, 343);
+            this.dgvScheduledCourse.Location = new System.Drawing.Point(12, 421);
             this.dgvScheduledCourse.Name = "dgvScheduledCourse";
             this.dgvScheduledCourse.RowHeadersWidth = 51;
             this.dgvScheduledCourse.RowTemplate.Height = 29;
-            this.dgvScheduledCourse.Size = new System.Drawing.Size(752, 115);
+            this.dgvScheduledCourse.Size = new System.Drawing.Size(745, 100);
             this.dgvScheduledCourse.TabIndex = 3;
             // 
             // iDDataGridViewTextBoxColumn3
@@ -280,11 +286,76 @@
             this.callendarDataGridViewTextBoxColumn.Name = "callendarDataGridViewTextBoxColumn";
             this.callendarDataGridViewTextBoxColumn.Width = 150;
             // 
+            // btnLoad
+            // 
+            this.btnLoad.Location = new System.Drawing.Point(620, 527);
+            this.btnLoad.Name = "btnLoad";
+            this.btnLoad.Size = new System.Drawing.Size(105, 29);
+            this.btnLoad.TabIndex = 4;
+            this.btnLoad.Text = "Load";
+            this.btnLoad.UseVisualStyleBackColor = true;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(731, 527);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(107, 29);
+            this.btnSave.TabIndex = 5;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(71, 20);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Students";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(12, 137);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(64, 20);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Courses";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(12, 266);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(58, 20);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Grades";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(12, 398);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(139, 20);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Scheduled Courses";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(825, 470);
+            this.ClientSize = new System.Drawing.Size(850, 568);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.dgvScheduledCourse);
             this.Controls.Add(this.dgvGrades);
             this.Controls.Add(this.dgvCourses);
@@ -302,6 +373,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvGrades)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvScheduledCourse)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -331,5 +403,11 @@
         private DataGridViewTextBoxColumn courseIDDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn professorIDDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn callendarDataGridViewTextBoxColumn;
+        private Button btnLoad;
+        private Button btnSave;
+        private Label label1;
+        private Label label2;
+        private Label label3;
+        private Label label4;
     }
 }
