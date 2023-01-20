@@ -9,9 +9,10 @@ namespace Session_10 {
         private void Form1_Load(object sender, EventArgs e) {
 
             PopulateUniversity();
+            SetControlProperties();
 
         }
-        private void PopulateUniversity() {
+        public void PopulateUniversity() {
 
             University university = new University() {
                 Name = "Aristotle University of Thessaloniki"
@@ -79,10 +80,12 @@ namespace Session_10 {
             university.ScheduledCourse.Add(schedule1);
             university.ScheduledCourse.Add(schedule2);
 
-            dgvStudents.DataSource = university.Students;
-            dgvCourses.DataSource = university.Courses;
-            dgvGrades.DataSource = university.Grades;
-            dgvScheduledCourse.DataSource = university.ScheduledCourse;
+
+            bsStudents.DataSource = university.Students;
+            bsCourses.DataSource = university.Courses;
+            bsGrades.DataSource = university.Grades;
+            bsScheduledCourse.DataSource = university.ScheduledCourse;
+
 
 
             //Serializer serializer = new Serializer();
@@ -90,6 +93,20 @@ namespace Session_10 {
 
 
             //university = serializer.Deserialize<University>("test.json");
+        }
+
+        private void SetControlProperties() {
+            dgvStudents.AutoGenerateColumns = false;
+            dgvCourses.AutoGenerateColumns = false;
+            dgvGrades.AutoGenerateColumns = false;
+            dgvScheduledCourse.AutoGenerateColumns = false;
+
+            dgvStudents.DataSource = bsStudents;
+            dgvCourses.DataSource = bsCourses;
+            dgvGrades.DataSource = bsGrades;
+            dgvScheduledCourse.DataSource = bsScheduledCourse;
+
+
         }
     }
 }

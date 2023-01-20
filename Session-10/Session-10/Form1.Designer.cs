@@ -23,19 +23,79 @@
         ///  the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.BindingSource studentBindingSource;
+            this.bsCourses = new System.Windows.Forms.BindingSource(this.components);
+            this.bsGrades = new System.Windows.Forms.BindingSource(this.components);
+            this.bsScheduledCourse = new System.Windows.Forms.BindingSource(this.components);
+            this.bsStudents = new System.Windows.Forms.BindingSource(this.components);
             this.dgvStudents = new System.Windows.Forms.DataGridView();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.registrationNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvCourses = new System.Windows.Forms.DataGridView();
+            this.iDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.subjectDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvGrades = new System.Windows.Forms.DataGridView();
+            this.iDDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.studentIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.courseIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gradeCourseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvScheduledCourse = new System.Windows.Forms.DataGridView();
+            this.iDDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.courseIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.professorIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.callendarDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            studentBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(studentBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCourses)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsGrades)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsScheduledCourse)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsStudents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCourses)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGrades)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvScheduledCourse)).BeginInit();
             this.SuspendLayout();
             // 
+            // studentBindingSource
+            // 
+            studentBindingSource.AllowNew = false;
+            studentBindingSource.DataSource = typeof(UniversityLib.Student);
+            // 
+            // bsCourses
+            // 
+            this.bsCourses.AllowNew = false;
+            this.bsCourses.DataSource = typeof(UniversityLib.Course);
+            // 
+            // bsGrades
+            // 
+            this.bsGrades.AllowNew = false;
+            this.bsGrades.DataSource = typeof(UniversityLib.Grade);
+            // 
+            // bsScheduledCourse
+            // 
+            this.bsScheduledCourse.AllowNew = false;
+            this.bsScheduledCourse.DataSource = typeof(UniversityLib.Schedule);
+            // 
+            // bsStudents
+            // 
+            this.bsStudents.AllowNew = false;
+            this.bsStudents.DataSource = typeof(UniversityLib.Student);
+            // 
             // dgvStudents
             // 
+            this.dgvStudents.AutoGenerateColumns = false;
+            this.dgvStudents.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dgvStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvStudents.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.nameDataGridViewTextBoxColumn,
+            this.registrationNumberDataGridViewTextBoxColumn,
+            this.iDDataGridViewTextBoxColumn,
+            this.ageDataGridViewTextBoxColumn});
+            this.dgvStudents.DataSource = studentBindingSource;
             this.dgvStudents.Location = new System.Drawing.Point(12, 12);
             this.dgvStudents.Name = "dgvStudents";
             this.dgvStudents.RowHeadersWidth = 51;
@@ -43,9 +103,49 @@
             this.dgvStudents.Size = new System.Drawing.Size(752, 85);
             this.dgvStudents.TabIndex = 0;
             // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.Width = 230;
+            // 
+            // registrationNumberDataGridViewTextBoxColumn
+            // 
+            this.registrationNumberDataGridViewTextBoxColumn.DataPropertyName = "RegistrationNumber";
+            this.registrationNumberDataGridViewTextBoxColumn.HeaderText = "RegistrationNumber";
+            this.registrationNumberDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.registrationNumberDataGridViewTextBoxColumn.Name = "registrationNumberDataGridViewTextBoxColumn";
+            this.registrationNumberDataGridViewTextBoxColumn.Width = 180;
+            // 
+            // iDDataGridViewTextBoxColumn
+            // 
+            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn.Visible = false;
+            this.iDDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // ageDataGridViewTextBoxColumn
+            // 
+            this.ageDataGridViewTextBoxColumn.DataPropertyName = "Age";
+            this.ageDataGridViewTextBoxColumn.HeaderText = "Age";
+            this.ageDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.ageDataGridViewTextBoxColumn.Name = "ageDataGridViewTextBoxColumn";
+            this.ageDataGridViewTextBoxColumn.Width = 60;
+            // 
             // dgvCourses
             // 
+            this.dgvCourses.AutoGenerateColumns = false;
+            this.dgvCourses.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dgvCourses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCourses.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.iDDataGridViewTextBoxColumn1,
+            this.codeDataGridViewTextBoxColumn,
+            this.subjectDataGridViewTextBoxColumn});
+            this.dgvCourses.DataSource = this.bsCourses;
             this.dgvCourses.Location = new System.Drawing.Point(12, 116);
             this.dgvCourses.Name = "dgvCourses";
             this.dgvCourses.RowHeadersWidth = 51;
@@ -53,9 +153,42 @@
             this.dgvCourses.Size = new System.Drawing.Size(752, 91);
             this.dgvCourses.TabIndex = 1;
             // 
+            // iDDataGridViewTextBoxColumn1
+            // 
+            this.iDDataGridViewTextBoxColumn1.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn1.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.iDDataGridViewTextBoxColumn1.Name = "iDDataGridViewTextBoxColumn1";
+            this.iDDataGridViewTextBoxColumn1.Visible = false;
+            this.iDDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // codeDataGridViewTextBoxColumn
+            // 
+            this.codeDataGridViewTextBoxColumn.DataPropertyName = "Code";
+            this.codeDataGridViewTextBoxColumn.HeaderText = "Code";
+            this.codeDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.codeDataGridViewTextBoxColumn.Name = "codeDataGridViewTextBoxColumn";
+            this.codeDataGridViewTextBoxColumn.Width = 140;
+            // 
+            // subjectDataGridViewTextBoxColumn
+            // 
+            this.subjectDataGridViewTextBoxColumn.DataPropertyName = "Subject";
+            this.subjectDataGridViewTextBoxColumn.HeaderText = "Subject";
+            this.subjectDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.subjectDataGridViewTextBoxColumn.Name = "subjectDataGridViewTextBoxColumn";
+            this.subjectDataGridViewTextBoxColumn.Width = 200;
+            // 
             // dgvGrades
             // 
+            this.dgvGrades.AutoGenerateColumns = false;
+            this.dgvGrades.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dgvGrades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvGrades.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.iDDataGridViewTextBoxColumn2,
+            this.studentIDDataGridViewTextBoxColumn,
+            this.courseIDDataGridViewTextBoxColumn,
+            this.gradeCourseDataGridViewTextBoxColumn});
+            this.dgvGrades.DataSource = this.bsGrades;
             this.dgvGrades.Location = new System.Drawing.Point(12, 213);
             this.dgvGrades.Name = "dgvGrades";
             this.dgvGrades.RowHeadersWidth = 51;
@@ -63,15 +196,89 @@
             this.dgvGrades.Size = new System.Drawing.Size(752, 102);
             this.dgvGrades.TabIndex = 2;
             // 
+            // iDDataGridViewTextBoxColumn2
+            // 
+            this.iDDataGridViewTextBoxColumn2.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn2.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.iDDataGridViewTextBoxColumn2.Name = "iDDataGridViewTextBoxColumn2";
+            this.iDDataGridViewTextBoxColumn2.Visible = false;
+            this.iDDataGridViewTextBoxColumn2.Width = 125;
+            // 
+            // studentIDDataGridViewTextBoxColumn
+            // 
+            this.studentIDDataGridViewTextBoxColumn.DataPropertyName = "StudentID";
+            this.studentIDDataGridViewTextBoxColumn.HeaderText = "StudentID";
+            this.studentIDDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.studentIDDataGridViewTextBoxColumn.Name = "studentIDDataGridViewTextBoxColumn";
+            this.studentIDDataGridViewTextBoxColumn.Width = 270;
+            // 
+            // courseIDDataGridViewTextBoxColumn
+            // 
+            this.courseIDDataGridViewTextBoxColumn.DataPropertyName = "CourseID";
+            this.courseIDDataGridViewTextBoxColumn.HeaderText = "CourseID";
+            this.courseIDDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.courseIDDataGridViewTextBoxColumn.Name = "courseIDDataGridViewTextBoxColumn";
+            this.courseIDDataGridViewTextBoxColumn.Width = 270;
+            // 
+            // gradeCourseDataGridViewTextBoxColumn
+            // 
+            this.gradeCourseDataGridViewTextBoxColumn.DataPropertyName = "GradeCourse";
+            this.gradeCourseDataGridViewTextBoxColumn.HeaderText = "Grade";
+            this.gradeCourseDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.gradeCourseDataGridViewTextBoxColumn.Name = "gradeCourseDataGridViewTextBoxColumn";
+            this.gradeCourseDataGridViewTextBoxColumn.Width = 60;
+            // 
             // dgvScheduledCourse
             // 
+            this.dgvScheduledCourse.AutoGenerateColumns = false;
+            this.dgvScheduledCourse.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dgvScheduledCourse.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvScheduledCourse.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.iDDataGridViewTextBoxColumn3,
+            this.courseIDDataGridViewTextBoxColumn1,
+            this.professorIDDataGridViewTextBoxColumn,
+            this.callendarDataGridViewTextBoxColumn});
+            this.dgvScheduledCourse.DataSource = this.bsScheduledCourse;
             this.dgvScheduledCourse.Location = new System.Drawing.Point(12, 343);
             this.dgvScheduledCourse.Name = "dgvScheduledCourse";
             this.dgvScheduledCourse.RowHeadersWidth = 51;
             this.dgvScheduledCourse.RowTemplate.Height = 29;
             this.dgvScheduledCourse.Size = new System.Drawing.Size(752, 115);
             this.dgvScheduledCourse.TabIndex = 3;
+            // 
+            // iDDataGridViewTextBoxColumn3
+            // 
+            this.iDDataGridViewTextBoxColumn3.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn3.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.iDDataGridViewTextBoxColumn3.Name = "iDDataGridViewTextBoxColumn3";
+            this.iDDataGridViewTextBoxColumn3.Visible = false;
+            this.iDDataGridViewTextBoxColumn3.Width = 125;
+            // 
+            // courseIDDataGridViewTextBoxColumn1
+            // 
+            this.courseIDDataGridViewTextBoxColumn1.DataPropertyName = "CourseID";
+            this.courseIDDataGridViewTextBoxColumn1.HeaderText = "CourseID";
+            this.courseIDDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.courseIDDataGridViewTextBoxColumn1.Name = "courseIDDataGridViewTextBoxColumn1";
+            this.courseIDDataGridViewTextBoxColumn1.Width = 270;
+            // 
+            // professorIDDataGridViewTextBoxColumn
+            // 
+            this.professorIDDataGridViewTextBoxColumn.DataPropertyName = "ProfessorID";
+            this.professorIDDataGridViewTextBoxColumn.HeaderText = "ProfessorID";
+            this.professorIDDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.professorIDDataGridViewTextBoxColumn.Name = "professorIDDataGridViewTextBoxColumn";
+            this.professorIDDataGridViewTextBoxColumn.Width = 270;
+            // 
+            // callendarDataGridViewTextBoxColumn
+            // 
+            this.callendarDataGridViewTextBoxColumn.DataPropertyName = "Callendar";
+            this.callendarDataGridViewTextBoxColumn.HeaderText = "Callendar";
+            this.callendarDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.callendarDataGridViewTextBoxColumn.Name = "callendarDataGridViewTextBoxColumn";
+            this.callendarDataGridViewTextBoxColumn.Width = 150;
             // 
             // Form1
             // 
@@ -85,6 +292,11 @@
             this.Name = "Form1";
             this.Text = "University";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(studentBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCourses)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsGrades)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsScheduledCourse)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsStudents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCourses)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGrades)).EndInit();
@@ -99,5 +311,25 @@
         private DataGridView dgvCourses;
         private DataGridView dgvGrades;
         private DataGridView dgvScheduledCourse;
+        private BindingSource bsCourses;
+        private BindingSource bsGrades;
+        private BindingSource bsScheduledCourse;
+        private BindingSource studentBindingSource;
+        private BindingSource bsStudents;
+        private DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn subjectDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn registrationNumberDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn ageDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn studentIDDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn courseIDDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn gradeCourseDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn courseIDDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn professorIDDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn callendarDataGridViewTextBoxColumn;
     }
 }
