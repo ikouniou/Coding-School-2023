@@ -14,7 +14,10 @@ namespace UniversityLib {
         public List<Schedule> ScheduledCourse{ get; set; }
 
         public University() {
-
+            Students = new List<Student>();
+            Courses= new List<Course>();
+            Grades = new List<Grade>();
+            ScheduledCourse = new List<Schedule>();
         }
 
         public void GetStudents() {

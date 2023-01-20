@@ -11,7 +11,7 @@ namespace UniversityLib {
         public List<Course> Courses{ get; set; }
 
         public Professor() {
-
+            Courses= new List<Course>();
         }
 
 

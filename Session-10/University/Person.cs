@@ -12,12 +12,9 @@ namespace UniversityLib {
         public int Age { get; set; }
 
         public Person() {
-
+            ID = Guid.NewGuid();
         }
 
-        public Person(Guid id) {
-            ID = id;
-        }
 
 
         public void GetName() {

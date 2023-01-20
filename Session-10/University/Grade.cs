@@ -13,7 +13,7 @@ namespace UniversityLib {
         public int GradeCourse { get; set; }
 
         public Grade() {
-
+            ID= Guid.NewGuid();
         }
 
     }

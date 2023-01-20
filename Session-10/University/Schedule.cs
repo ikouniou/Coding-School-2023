@@ -13,7 +13,7 @@ namespace UniversityLib {
         public DateTime Callendar { get; set; }
 
         public Schedule() {
-
+            ID= Guid.NewGuid();
         }
 
         public Schedule(Guid id) {
