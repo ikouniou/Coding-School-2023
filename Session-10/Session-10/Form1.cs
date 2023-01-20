@@ -120,7 +120,7 @@ namespace Session_10 {
             Serializer serializer = new Serializer();
             university = serializer.DeserializeFromFile<University>("university.json");
 
-            MessageBox.Show(university.Name + "Data Loaded!");
+            MessageBox.Show(university.Name + " Data Loaded!");
 
             printDataToGrid();
             
