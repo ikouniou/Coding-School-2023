@@ -10,6 +10,7 @@ namespace Session_10 {
 
         private void Form1_Load(object sender, EventArgs e) {
 
+           //comment in this method to load from file
             PopulateUniversity();
             SetControlProperties();
 
