@@ -2,6 +2,8 @@ using UniversityLib;
 
 namespace Session_10 {
     public partial class Form1 : Form {
+
+        public University university;
         public Form1() {
             InitializeComponent();
         }
@@ -14,7 +16,7 @@ namespace Session_10 {
         }
         public void PopulateUniversity() {
 
-            University university = new University() {
+            university = new University() {
                 Name = "Aristotle University of Thessaloniki"
             };
 
@@ -87,12 +89,6 @@ namespace Session_10 {
             bsScheduledCourse.DataSource = university.ScheduledCourse;
 
 
-
-            //Serializer serializer = new Serializer();
-            //serializer.SerializeToFile(university, "test.json");
-
-
-            //university = serializer.Deserialize<University>("test.json");
         }
 
         private void SetControlProperties() {
@@ -110,6 +106,15 @@ namespace Session_10 {
         }
 
         private void label2_Click(object sender, EventArgs e) {
+
+        }
+
+        private void btnSave_Click(object sender, EventArgs e) {
+
+            Serializer serializer = new Serializer();
+            serializer.SerializeToFile(university, "university.json");
+
+            MessageBox.Show("Save Done!");
 
         }
     }
