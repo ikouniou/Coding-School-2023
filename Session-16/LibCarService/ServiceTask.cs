@@ -23,6 +23,8 @@ namespace LibCarService
         public decimal Hours { get; set; }
         public CodeEnum Code { get; set; }
 
+        public TransactionLine TransactionLine { get; set; }
+
 
         public ServiceTask() {
             ID = Guid.NewGuid();

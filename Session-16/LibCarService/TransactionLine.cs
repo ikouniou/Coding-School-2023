@@ -17,6 +17,8 @@ namespace LibCarService
         public decimal Price { get; set; }
 
         public Transaction Transaction { get; set; }
+        public ServiceTask ServiceTask { get; set; }
+        public Engineer Engineer { get; set; }
 
 
         public TransactionLine()

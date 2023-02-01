@@ -17,17 +17,19 @@ namespace Orm {
         public DbSet<MonthlyLedger> MonthlyLedgers { get; set; }
         public DbSet<ServiceTask> ServiceTasks { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
-        //public DbSet<TransactionLine> TransactionLines { get; set; }
+        public DbSet<TransactionLine> TransactionLines { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
 
             modelBuilder.ApplyConfiguration(new CarConfiguration());
-
             modelBuilder.ApplyConfiguration(new MonthlyLedgerConfiguration());
             modelBuilder.ApplyConfiguration(new CustomerConfiguration());
             modelBuilder.ApplyConfiguration(new ServiceTaskConfiguration());
             modelBuilder.ApplyConfiguration(new ManagerConfiguration());
             modelBuilder.ApplyConfiguration(new EngineerConfiguration());
+            modelBuilder.ApplyConfiguration(new TransactionConfiguration());
+            modelBuilder.ApplyConfiguration(new TransactionLineConfiguration());
+
             base.OnModelCreating(modelBuilder);
         }
 
