@@ -7,6 +7,8 @@
         public string Model { get; set; }
         public string CarRegistrationNumber { get; set; }
 
+        public Transaction Transaction { get; set; }
+
         public Car()
         {
             ID = Guid.NewGuid();

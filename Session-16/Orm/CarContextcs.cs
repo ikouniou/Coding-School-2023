@@ -16,7 +16,7 @@ namespace Orm {
         public DbSet<Manager> Managers { get; set; }
         public DbSet<MonthlyLedger> MonthlyLedgers { get; set; }
         public DbSet<ServiceTask> ServiceTasks { get; set; }
-        //public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
         //public DbSet<TransactionLine> TransactionLines { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {

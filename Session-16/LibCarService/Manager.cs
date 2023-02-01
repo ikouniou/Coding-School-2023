@@ -12,6 +12,8 @@ namespace LibCarService
         public decimal SalaryPerMonth { get; set; }
         public List<Engineer> Engineers { get; set; }
 
+        public Transaction Transaction { get; set; }
+
         public Manager() : base()
         {
             Engineers= new List<Engineer>();

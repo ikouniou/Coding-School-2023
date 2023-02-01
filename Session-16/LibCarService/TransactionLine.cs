@@ -16,6 +16,8 @@ namespace LibCarService
         public decimal PricePerHour { get; set; }
         public decimal Price { get; set; }
 
+        public Transaction Transaction { get; set; }
+
 
         public TransactionLine()
         {

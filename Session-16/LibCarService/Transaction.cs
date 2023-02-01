@@ -11,8 +11,11 @@ namespace LibCarService
         public Guid ID { get; set; }
         public DateTime Date { get; set; }
         public Guid CustomerID { get; set; }
+        public Customer Customer { get; set; }
         public Guid CarID { get; set; }
+        public Car Car { get; set; }
         public Guid ManagerID { get; set; }
+        public Manager Manager { get; set; }
         public decimal TotalPrice { get; set; }
         public List<TransactionLine> Lines { get; set; } = new List<TransactionLine>();
 
