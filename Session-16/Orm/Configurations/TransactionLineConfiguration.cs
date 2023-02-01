@@ -23,9 +23,10 @@ namespace Orm.Configurations {
                 .WithMany(transaction => transaction.Lines)
                 .HasForeignKey(transactionLine => transactionLine.TransactionID);
 
-            //builder.HasOne(transactionLine => transactionLine.ServiceTask)
-            //    .WithOne(serviceTask => serviceTask.TransactionLine)
-            //    .HasForeignKey<TransactionLine>(transactionLine => transactionLine.ServiceTaskID);
+
+            builder.HasOne(transactionLine => transactionLine.ServiceTask)
+                .WithOne(serviceTask => serviceTask.TransactionLine)
+                .HasForeignKey<TransactionLine>(transactionLine => transactionLine.ServiceTaskID);
         }
     }
 }

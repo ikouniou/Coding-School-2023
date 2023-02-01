@@ -17,12 +17,13 @@ namespace LibCarService
         public Guid ManagerID { get; set; }
         public Manager Manager { get; set; }
         public decimal TotalPrice { get; set; }
-        public List<TransactionLine> Lines { get; set; } = new List<TransactionLine>();
+        public List<TransactionLine> Lines { get; set; }
 
 
         public Transaction()
         {
             ID = Guid.NewGuid();
+            Lines = new List<TransactionLine>();
         }
 
 
