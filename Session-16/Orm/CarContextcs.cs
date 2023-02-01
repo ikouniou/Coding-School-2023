@@ -12,7 +12,7 @@ namespace Orm {
 
         public DbSet<Car> Cars { get; set; }
         public DbSet<Customer> Customers { get; set; }
-        //public DbSet<Engineer> Engineers { get; set; }
+        public DbSet<Engineer> Engineers { get; set; }
         public DbSet<Manager> Managers { get; set; }
         public DbSet<MonthlyLedger> MonthlyLedgers { get; set; }
         public DbSet<ServiceTask> ServiceTasks { get; set; }
@@ -27,6 +27,7 @@ namespace Orm {
             modelBuilder.ApplyConfiguration(new CustomerConfiguration());
             modelBuilder.ApplyConfiguration(new ServiceTaskConfiguration());
             modelBuilder.ApplyConfiguration(new ManagerConfiguration());
+            modelBuilder.ApplyConfiguration(new EngineerConfiguration());
             base.OnModelCreating(modelBuilder);
         }
 
