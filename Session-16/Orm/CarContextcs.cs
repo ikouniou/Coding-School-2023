@@ -11,7 +11,7 @@ namespace Orm {
     public class CarContext : DbContext {
 
         public DbSet<Car> Cars { get; set; }
-        //public DbSet<Customer> Customers { get; set; }
+        public DbSet<Customer> Customers { get; set; }
         //public DbSet<Engineer> Engineers { get; set; }
         //public DbSet<Manager> Managers { get; set; }
         public DbSet<MonthlyLedger> MonthlyLedgers { get; set; }
@@ -25,6 +25,7 @@ namespace Orm {
             modelBuilder.ApplyConfiguration(new CarConfiguration());
 
             modelBuilder.ApplyConfiguration(new MonthlyLedgerConfiguration());
+            modelBuilder.ApplyConfiguration(new CustomerConfiguration());
             base.OnModelCreating(modelBuilder);
         }
 
