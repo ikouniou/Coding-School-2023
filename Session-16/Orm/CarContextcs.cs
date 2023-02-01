@@ -15,8 +15,7 @@ namespace Orm {
         //public DbSet<Engineer> Engineers { get; set; }
         //public DbSet<Manager> Managers { get; set; }
         public DbSet<MonthlyLedger> MonthlyLedgers { get; set; }
-        //public DbSet<Person> Persons { get; set; }
-        //public DbSet<ServiceTask> ServiceTasks { get; set; }
+        public DbSet<ServiceTask> ServiceTasks { get; set; }
         //public DbSet<Transaction> Transactions { get; set; }
         //public DbSet<TransactionLine> TransactionLines { get; set; }
 
