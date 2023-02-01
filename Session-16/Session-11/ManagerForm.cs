@@ -195,7 +195,8 @@ namespace Session_11 {
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e) {
             DateTime date = dateTimePicker1.Value;
-            MonthlyLedger monthlyLedger = new MonthlyLedger(date);
+            MonthlyLedger monthlyLedger = new MonthlyLedger();
+            monthlyLedger.YearMonth(date);
 
             decimal monthIncome = carServiceCenter.CalculateMonthlyIncome(date);
             decimal monthExpenses = carServiceCenter.CalculateMonthlyExpenses();
@@ -240,7 +241,8 @@ namespace Session_11 {
                         break; 
                     }
                     DateTime date = new DateTime(i, j, 1);
-                    MonthlyLedger monthlyLedger = new MonthlyLedger(date);
+                    MonthlyLedger monthlyLedger = new MonthlyLedger();
+                    monthlyLedger.YearMonth(date);
                     monthIncome = carServiceCenter.CalculateMonthlyIncome(date);
                     monthExpenses = carServiceCenter.CalculateMonthlyExpenses();
                     monthlyLedger.UpdateLedger(monthIncome, monthExpenses);

@@ -8,6 +8,7 @@ namespace LibCarService
 {
     public class MonthlyLedger
     {
+        public int Id { get; set; }
         public int Year { get; set; }
 
         public int Month { get; set; }
@@ -18,8 +19,9 @@ namespace LibCarService
 
         public decimal Total { get; set; }
 
+
         // TODO: implement Update() method to update the monthly ledger
-        public MonthlyLedger(DateTime date) {
+        public void YearMonth(DateTime date) {
             Year = date.Year;
             Month = date.Month;
         }

@@ -14,7 +14,7 @@ namespace Orm {
         //public DbSet<Customer> Customers { get; set; }
         //public DbSet<Engineer> Engineers { get; set; }
         //public DbSet<Manager> Managers { get; set; }
-        //public DbSet<MonthlyLedger> MonthlyLedgers { get; set; }
+        public DbSet<MonthlyLedger> MonthlyLedgers { get; set; }
         //public DbSet<Person> Persons { get; set; }
         //public DbSet<ServiceTask> ServiceTasks { get; set; }
         //public DbSet<Transaction> Transactions { get; set; }
@@ -23,6 +23,8 @@ namespace Orm {
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
 
             modelBuilder.ApplyConfiguration(new CarConfiguration());
+
+            modelBuilder.ApplyConfiguration(new MonthlyLedgerConfiguration());
             base.OnModelCreating(modelBuilder);
         }
 
