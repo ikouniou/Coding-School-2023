@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+ <head>
+	  <title>Customer Detail Form</title>
+	  <meta charset='UTF-8'/> 
+	  <meta name="author" content="Ioanna Kouniou">
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">	
+	  <link rel="stylesheet" href="css/styles.css">		
+ </head>
+ 
+ <body>
+    <div class="container">
+    <div class="form">
+    <h2>Customer Detail Form</h2>
+    <form>
+        <div class="form-item">
+            <label for="name">Name</label>
+            <input id="name" type="text" />
+        </div>
+        <div class="form-item">
+            <label for="surname">Surame</label>
+            <input id="surname" type="text" />
+        </div>
+        <div class="form-item">
+            <label for="age">Age</label>
+            <input id="age" type="number" />
+        </div>
+        <div class="form-item">
+            <label for="gender">Gender</label>
+            <input id="gender" type="text" />
+        </div>
+        <button type="button" onclick="newPost()">Submit</button>
+    </form>
+    </div>
+
+    <h2>Customer Table</h2>
+    <div class="customerTable">
+    <table id="tblPosts">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Age</th>
+            <th>Gender</th>
+        </tr>
+    </table>
+    </div>
+</div>
+
+    
+</div>
+    <script src="js/script3.js"></script>
+
+</body>
+</html>

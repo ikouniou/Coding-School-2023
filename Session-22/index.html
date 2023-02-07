@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+ <head>
+	  <title>Exercises</title>
+	  <meta charset='UTF-8'/> 
+	  <meta name="author" content="Ioanna Kouniou">
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">	
+	  <link rel="stylesheet" href="css/styles.css">		
+ </head>
+ 
+ <body>
+    <div class="forms">
+    <div>
+    <h2>Reverse a String</h2>
+    <form>
+        <div class="form-item">
+            <label for="string">String</label>
+            <input id="string" type="text" />
+        </div>
+        <button type="button" onclick="reverseString()">Reverse</button>
+        <div class="form-item">
+            <label for="reversed">Reversed String: </label>
+            <output id="reversed" type="text"></output>
+        </div>
+    </form>
+    </div>
+
+    <div>
+    <h2>Check If a String is Palindrome</h2>
+    <form>
+        <div class="form-item">
+            <label for="string2">String</label>
+            <input id="string2" type="text" />
+        </div>
+        <button type="button" onclick="checkPalindrome()">Check Palindrome</button>
+        <div class="form-item">
+            <label for="palindrome">Is Palindrome: </label>
+            <output id="palindrome" type="text"></output>
+        </div>
+    </form>
+    </div>
+  </div>
+
+  <!-- optional -->
+  <button onclick="document.getElementById('multiplication').innerHTML=mult;">Multiply numbers</button>
+  <p id="multiplication"></p>
+  <!--          -->
+
+    <script src="js/script1.js"></script>
+    <script src="js/script2.js"></script>
+    <script src="js/script4.js"></script>
+    <script src="js/script5.js"></script>
+
+</body>
+</html>

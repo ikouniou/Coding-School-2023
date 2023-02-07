@@ -1,0 +1,51 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h2{
+    color: #47c6ad;
+}
+
+.form{
+    width: 20%;
+}
+
+.forms{
+    display: flex;;
+    gap: 100px;
+}
+
+.form-item{
+    color: #4E524F;
+    margin-top: 15px;
+}
+
+.form-item input{
+    margin-top: 10px;
+    border: 1px solid #E8E8E8;
+    border-radius: 9px;
+    padding: 7px;
+    resize: none;
+    width: 100%;
+}
+
+button{
+    background-color: #47c6ad;
+    border: 1px solid #47c6ad;
+    color: white;
+    padding: 5px;
+    border-radius: 9px;
+    width: 90px;
+    margin-top: 8px;
+}
+
+button:hover{
+    background-color: white;
+    border: 1px solid #47c6ad;
+    color: #47c6ad;
+}
+
+.customerTable tr,th{
+    width: 100px;
+}
+
