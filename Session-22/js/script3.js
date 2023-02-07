@@ -41,11 +41,11 @@ function createPostsTableRow(post, tableEl) {
     genderEl.innerHTML = post.Gender;
 }
 
-function selectPostRow(rowEl) {
-    if (selectPostRowEl != undefined) {
-        selectPostRowEl.classList.remove('selected')
-    }
+// function selectPostRow(rowEl) {
+//     if (selectPostRowEl != undefined) {
+//         selectPostRowEl.remove('selected')
+//     }
 
-    selectPostRowEl = rowEl;
-    selectPostRowEl.classList.add('selected')
-}
+//     selectPostRowEl = rowEl;
+//     selectPostRowEl.add('selected')
+// }
