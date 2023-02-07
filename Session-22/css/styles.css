@@ -45,7 +45,15 @@ button:hover{
     color: #47c6ad;
 }
 
-.customerTable tr,th{
-    width: 100px;
+#tblPosts tr, th{
+    margin: auto;
+    width: 80px;
+    text-align: center;
+    border-bottom: 2px solid #47c6ad;
+}
+
+.container{
+    display: flex;
+    gap: 120px;
 }
 

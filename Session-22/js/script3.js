@@ -19,7 +19,7 @@ function newPost() {
 function createPostsTableRow(post, tableEl) {
     let rowEl = tableEl.insertRow();
 
-    rowEl.setAttribute('data-id', post.id);
+    rowEl.setAttribute('data-id', post.ID);
 
     rowEl.addEventListener('click', (event) => {
         selectPostRow(event.currentTarget);
@@ -39,4 +39,13 @@ function createPostsTableRow(post, tableEl) {
 
     let genderEl = rowEl.insertCell(4);
     genderEl.innerHTML = post.Gender;
+}
+
+function selectPostRow(rowEl) {
+    if (selectPostRowEl != undefined) {
+        selectPostRowEl.classList.remove('selected')
+    }
+
+    selectPostRowEl = rowEl;
+    selectPostRowEl.classList.add('selected')
 }
