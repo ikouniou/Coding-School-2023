@@ -1,6 +1,6 @@
 ﻿namespace CarServiceCenter.Model
 {
-    public class Manager
+    public class Manager : EntityBase
     {
         public Manager(string name, string surname, int salaryPerMonth)
         {
@@ -12,7 +12,6 @@
             Transactions = new List<Transaction>();
         }
 
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public int SalaryPerMonth { get; set; }

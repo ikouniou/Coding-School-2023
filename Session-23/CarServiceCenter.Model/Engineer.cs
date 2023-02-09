@@ -1,6 +1,6 @@
 ﻿namespace CarServiceCenter.Model
 {
-    public class Engineer
+    public class Engineer : EntityBase
     {
         public Engineer(string name, string surname, int salaryPerMonth)
         {
@@ -11,7 +11,6 @@
             TransactionLines = new List<TransactionLine>();
         }
 
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public int SalaryPerMonth { get; set; }

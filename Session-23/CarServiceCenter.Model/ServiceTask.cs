@@ -1,6 +1,6 @@
 ﻿namespace CarServiceCenter.Model
 {
-    public class ServiceTask
+    public class ServiceTask : EntityBase
     {
         public ServiceTask(string code, string description, decimal hours)
         {
@@ -11,7 +11,6 @@
             TransactionLines = new List<TransactionLine>();
         }
 
-        public int Id { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
         public decimal Hours { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace CarServiceCenter.Model
 {
-    public class Transaction
+    public class Transaction : EntityBase
     {
         public Transaction(decimal totalPrice)
         {
@@ -10,7 +10,6 @@
             TransactionLines = new List<TransactionLine>();
         }
 
-        public int Id { get; set; }
         public DateTime Date { get; set; }
         public decimal TotalPrice { get; set; }
 

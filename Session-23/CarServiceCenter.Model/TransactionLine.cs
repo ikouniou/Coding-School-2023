@@ -1,6 +1,6 @@
 ﻿namespace CarServiceCenter.Model
 {
-    public class TransactionLine
+    public class TransactionLine : EntityBase
     {
         public TransactionLine(decimal hours, decimal pricePerHour, decimal price)
         {
@@ -9,7 +9,6 @@
             Price = price;
         }
 
-        public int Id { get; set; }
         public decimal Hours { get; set; }
         public decimal PricePerHour { get; set; }
         public decimal Price { get; set; }

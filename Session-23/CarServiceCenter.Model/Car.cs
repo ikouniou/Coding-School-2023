@@ -1,6 +1,6 @@
 ﻿namespace CarServiceCenter.Model
 {
-    public class Car
+    public class Car : EntityBase
     {
         public Car(string brand, string model, string carRegistrationNumber)
         {
@@ -11,7 +11,6 @@
             Transactions = new List<Transaction>();
         }
 
-        public int Id { get; set; }
         public string Brand { get; set; }
         public string Model { get; set; }
         public string CarRegistrationNumber { get; set; }

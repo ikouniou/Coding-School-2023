@@ -1,6 +1,6 @@
 ﻿namespace CarServiceCenter.Model
 {
-    public class Customer
+    public class Customer : EntityBase
     {
         public Customer(string name, string surname, string phone, string tin)
         {
@@ -12,7 +12,6 @@
             Transactions = new List<Transaction>();
         }
 
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Phone { get; set; }
