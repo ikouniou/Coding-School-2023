@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CarServiceCenter.Model {
-    public class EntityBase {
+    public class EntityBase : IEntityBase{
+        public int Id { get; set; }
     }
 }
