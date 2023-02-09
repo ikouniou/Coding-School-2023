@@ -27,7 +27,7 @@ namespace CarServiceCenter.EF.Repositories {
             context.SaveChanges();
         }
 
-        public IList<Customer> GetAll() {
+        public IEnumerable<Customer> GetAll() {
 
             using var context = new CarServiceCenterDbContext();
             return context.Customers.Include(customer => customer.Transactions).ToList();

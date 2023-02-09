@@ -26,7 +26,7 @@ namespace CarServiceCenter.EF.Repositories {
             context.SaveChanges();
         }
 
-        public IList<TransactionLine> GetAll() {
+        public IEnumerable<TransactionLine> GetAll() {
 
             using var context = new CarServiceCenterDbContext();
             return context.TransactionLines.ToList();

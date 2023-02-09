@@ -29,7 +29,7 @@ namespace CarServiceCenter.EF.Repositories {
 
         }
 
-        public IList<Car> GetAll() {
+        public IEnumerable<Car> GetAll() {
 
             using var context = new CarServiceCenterDbContext();
             return context.Cars.Include(car => car.Transactions).ToList();
