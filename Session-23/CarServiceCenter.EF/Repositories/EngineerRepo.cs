@@ -12,6 +12,8 @@ namespace CarServiceCenter.EF.Repositories {
         public void Add(Engineer entity) {
 
             using var context = new CarServiceCenterDbContext();
+            if (entity.Id != 0)
+                throw new ArgumentException("Given entity should not have Id set", nameof(entity));
             context.Add(entity);
             context.SaveChanges();
         }
@@ -21,7 +23,7 @@ namespace CarServiceCenter.EF.Repositories {
             using var context = new CarServiceCenterDbContext();
             var dbEngineer = context.Engineers.Where(engineer => engineer.Id == id).SingleOrDefault();
             if (dbEngineer is null) {
-                return;
+                throw new KeyNotFoundException($"Given id '{id}' was not found in database");
             }
             context.Remove(dbEngineer);
             context.SaveChanges();
@@ -44,7 +46,7 @@ namespace CarServiceCenter.EF.Repositories {
             using var context = new CarServiceCenterDbContext();
             var dbEngineer = context.Engineers.Where(engineer => engineer.Id == id).SingleOrDefault();
             if (dbEngineer is null) {
-                return;
+                throw new KeyNotFoundException($"Given id '{id}' was not found in database");
             }
             dbEngineer.Name = entity.Name;
             dbEngineer.Surname = entity.Surname;

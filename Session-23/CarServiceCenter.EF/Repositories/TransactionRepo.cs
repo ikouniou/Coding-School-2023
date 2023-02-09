@@ -11,6 +11,8 @@ namespace CarServiceCenter.EF.Repositories {
         public void Add(Transaction entity) {
 
             using var context = new CarServiceCenterDbContext();
+            if (entity.Id != 0)
+                throw new ArgumentException("Given entity should not have Id set", nameof(entity));
             context.Add(entity);
             context.SaveChanges();
         }
@@ -20,7 +22,7 @@ namespace CarServiceCenter.EF.Repositories {
             using var context = new CarServiceCenterDbContext();
             var dbTransaction = context.Transactions.Where(transaction => transaction.Id == id).SingleOrDefault();
             if (dbTransaction is null) {
-                return;
+                throw new KeyNotFoundException($"Given id '{id}' was not found in database");
             }
             context.Remove(dbTransaction);
             context.SaveChanges();
@@ -43,7 +45,7 @@ namespace CarServiceCenter.EF.Repositories {
             using var context = new CarServiceCenterDbContext();
             var dbTransaction = context.Transactions.Where(transaction => transaction.Id == id).SingleOrDefault();
             if (dbTransaction is null) {
-                return;
+                throw new KeyNotFoundException($"Given id '{id}' was not found in database");
             }
             dbTransaction.Date = entity.Date;
             dbTransaction.TotalPrice = entity.TotalPrice;
