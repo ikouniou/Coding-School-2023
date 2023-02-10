@@ -9,8 +9,8 @@ namespace CarServiceCenter.Web.Controllers {
 
         private readonly IEntityRepo<Car> _carRepo;
         public CarController(IEntityRepo<Car> carRepo) {
-
-                _carRepo = carRepo;
+            
+            _carRepo = carRepo;
         }
 
         // GET: CarController
