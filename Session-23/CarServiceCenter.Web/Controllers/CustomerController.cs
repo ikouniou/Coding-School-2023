@@ -1,5 +1,6 @@
 ﻿using CarServiceCenter.EF.Repositories;
 using CarServiceCenter.Model;
+using CarServiceCenter.Web.Models.Car;
 using CarServiceCenter.Web.Models.Customer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -20,8 +21,26 @@ namespace CarServiceCenter.Web.Controllers {
         }
 
         // GET: CustomerController/Details/5
-        public ActionResult Details(int id) {
-            return View();
+        public ActionResult Details(int? id) {
+
+            if (id == null) {
+                return NotFound();
+            }
+
+            var customer = _customerRepo.GetById(id.Value);
+            if (customer == null) {
+                return NotFound();
+            }
+
+            var viewCustomer = new CustomerDetailsDto {
+                Id = customer.Id,
+                Name = customer.Name,
+                Surname = customer.Surname,
+                Phone = customer.Phone,
+                Tin = customer.Tin,
+                Transactions = customer.Transactions.ToList()
+            };
+            return View(model: viewCustomer);
         }
 
         // GET: CustomerController/Create
@@ -46,34 +65,69 @@ namespace CarServiceCenter.Web.Controllers {
 
         // GET: CustomerController/Edit/5
         public ActionResult Edit(int id) {
-            return View();
+
+            var dbCustomer = _customerRepo.GetById(id);
+            if (dbCustomer == null) {
+                return NotFound();
+            }
+
+            var viewCustomer = new CustomerEditDto {
+                Id = dbCustomer.Id,
+                Name = dbCustomer.Name,
+                Surname = dbCustomer.Surname,
+                Phone = dbCustomer.Phone,
+                Tin = dbCustomer.Tin
+            };
+            return View(model: viewCustomer);
         }
 
         // POST: CustomerController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection) {
-            try {
-                return RedirectToAction(nameof(Index));
-            } catch {
+        public ActionResult Edit(int id, CustomerEditDto customer) {
+
+            if (!ModelState.IsValid) {
                 return View();
             }
+
+            var dbCustomer = _customerRepo.GetById(id);
+            if (dbCustomer == null) {
+                return NotFound();
+            }
+
+            dbCustomer.Name = customer.Name;
+            dbCustomer.Surname = customer.Surname;
+            dbCustomer.Phone = customer.Phone;
+            dbCustomer.Tin = customer.Tin;
+            _customerRepo.Update(id, dbCustomer);
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: CustomerController/Delete/5
         public ActionResult Delete(int id) {
-            return View();
+
+            var dbCustomer = _customerRepo.GetById(id);
+            if (dbCustomer == null) {
+                return NotFound();
+            }
+
+            var viewCustomer = new CustomerDeleteDto {
+                Id = dbCustomer.Id,
+                Name = dbCustomer.Name,
+                Surname = dbCustomer.Surname,
+                Phone = dbCustomer.Phone,
+                Tin = dbCustomer.Tin
+            };
+            return View(model: viewCustomer);
         }
 
         // POST: CustomerController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection) {
-            try {
-                return RedirectToAction(nameof(Index));
-            } catch {
-                return View();
-            }
+
+            _customerRepo.Delete(id);
+            return RedirectToAction(nameof(Index));
         }
     }
 }
