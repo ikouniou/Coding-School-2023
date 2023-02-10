@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IEntityRepo<Car>, CarRepo>();
 builder.Services.AddScoped<IEntityRepo<Customer>, CustomerRepo>();
+builder.Services.AddScoped<IEntityRepo<Manager>, ManagerRepo>();
 
 var app = builder.Build();
 

@@ -1,4 +1,4 @@
-﻿@model CarServiceCenter.Web.Models.Customer.CustomerDetailsDto
+﻿@model CarServiceCenter.Web.Models.Manager.ManagerDetailsDto
 
 @{
     ViewData["Title"] = "Details";
@@ -7,7 +7,7 @@
 <h1>Details</h1>
 
 <div>
-    <h4>Customer</h4>
+    <h4>Manager</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -23,16 +23,10 @@
             @Html.DisplayFor(model => model.Surname)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Phone)
+            @Html.DisplayNameFor(model => model.SalaryPerMonth)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Tin)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Tin)
+            @Html.DisplayFor(model => model.SalaryPerMonth)
         </dd>
     </dl>
     <hr />
@@ -51,12 +45,50 @@
         </thead>
         <tbody>
             @foreach (var item in Model.Transactions) {
+                    <tr>
+                        <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        <td>
+                        @Html.DisplayFor(modelItem => item.TotalPrice)
+                        </td>
+                        <td>
+                        @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+                        </td>
+                    </tr>
+            }
+        </tbody>
+    </table>
+    <hr />
+    <h5>Engineers</h5>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Surname
+                </th>
+                <th>
+                    Salary Per Month
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Engineers) {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Date)
+                        @Html.DisplayFor(modelItem => item.Name)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.TotalPrice)
+                        @Html.DisplayFor(modelItem => item.Surname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SalaryPerMonth)
                     </td>
                     <td>
                         @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
