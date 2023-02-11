@@ -58,18 +58,49 @@ namespace CarServiceCenter.Web.Controllers {
 
         // GET: EngineerController/Edit/5
         public ActionResult Edit(int id) {
-            return View();
+
+            var dbEngineer = _engineerRepo.GetById(id);
+            if (dbEngineer == null) {
+                return NotFound();
+            }
+
+            var engineerDto = new EngineerEditDto {
+                Id = dbEngineer.Id,
+                Name = dbEngineer.Name,
+                Surname = dbEngineer.Surname,
+                SalaryPerMonth = dbEngineer.SalaryPerMonth,
+                ManagerId = dbEngineer.ManagerId
+            };
+
+            var managers = _managerRepo.GetAll();
+            foreach (var manager in managers) {
+                engineerDto.Managers.Add(new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem(manager.Surname, manager.Id.ToString()));
+            }
+
+            return View(engineerDto);
         }
 
         // POST: EngineerController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection) {
-            try {
-                return RedirectToAction(nameof(Index));
-            } catch {
+        public ActionResult Edit(int id, EngineerEditDto engineer) {
+
+            if (!ModelState.IsValid) {
                 return View();
             }
+
+            var dbEngineer = _engineerRepo.GetById(id);
+            if (dbEngineer == null) {
+                return NotFound();
+            }
+
+            dbEngineer.Name = engineer.Name;
+            dbEngineer.Surname = engineer.Surname;
+            dbEngineer.SalaryPerMonth = engineer.SalaryPerMonth;
+            dbEngineer.ManagerId = engineer.ManagerId;
+
+            _engineerRepo.Update(id, dbEngineer);
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: EngineerController/Delete/5
