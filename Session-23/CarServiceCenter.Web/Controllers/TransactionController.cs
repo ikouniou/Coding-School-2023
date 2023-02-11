@@ -4,6 +4,7 @@ using CarServiceCenter.Web.Models.Engineer;
 using CarServiceCenter.Web.Models.Transaction;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data.Common;
 
 namespace CarServiceCenter.Web.Controllers {
     public class TransactionController : Controller {
@@ -28,8 +29,34 @@ namespace CarServiceCenter.Web.Controllers {
         }
 
         // GET: TransactionController/Details/5
-        public ActionResult Details(int id) {
-            return View();
+        public ActionResult Details(int? id) {
+
+            if (id == null) {
+                return NotFound();
+            }
+
+            var transaction = _transactionRepo.GetById(id.Value);
+            if (transaction == null) {
+                return NotFound();
+            }
+
+            var viewTransaction = new TransactionDetailsDto {
+                Id = transaction.Id,
+                TotalPrice = transaction.TotalPrice,
+                Date = transaction.Date,
+                ManagerId = transaction.ManagerId,
+                ManagerName = transaction.Manager.Name,
+                ManagerSurname = transaction.Manager.Surname,
+                CustomerId = transaction.CustomerId,
+                CustomerName = transaction.Customer.Name,
+                CustomerSurname = transaction.Customer.Surname,
+                CarId = transaction.CarId,
+                CarBrand = transaction.Car.Brand,
+                CarModel = transaction.Car.Model,
+                CarRegistrationNumber = transaction.Car.CarRegistrationNumber,
+                TransactionLines = transaction.TransactionLines.ToList()
+            };
+            return View(model: viewTransaction);
         }
 
         // GET: TransactionController/Create
@@ -93,18 +120,37 @@ namespace CarServiceCenter.Web.Controllers {
 
         // GET: TransactionController/Delete/5
         public ActionResult Delete(int id) {
-            return View();
+
+            var dbTransaction = _transactionRepo.GetById(id);
+            if (dbTransaction == null) {
+                return NotFound();
+            }
+
+            var viewTransaction = new TransactionDeleteDto {
+                Id = dbTransaction.Id,
+                TotalPrice = dbTransaction.TotalPrice,
+                Date = dbTransaction.Date,
+                ManagerId = dbTransaction.ManagerId,
+                ManagerName = dbTransaction.Manager.Name,
+                ManagerSurname = dbTransaction.Manager.Surname,
+                CustomerId = dbTransaction.CustomerId,
+                CustomerName = dbTransaction.Customer.Name,
+                CustomerSurname = dbTransaction.Customer.Surname,
+                CarId = dbTransaction.CarId,
+                CarBrand = dbTransaction.Car.Brand,
+                CarModel = dbTransaction.Car.Model,
+                CarRegistrationNumber = dbTransaction.Car.CarRegistrationNumber
+            };
+            return View(model: viewTransaction);
         }
 
         // POST: TransactionController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection) {
-            try {
-                return RedirectToAction(nameof(Index));
-            } catch {
-                return View();
-            }
+
+            _transactionRepo.Delete(id);
+            return RedirectToAction(nameof(Index));
         }
     }
 }
