@@ -52,6 +52,9 @@ namespace CarServiceCenter.EF.Repositories {
             }
             dbTransaction.Date = entity.Date;
             dbTransaction.TotalPrice = entity.TotalPrice;
+            dbTransaction.ManagerId = entity.ManagerId;
+            dbTransaction.CustomerId = entity.CustomerId;
+            dbTransaction.CarId = entity.CarId;
             context.SaveChanges();
         }
     }

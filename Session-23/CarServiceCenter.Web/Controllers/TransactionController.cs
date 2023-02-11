@@ -104,18 +104,62 @@ namespace CarServiceCenter.Web.Controllers {
 
         // GET: TransactionController/Edit/5
         public ActionResult Edit(int id) {
-            return View();
+
+            var dbTransaction = _transactionRepo.GetById(id);
+            if (dbTransaction == null) {
+                return NotFound();
+            }
+
+            var transactionDto = new TransactionEditDto {
+                Id = dbTransaction.Id,
+                Date = dbTransaction.Date,
+                TotalPrice = dbTransaction.TotalPrice,
+                ManagerId = dbTransaction.ManagerId,
+                CustomerId = dbTransaction.CustomerId,
+                CarId = dbTransaction.CarId
+            };
+
+            var managers = _managerRepo.GetAll();
+            foreach (var manager in managers) {
+                string managerFullName = $"{manager.Name} {manager.Surname}";
+                transactionDto.Managers.Add(new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem(managerFullName, manager.Id.ToString()));
+            }
+            var customers = _customerRepo.GetAll();
+            foreach (var customer in customers) {
+                string customerFullName = $"{customer.Name} {customer.Surname}";
+                transactionDto.Customers.Add(new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem(customerFullName, customer.Id.ToString()));
+            }
+            var cars = _carRepo.GetAll();
+            foreach (var car in cars) {
+                string carFullDetails = $"{car.Brand} {car.Model} {car.CarRegistrationNumber}";
+                transactionDto.Cars.Add(new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem(carFullDetails, car.Id.ToString()));
+            }
+
+            return View(transactionDto);
         }
 
         // POST: TransactionController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection) {
-            try {
-                return RedirectToAction(nameof(Index));
-            } catch {
+        public ActionResult Edit(int id, TransactionEditDto transaction) {
+
+            if (!ModelState.IsValid) {
                 return View();
             }
+
+            var dbTransaction = _transactionRepo.GetById(id);
+            if (dbTransaction == null) {
+                return NotFound();
+            }
+
+            dbTransaction.Date = transaction.Date;
+            dbTransaction.TotalPrice = transaction.TotalPrice;
+            dbTransaction.ManagerId = transaction.ManagerId;
+            dbTransaction.CustomerId = transaction.CustomerId;
+            dbTransaction.CarId = transaction.CarId;
+
+            _transactionRepo.Update(id, dbTransaction);
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: TransactionController/Delete/5
