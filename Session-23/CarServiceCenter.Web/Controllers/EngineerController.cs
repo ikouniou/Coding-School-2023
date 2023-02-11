@@ -1,5 +1,6 @@
 ﻿using CarServiceCenter.EF.Repositories;
 using CarServiceCenter.Model;
+using CarServiceCenter.Web.Models.Customer;
 using CarServiceCenter.Web.Models.Engineer;
 using CarServiceCenter.Web.Models.ServiceTask;
 using Microsoft.AspNetCore.Http;
@@ -126,18 +127,31 @@ namespace CarServiceCenter.Web.Controllers {
 
         // GET: EngineerController/Delete/5
         public ActionResult Delete(int id) {
-            return View();
+
+            var dbEngineer = _engineerRepo.GetById(id);
+            if (dbEngineer == null) {
+                return NotFound();
+            }
+
+            var viewEngineer = new EngineerDeleteDto {
+                Id = dbEngineer.Id,
+                Name = dbEngineer.Name,
+                Surname = dbEngineer.Surname,
+                SalaryPerMonth = dbEngineer.SalaryPerMonth,
+                ManagerId = dbEngineer.ManagerId,
+                ManagerName =dbEngineer.Manager.Name,
+                ManagerSurname = dbEngineer.Manager.Surname
+            };
+            return View(model: viewEngineer);
         }
 
         // POST: EngineerController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection) {
-            try {
-                return RedirectToAction(nameof(Index));
-            } catch {
-                return View();
-            }
+
+            _engineerRepo.Delete(id);
+            return RedirectToAction(nameof(Index));
         }
     }
 }
