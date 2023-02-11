@@ -55,7 +55,8 @@ namespace CarServiceCenter.Web.Controllers {
             var newEngineer = new EngineerCreateDto();
             var managers = _managerRepo.GetAll();
             foreach (var manager in managers) {
-                newEngineer.Managers.Add(new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem(manager.Surname, manager.Id.ToString()));
+                string managerFullName = $"{manager.Name} {manager.Surname}";
+                newEngineer.Managers.Add(new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem(managerFullName, manager.Id.ToString()));
             }
 
             return View(model: newEngineer);
@@ -96,7 +97,8 @@ namespace CarServiceCenter.Web.Controllers {
 
             var managers = _managerRepo.GetAll();
             foreach (var manager in managers) {
-                engineerDto.Managers.Add(new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem(manager.Surname, manager.Id.ToString()));
+                string managerFullName = $"{manager.Name} {manager.Surname}";
+                engineerDto.Managers.Add(new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem(managerFullName, manager.Id.ToString()));
             }
 
             return View(engineerDto);
