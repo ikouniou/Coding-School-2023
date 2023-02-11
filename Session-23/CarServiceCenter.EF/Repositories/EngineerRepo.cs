@@ -32,13 +32,13 @@ namespace CarServiceCenter.EF.Repositories {
         public IEnumerable<Engineer> GetAll() {
 
             using var context = new CarServiceCenterDbContext();
-            return context.Engineers.Include(engineers => engineers.Manager).ToList();
+            return context.Engineers.Include(engineers => engineers.Manager).Include(engineers => engineers.TransactionLines).ToList();
         }
 
         public Engineer? GetById(int id) {
 
             using var context = new CarServiceCenterDbContext();
-            return context.Engineers.Where(engineer => engineer.Id == id).Include(engineers => engineers.Manager).SingleOrDefault();
+            return context.Engineers.Where(engineer => engineer.Id == id).Include(engineers => engineers.Manager).Include(engineers => engineers.TransactionLines).SingleOrDefault();
         }
 
         public void Update(int id, Engineer entity) {

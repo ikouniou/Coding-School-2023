@@ -1,6 +1,7 @@
 ﻿using CarServiceCenter.EF.Repositories;
 using CarServiceCenter.Model;
 using CarServiceCenter.Web.Models.Engineer;
+using CarServiceCenter.Web.Models.ServiceTask;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,8 +24,28 @@ namespace CarServiceCenter.Web.Controllers {
         }
 
         // GET: EngineerController/Details/5
-        public ActionResult Details(int id) {
-            return View();
+        public ActionResult Details(int? id) {
+
+            if (id == null) {
+                return NotFound();
+            }
+
+            var engineer = _engineerRepo.GetById(id.Value);
+            if (engineer == null) {
+                return NotFound();
+            }
+
+            var viewEngineer = new EngineerDetailsDto {
+                Id = engineer.Id,
+                Name = engineer.Name,
+                Surname = engineer.Surname,
+                SalaryPerMonth = engineer.SalaryPerMonth,
+                ManagerId = engineer.ManagerId,
+                ManagerName = engineer.Manager.Name,
+                ManagerSurname = engineer.Manager.Surname,
+                TransactionLines = engineer.TransactionLines.ToList()
+            };
+            return View(model: viewEngineer);
         }
 
         // GET: EngineerController/Create
