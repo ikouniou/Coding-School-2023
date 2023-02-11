@@ -1,5 +1,6 @@
 ﻿using CarServiceCenter.EF.Context;
 using CarServiceCenter.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,13 +32,13 @@ namespace CarServiceCenter.EF.Repositories {
         public IEnumerable<ServiceTask> GetAll() {
 
             using var context = new CarServiceCenterDbContext();
-            return context.ServiceTasks.ToList();
+            return context.ServiceTasks.Include(serviceTask => serviceTask.TransactionLines).ToList();
         }
 
         public ServiceTask? GetById(int id) {
 
             using var context = new CarServiceCenterDbContext();
-            return context.ServiceTasks.Where(serviceTask => serviceTask.Id == id).SingleOrDefault();
+            return context.ServiceTasks.Where(serviceTask => serviceTask.Id == id).Include(serviceTask => serviceTask.TransactionLines).SingleOrDefault();
         }
 
         public void Update(int id, ServiceTask entity) {
