@@ -163,18 +163,38 @@ namespace CarServiceCenter.Web.Controllers {
 
         // GET: TransactionLineController/Delete/5
         public ActionResult Delete(int id) {
-            return View();
+
+            var dbTransactionLine = _transactionLineRepo.GetById(id);
+            if (dbTransactionLine == null) {
+                return NotFound();
+            }
+
+            var viewTransactionLine = new TransactionLineDeleteDto {
+                Id = dbTransactionLine.Id,
+                Hours = dbTransactionLine.Hours,
+                PricePerHour = dbTransactionLine.PricePerHour,
+                Price = dbTransactionLine.Price,
+                TransactionId = dbTransactionLine.TransactionId,
+                ServiceTaskId = dbTransactionLine.ServiceTaskId,
+                EngineerId = dbTransactionLine.EngineerId,
+                TransactionDate = dbTransactionLine.Transaction.Date,
+                TransactionTotalPrice = dbTransactionLine.Transaction.TotalPrice,
+                ServiceTaskCode = dbTransactionLine.ServiceTask.Code,
+                ServiceTaskDescription = dbTransactionLine.ServiceTask.Description,
+                ServiceTaskHours = dbTransactionLine.ServiceTask.Hours,
+                EngineerName = dbTransactionLine.Engineer.Name,
+                EngineerSurname = dbTransactionLine.Engineer.Surname
+            };
+            return View(model: viewTransactionLine);
         }
 
         // POST: TransactionLineController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection) {
-            try {
-                return RedirectToAction(nameof(Index));
-            } catch {
-                return View();
-            }
+
+            _transactionLineRepo.Delete(id);
+            return RedirectToAction(nameof(Index));
         }
     }
 }
