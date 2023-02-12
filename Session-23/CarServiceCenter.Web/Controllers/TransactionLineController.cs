@@ -101,18 +101,64 @@ namespace CarServiceCenter.Web.Controllers {
 
         // GET: TransactionLineController/Edit/5
         public ActionResult Edit(int id) {
-            return View();
+
+            var dbTransactionLine = _transactionLineRepo.GetById(id);
+            if (dbTransactionLine == null) {
+                return NotFound();
+            }
+
+            var transactionLineDto = new TransactionLineEditDto {
+                Id = dbTransactionLine.Id,
+                Hours = dbTransactionLine.Hours,
+                PricePerHour = dbTransactionLine.PricePerHour,
+                Price = dbTransactionLine.Price,
+                TransactionId = dbTransactionLine.TransactionId,
+                ServiceTaskId = dbTransactionLine.ServiceTaskId,
+                EngineerId = dbTransactionLine.EngineerId
+            };
+
+            var transactions = _transactionRepo.GetAll();
+            foreach (var transaction in transactions) {
+                string transactionFullDetails = $"{transaction.Date} {transaction.Customer.Name} {transaction.Customer.Surname} {transaction.Car.CarRegistrationNumber}";
+                transactionLineDto.Transactions.Add(new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem(transactionFullDetails, transaction.Id.ToString()));
+            }
+            var serviceTasks = _serviceTaskRepo.GetAll();
+            foreach (var serviceTask in serviceTasks) {
+                string serviceTaskFullDetails = $"{serviceTask.Code} {serviceTask.Description}";
+                transactionLineDto.ServiceTasks.Add(new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem(serviceTaskFullDetails, serviceTask.Id.ToString()));
+            }
+            var engineers = _engineerRepo.GetAll();
+            foreach (var engineer in engineers) {
+                string engineerFullName = $"{engineer.Name} {engineer.Surname}";
+                transactionLineDto.Engineers.Add(new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem(engineerFullName, engineer.Id.ToString()));
+            }
+
+            return View(transactionLineDto);
         }
 
         // POST: TransactionLineController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection) {
-            try {
-                return RedirectToAction(nameof(Index));
-            } catch {
+        public ActionResult Edit(int id, TransactionLineEditDto transactionLine) {
+
+            if (!ModelState.IsValid) {
                 return View();
             }
+
+            var dbTransactionLine = _transactionLineRepo.GetById(id);
+            if (dbTransactionLine == null) {
+                return NotFound();
+            }
+
+            dbTransactionLine.Hours = transactionLine.Hours;
+            dbTransactionLine.PricePerHour = transactionLine.PricePerHour;
+            dbTransactionLine.Price = transactionLine.Price;
+            dbTransactionLine.TransactionId = transactionLine.TransactionId;
+            dbTransactionLine.ServiceTaskId = transactionLine.ServiceTaskId;
+            dbTransactionLine.EngineerId = transactionLine.EngineerId;
+
+            _transactionLineRepo.Update(id, dbTransactionLine);
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: TransactionLineController/Delete/5
