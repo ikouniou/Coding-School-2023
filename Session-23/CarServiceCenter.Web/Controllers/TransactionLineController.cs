@@ -89,7 +89,7 @@ namespace CarServiceCenter.Web.Controllers {
                 return View();
             }
 
-            var dbTransactionLine = new TransactionLine(transactionLine.Hours, transactionLine.PricePerHour, transactionLine.Price) {
+            var dbTransactionLine = new TransactionLine(transactionLine.Hours, transactionLine.PricePerHour, transactionLine.Hours * transactionLine.PricePerHour) {
                 TransactionId = transactionLine.TransactionId,
                 ServiceTaskId = transactionLine.ServiceTaskId,
                 EngineerId = transactionLine.EngineerId
@@ -152,7 +152,7 @@ namespace CarServiceCenter.Web.Controllers {
 
             dbTransactionLine.Hours = transactionLine.Hours;
             dbTransactionLine.PricePerHour = transactionLine.PricePerHour;
-            dbTransactionLine.Price = transactionLine.Price;
+            dbTransactionLine.Price = transactionLine.Hours * transactionLine.PricePerHour;
             dbTransactionLine.TransactionId = transactionLine.TransactionId;
             dbTransactionLine.ServiceTaskId = transactionLine.ServiceTaskId;
             dbTransactionLine.EngineerId = transactionLine.EngineerId;
