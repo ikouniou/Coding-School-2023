@@ -1,5 +1,6 @@
 ﻿using CarServiceCenter.EF.Context;
 using CarServiceCenter.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,13 +32,15 @@ namespace CarServiceCenter.EF.Repositories {
         public IEnumerable<TransactionLine> GetAll() {
 
             using var context = new CarServiceCenterDbContext();
-            return context.TransactionLines.ToList();
+            return context.TransactionLines.Include(transactionLine => transactionLine.Transaction).Include(transactionLine => transactionLine.ServiceTask)
+                .Include(transactionLine => transactionLine.Engineer).ToList();
         }
 
         public TransactionLine? GetById(int id) {
 
             using var context = new CarServiceCenterDbContext();
-            return context.TransactionLines.Where(transactionLine => transactionLine.Id == id).SingleOrDefault();
+            return context.TransactionLines.Where(transactionLine => transactionLine.Id == id).Include(transactionLine => transactionLine.Transaction).Include(transactionLine => transactionLine.ServiceTask)
+                .Include(transactionLine => transactionLine.Engineer).SingleOrDefault();
         }
 
         public void Update(int id, TransactionLine entity) {
@@ -50,6 +53,9 @@ namespace CarServiceCenter.EF.Repositories {
             dbTransactionLine.Hours = entity.Hours;
             dbTransactionLine.PricePerHour = entity.PricePerHour;
             dbTransactionLine.Price = entity.Price;
+            dbTransactionLine.TransactionId = entity.TransactionId;
+            dbTransactionLine.ServiceTaskId = entity.ServiceTaskId;
+            dbTransactionLine.EngineerId = entity.EngineerId;
             context.SaveChanges();
         }
     }
