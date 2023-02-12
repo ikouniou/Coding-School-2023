@@ -18,7 +18,7 @@ namespace CarServiceCenter.EF.Configurations
 
             // Properties
             builder.Property(transactionLine => transactionLine.Hours).HasPrecision(3, 2).IsRequired();
-            builder.Property(transactionLine => transactionLine.PricePerHour).HasPrecision(3, 2).IsRequired();
+            builder.Property(transactionLine => transactionLine.PricePerHour).HasPrecision(4, 2).IsRequired();
             builder.Property(transactionLine => transactionLine.Price).HasPrecision(9, 2).IsRequired();
 
             // Relations
