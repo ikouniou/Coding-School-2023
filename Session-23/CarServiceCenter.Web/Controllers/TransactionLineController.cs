@@ -28,8 +28,33 @@ namespace CarServiceCenter.Web.Controllers {
         }
 
         // GET: TransactionLineController/Details/5
-        public ActionResult Details(int id) {
-            return View();
+        public ActionResult Details(int? id) {
+            if (id == null) {
+                return NotFound();
+            }
+
+            var transactionLine = _transactionLineRepo.GetById(id.Value);
+            if (transactionLine == null) {
+                return NotFound();
+            }
+
+            var viewTransactionLine = new TransactionLineDetailsDto {
+                Id = transactionLine.Id,
+                Hours = transactionLine.Hours,
+                PricePerHour = transactionLine.PricePerHour,
+                Price = transactionLine.Price,
+                TransactionId = transactionLine.TransactionId,
+                ServiceTaskId = transactionLine.ServiceTaskId,
+                EngineerId = transactionLine.EngineerId,
+                TransactionDate = transactionLine.Transaction.Date,
+                TransactionTotalPrice = transactionLine.Transaction.TotalPrice,
+                ServiceTaskCode = transactionLine.ServiceTask.Code,
+                ServiceTaskDescription = transactionLine.ServiceTask.Description,
+                ServiceTaskHours = transactionLine.ServiceTask.Hours,
+                EngineerName = transactionLine.Engineer.Name,
+                EngineerSurname = transactionLine.Engineer.Surname
+            };
+            return View(model: viewTransactionLine);
         }
 
         // GET: TransactionLineController/Create
