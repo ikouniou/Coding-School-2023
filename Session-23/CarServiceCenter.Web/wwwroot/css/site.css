@@ -20,3 +20,70 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+table a {
+    text-decoration: none;
+    padding: 5px;
+    background-color: #a3b899;
+    color: white;
+    border-radius: 7px;
+}
+
+table a:hover {
+    background-color: #667b68;
+    color: white;
+}
+
+main a {
+    text-decoration: none;
+    padding: 5px;
+    background-color: #a3b899;
+    color: white;
+    border-radius: 7px;
+}
+
+main a:hover{
+    background-color: #667b68;
+    color: white;
+}
+
+.btn.btn-primary{
+    background-color: #667b68;
+    border-color: #667b68; 
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-radius: 7px;
+}
+
+input[type="submit"].btn:hover {
+    background-color: #f8d3c5;
+    color: #667b68;
+    border-color: #f8d3c5;
+}
+
+input[type="submit"].btn.btn-danger {
+    color: #fff;
+    background-color: #bb2d3b;
+    border-color: #b02a37;
+    border-radius: 7px;
+    padding: 4px;
+    margin-bottom: 6px;
+}
+
+main .text-center.home-page h1 {
+    color: #a3b899;
+    font-weight: 500;
+}
+
+header .navbar-collapse a:hover {
+    background-color: #dde6d5;
+    border-radius: 7px;
+}
+
+footer a {
+    color: #667b68;
+}
+
+footer a:hover {
+    color: #f8d3c5
+}
