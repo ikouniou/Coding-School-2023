@@ -196,5 +196,42 @@ namespace CarServiceCenter.Web.Controllers {
             _transactionRepo.Delete(id);
             return RedirectToAction(nameof(Index));
         }
+
+        // GET: TransactionController/UpdateTotalPrice/5
+        public ActionResult UpdateTotalPrice(int id, IFormFileCollection collection) {
+
+            var dbTransaction = _transactionRepo.GetById(id);
+            if (dbTransaction == null) {
+                return NotFound();
+            }
+            if(dbTransaction.TransactionLines.Count == 0) {
+                return RedirectToAction(nameof(Index));
+            }
+            return View(model: dbTransaction);
+        }
+
+        //POST: TransactionController/UpdateTotalPrice/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateTotalPrice(int id, IFormCollection collection) {
+
+            var dbTransaction = _transactionRepo.GetById(id);
+            if (dbTransaction == null) {
+                return NotFound();
+            }
+            List<TransactionLine> transactionLines = new List<TransactionLine>();
+            transactionLines = dbTransaction.TransactionLines;
+            if (transactionLines is null) {
+                return RedirectToAction(nameof(Index));
+            }
+            decimal totalPrice = 0;
+            foreach (var transactionLine in transactionLines) {
+                totalPrice += transactionLine.Price;
+            }
+            dbTransaction.TotalPrice = totalPrice;
+            _transactionRepo.Update(id, dbTransaction);
+            return View(model: dbTransaction);
+
+        }
     }
 }
