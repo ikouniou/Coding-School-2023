@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace CarServiceCenter.Web.Models.Transaction {
     public class TransactionEditDto {
         public int Id { get; set; }
         public DateTime Date { get; set; }
+        [Precision(9, 2)]
         public decimal TotalPrice { get; set; }
         public int ManagerId { get; set; }
         public int CustomerId { get; set; }
