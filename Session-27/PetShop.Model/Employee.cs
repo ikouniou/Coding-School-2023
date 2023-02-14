@@ -23,4 +23,5 @@ namespace PetShop.Model
         // Relations
         public List<Transaction> Transactions { get; set; }
     }
+
 }
