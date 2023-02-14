@@ -1,6 +1,10 @@
-﻿
+﻿@page "/Transactionlist"
+@using PetShop.Web.Blazor.Shared.Transaction;
+@inject HttpClient httpClient
+@inject NavigationManager navigationManager
+@inject JSRuntime jsRuntime
 
-<h3>Component</h3>
+<h3>TransactionList</h3>
 @if (isLoading)
 {
     <p> Loading ... </p>
@@ -19,9 +23,9 @@ else
                 <th>TotalCost</th>
                 <th>Options</th>
             </tr>
-            </thead>
-            <tbody>
-    @foreach (var transaction in transactionList)
+        </thead>
+        <tbody>
+            @foreach (var transaction in transactionList)
             {
                 <tr>
                     <td>@transaction.Id</td>
@@ -34,11 +38,11 @@ else
                         <button class="btn btn-danger" @onclick="()=> DeleteItem(transaction)">Delete</button>
                     </td>
                 </tr>
-                }
-            </tbody>
+            }
+        </tbody>
     </table>
 
- @code {
+    @code {
     private List<TransactionListDto> transactionList = new();
     bool isLoading { get; set; } = true;
     protected override async Task OnInitializedAsync()
@@ -58,7 +62,6 @@ else
     {
         NavigationManager.NavigateTo($"transactionlist/edit/{transaction.Id}");
     }
-
     private async Task DeleteItem(TransactionListDto transaction)
     {
         var confirm = await jsRuntime.InvokeAsync<bool>("confirm", "Delete Item. Are you sure?");
@@ -69,4 +72,4 @@ else
             await LoadItemsFromServer();
         }
     }
- }
+}
