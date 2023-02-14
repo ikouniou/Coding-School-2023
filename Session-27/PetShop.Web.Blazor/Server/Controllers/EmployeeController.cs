@@ -18,12 +18,12 @@ namespace PetShop.Web.Blazor.Server.Controllers {
         [HttpGet]
         public async Task<IEnumerable<EmployeeListDto>> Get() {
             var result = _employeeRepo.GetAll();
-            return result.Select(todo => new EmployeeListDto {
-                Id = todo.Id,
-                Name = todo.Name,
-                Surname = todo.Surname,
-                EmployeeType = todo.EmployeeType,
-                SalaryPerMonth = todo.SalaryPerMonth
+            return result.Select(employee => new EmployeeListDto {
+                Id = employee.Id,
+                Name = employee.Name,
+                Surname = employee.Surname,
+                EmployeeType = employee.EmployeeType,
+                SalaryPerMonth = employee.SalaryPerMonth
             });
         }
 
