@@ -12,8 +12,13 @@
 
   <ItemGroup>
     <Folder Include="Employee\" />
+    <Folder Include="Customer\" />
     <Folder Include="Transaction\" />
     <Folder Include="PetFood\" />
     <Folder Include="Pet\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\PetShop.Model\PetShop.Model.csproj" />
   </ItemGroup>
 </Project>
