@@ -5,6 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace PetShop.Web.Blazor.Shared.Transaction {
-    internal class TransactionListDto {
+    public class TransactionListDto {
     }
 }
