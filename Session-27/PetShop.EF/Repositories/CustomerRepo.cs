@@ -16,9 +16,10 @@ namespace PetShop.EF.Repositories
             if (entity.Id != 0)
             {
                 throw new ArgumentException("Given entity should not have Id set", nameof(entity));
-                context.Add(entity);
-                context.SaveChanges();
+                
             }
+            context.Add(entity);
+            context.SaveChanges();
         }
 
         public void Delete(int id)
