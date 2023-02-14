@@ -1,4 +1,5 @@
 ﻿using PetShop.EF.Context;
+using PetShop.Model;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -6,11 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace PetShop.EF.Repositories
 {
     public class TransactionRepo : IEntityRepo<Transaction>
     {
-        public void Add(TransactionRepo entity)
+        public void Add(Transaction entity)
         {
             using var context = new PetShopDbContext();
             if (entity != 0 ) {
@@ -33,18 +35,18 @@ namespace PetShop.EF.Repositories
     }
 public IList<Transaction> GetAll()
     {
-        using var context = new TransactionDbContext();
+        using var context = new PetShopDbContext();
         return context.Transactions.ToList();
     }
-    public Transaction? GetById(int id)
+    public Transaction GetById(int id)
     {
-        using var context = new TransactionDbContext();
+        using var context = new PetShopDbContext();
         return context.Transaction.SingleOrDefault(Trasaction => Transaction.Id == id);
     }
     public void Update(int id, Transaction entity) {
-        using var context = new TransactionDpContext();
+        using var context = new PetShopDbContext();
         var dbTransaction = context.Transactions.SingleOrDefault(transaction => transaction.Id == id);
-        if (dbTrasaction is null)
+        if (dbTransaction is null)
         {
             throw new KeyNotFoundException($"Given id '{id}' was not found in database");
         }
