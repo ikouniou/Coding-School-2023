@@ -32,9 +32,11 @@ else
 				}*@
 			</select>
 		</div>
-
 	</div>
-
+		<div class="col-md-6">
+			<label class="form-label">Salary Per Month</label>
+			<input class="form-control" @bind="@Employee.SalaryPerMonth" />
+		</div>
 	<div class="row mt-2">
 		<div class="col">
 			<button class="btn btn-success" @onclick="OnSave">Save</button>
