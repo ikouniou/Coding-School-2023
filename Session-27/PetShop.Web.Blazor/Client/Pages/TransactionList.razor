@@ -1,0 +1,75 @@
+﻿@page "/Transactionlist"
+@using PetShop.Web.Blazor.Shared.Transaction;
+@inject HttpClient httpClient
+@inject NavigationManager navigationManager
+@inject IJSRuntime jsRuntime
+
+<h3>TransactionList</h3>
+@if (isLoading)
+{
+    <p> Loading ... </p>
+}
+else
+{
+    <button class="btn btn-primary" @onclick="CreateItem">Create</button>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>PetPrice</th>
+                <th>PetFoodQty</th>
+                <th>PetFoodPrice</th>
+                <th>TotalCost</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var transaction in transactionList)
+            {
+                <tr>
+                    <td>@transaction.Id</td>
+                    <td>@transaction.Date</td>
+                    <td>@transaction.PetPrice</td>
+                    <td>@transaction.PetFoodPrice</td>
+                    <td>@transaction.TotalCost</td>
+                    <td>
+                        <button class="btn btn-primary" @onclick="()=> EditItem(transaction)">Edit</button>
+                        <button class="btn btn-danger" @onclick="()=> DeleteItem(transaction)">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @code {
+    private List<TransactionListDto> transactionList = new();
+    bool isLoading { get; set; } = true;
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadItemsFromServer();
+        isLoading = false;
+    }
+    private async Task LoadIteamFromServer()
+    {
+        transactionList = await HttpClient.GetFromJsonAsync<List<TransactionListDto>>("customer");
+    }
+    private void CreateIteam()
+    {
+        navigationManager.NavigateTo("transactionlist/edit");
+    }
+    private void EditItem(TransactionListDto transaction)
+    {
+        NavigationManager.NavigateTo($"transactionlist/edit/{transaction.Id}");
+    }
+    private async Task DeleteItem(TransactionListDto transaction)
+    {
+        var confirm = await jsRuntime.InvokeAsync<bool>("confirm", "Delete Item. Are you sure?");
+        if (confirm)
+        {
+            var response = await httpClient.DeleteAsync($"transaction/{transaction.Id}");
+            response.EnsureSuccessStatusCode();
+            await LoadItemsFromServer();
+        }
+    }
+}
