@@ -6,6 +6,7 @@ using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 
 namespace PetShop.EF.Repositories
@@ -20,6 +21,31 @@ namespace PetShop.EF.Repositories
             }
             context.Add(entity);
             context.SaveChanges();
+        }
+
+        public void Add(Transaction entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IList<Transaction> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Transaction GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(int id, Transaction entity)
+        {
+            throw new NotImplementedException();
         }
     }
     public void Delete(int id)

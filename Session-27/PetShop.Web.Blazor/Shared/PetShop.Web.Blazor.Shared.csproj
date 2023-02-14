@@ -14,6 +14,14 @@
     <Folder Include="Customer\" />
     <Folder Include="Transaction\" />
     <Folder Include="PetFood\" />
+    <Folder Include="Pet\" />
+    <Folder Include="Pet\" />
+    <Folder Include="Pet\" />
+    <Folder Include="Pet\" />
+    <Folder Include="Pet\" />
+    <Folder Include="Pet\" />
+    <Folder Include="Pet\" />
+    <Folder Include="Pet\" />
   </ItemGroup>
 
   <ItemGroup>
