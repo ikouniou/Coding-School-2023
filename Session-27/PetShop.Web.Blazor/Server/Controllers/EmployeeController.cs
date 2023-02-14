@@ -6,6 +6,8 @@ using PetShop.Web.Blazor.Shared.Employee;
 using System.Security.Cryptography;
 
 namespace PetShop.Web.Blazor.Server.Controllers {
+    [Route("[controller]")]
+    [ApiController]
     public class EmployeeController : ControllerBase {
         private readonly IEntityRepo<Employee> _employeeRepo;
 
@@ -26,7 +28,7 @@ namespace PetShop.Web.Blazor.Server.Controllers {
         }
 
         [HttpGet("{id}")]
-        public async Task<EmployeeEditDto> GetByEdit(int id) {
+        public async Task<EmployeeEditDto> GetById(int id) {
             var result = _employeeRepo.GetById(id);
             return new EmployeeEditDto {
                 Id = id,
