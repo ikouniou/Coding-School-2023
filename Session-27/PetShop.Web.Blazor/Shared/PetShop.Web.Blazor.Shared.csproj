@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Employee\" />
     <Folder Include="Customer\" />
     <Folder Include="Transaction\" />
     <Folder Include="PetFood\" />
