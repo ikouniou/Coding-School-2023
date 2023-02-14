@@ -11,10 +11,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Employee\" />
     <Folder Include="Customer\" />
-    <Folder Include="Pet\" />
     <Folder Include="Transaction\" />
+    <Folder Include="PetFood\" />
+    <Folder Include="Pet\" />
+    <Folder Include="Pet\" />
+    <Folder Include="Pet\" />
+    <Folder Include="Pet\" />
+    <Folder Include="Pet\" />
+    <Folder Include="Pet\" />
+    <Folder Include="Pet\" />
+    <Folder Include="Pet\" />
   </ItemGroup>
 
   <ItemGroup>
