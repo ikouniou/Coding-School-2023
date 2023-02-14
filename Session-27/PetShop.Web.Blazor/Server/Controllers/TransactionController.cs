@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PetShop.EF.Repositories;
 using PetShop.Model;
+using PetShop.Web.Blazor.Shared.Transaction;
 
 namespace PetShop.Web.Blazor.Server.Controllers
 {
