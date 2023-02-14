@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PetShop.Web.Blazor.Shared.Pet {
+namespace PetShop.Web.Blazor.Shared.PetFood {
     public class PetFoodEditDto {
         public int Id { get; set; }
         public AnimalType AnimalType { get; set; }
