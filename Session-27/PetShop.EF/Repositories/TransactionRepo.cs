@@ -5,6 +5,7 @@ using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace PetShop.EF.Repositories
 {
@@ -18,6 +19,31 @@ namespace PetShop.EF.Repositories
             }
             context.Add(entity);
             context.SaveChanges();
+        }
+
+        public void Add(Transaction entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IList<Transaction> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Transaction GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(int id, Transaction entity)
+        {
+            throw new NotImplementedException();
         }
     }
     public void Delete(int id)
@@ -36,7 +62,7 @@ public IList<Transaction> GetAll()
         using var context = new TransactionDbContext();
         return context.Transactions.ToList();
     }
-    public Transaction? GetById(int id)
+    public Transaction GetById(int id)
     {
         using var context = new TransactionDbContext();
         return context.Transaction.SingleOrDefault(Trasaction => Transaction.Id == id);
@@ -44,7 +70,7 @@ public IList<Transaction> GetAll()
     public void Update(int id, Transaction entity) {
         using var context = new TransactionDpContext();
         var dbTransaction = context.Transactions.SingleOrDefault(transaction => transaction.Id == id);
-        if (dbTrasaction is null)
+        if (dbTransaction is null)
         {
             throw new KeyNotFoundException($"Given id '{id}' was not found in database");
         }
