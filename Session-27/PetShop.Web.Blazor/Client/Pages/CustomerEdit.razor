@@ -1,0 +1,48 @@
+﻿@page "/customerlist/edit/{Id:int?}"
+@using PetShop.Model;
+@using PetShop.Web.Blazor.Shared.Customer;
+
+@inject HttpClient httpClient
+@inject NavigationManager navigationManager
+
+<h3>CustomerEdit</h3>
+
+@code {
+    [Parameter] public int? Id { get; set; }
+    CustomerEditDto Customer { get; set; }
+
+ protected override async Task OnInitializedAsync()
+    {
+        if(Id == null)
+        {
+            Customer = new();
+        }
+        else
+        {
+            Customer = await httpClient.GetFromJsonAsync<CustomerEditDto>($"customer/{Id}");
+        }
+    }
+    private void OnCancel()
+    {
+        navigationManager.NavigateTo("customerlist");
+    }
+
+    private async Task OnSave()
+    {
+        HttpResponseMessage? response = null;
+        if (Id == null)
+        {
+            response = await httpClient.PostAsJsonAsync("customer", Customer);
+        }
+        else
+        {
+            response = await httpClient.PutAsJsonAsync("customer", Customer);
+        }
+
+        response.EnsureSuccessStatusCode();
+        navigationManager.NavigateTo("customerlist");
+    }
+
+
+
+}
