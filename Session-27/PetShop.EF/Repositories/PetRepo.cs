@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PetShop.EF.Repositories
 {
-    public class PetRepo
+    public class PetRepo : IEntityRepo<Pet>
     {
         public void Add (Pet entity)
         {
