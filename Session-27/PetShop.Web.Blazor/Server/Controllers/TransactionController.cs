@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using PetShop.EF.Repositories;
 using PetShop.Model;
-using System.Transactions;
 
 namespace PetShop.Web.Blazor.Server.Controllers
 {
@@ -47,8 +45,7 @@ namespace PetShop.Web.Blazor.Server.Controllers
         [HttpPost]
         public async Task Post(TransactionEditDto transaction)
         {
-            var newTransaction = new Transaction(transaction.PetFoodPrice, transaction.Date, transaction.PetPrice, transaction.PetFoodQty ,transaction.TotalPrice);
-
+            var newTransaction = new Transaction(transaction.PetPrice, transaction.PetFoodQty, transaction.PetFoodPrice, transaction.TotalPrice);
             _transactionRepo.Add(newTransaction);
         }
         [HttpPut]
