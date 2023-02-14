@@ -6,7 +6,7 @@ using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Transactions;
+
 
 
 namespace PetShop.EF.Repositories
@@ -16,72 +16,51 @@ namespace PetShop.EF.Repositories
         public void Add(Transaction entity)
         {
             using var context = new PetShopDbContext();
-            if (entity != 0 ) {
+            if (entity.Id != 0)
+            {
                 throw new ArgumentException("Given entity should Have ID set,", nameof(entity));
             }
             context.Add(entity);
             context.SaveChanges();
         }
 
-        public void Add(Transaction entity)
-        {
-            throw new NotImplementedException();
-        }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            using var context = new PetShopDbContext();
+            var dbTransaction = context.Transactions.SingleOrDefault(transaction => transaction.Id == id);
+            if (dbTransaction is null)
+            {
+                throw new KeyNotFoundException($"Given id'{id}' was not found in database");
+            }
+            context.Remove(dbTransaction);
+            context.SaveChanges();
         }
-
         public IList<Transaction> GetAll()
         {
-            throw new NotImplementedException();
+            using var context = new PetShopDbContext();
+            return context.Transactions.ToList();
         }
-
         public Transaction GetById(int id)
         {
-            throw new NotImplementedException();
+            using var context = new PetShopDbContext();
+            return context.Transactions.SingleOrDefault(Transaction => Transaction.Id == id);
         }
-
         public void Update(int id, Transaction entity)
         {
-            throw new NotImplementedException();
-        }
-    }
-    public void Delete(int id)
-    {
-        using var context = new PetShopDbContext();
-        var dbTransaction = context.Transactions.SingleOrDefault(transaction => transaction.Id == id);
-        if (dbTransaction is null)
-        {
-            throw new KeyNotFoundException($"Given id'{id}' was not found in database");
-        }
-        context.Remove(dbTransaction);
-        context.SaveChanges();
-    }
-public IList<Transaction> GetAll()
-    {
-        using var context = new PetShopDbContext();
-        return context.Transactions.ToList();
-    }
-    public Transaction GetById(int id)
-    {
-        using var context = new PetShopDbContext();
-        return context.Transaction.SingleOrDefault(Trasaction => Transaction.Id == id);
-    }
-    public void Update(int id, Transaction entity) {
-        using var context = new PetShopDbContext();
-        var dbTransaction = context.Transactions.SingleOrDefault(transaction => transaction.Id == id);
-        if (dbTransaction is null)
-        {
-            throw new KeyNotFoundException($"Given id '{id}' was not found in database");
-        }
-        dbTransaction.PetPrice = entity.PetPrice;
-        dbTransaction.TotalPrice = entity.TotalPrice;
-        dbTransaction.PetFoodQty = entity.PetFoodQty;
-        dbTransaction.Date = entity.Date;
-        dbTransaction.PetFoodPrice = entity.PetFoodPrice;
-        context.SaveChanges();
+            using var context = new PetShopDbContext();
+            var dbTransaction = context.Transactions.SingleOrDefault(transaction => transaction.Id == id);
+            if (dbTransaction is null)
+            {
+                throw new KeyNotFoundException($"Given id '{id}' was not found in database");
+            }
+            dbTransaction.PetPrice = entity.PetPrice;
+            dbTransaction.TotalPrice = entity.TotalPrice;
+            dbTransaction.PetFoodQty = entity.PetFoodQty;
+            dbTransaction.Date = entity.Date;
+            dbTransaction.PetFoodPrice = entity.PetFoodPrice;
+            context.SaveChanges();
 
+        }
     }
 }
