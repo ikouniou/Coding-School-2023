@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PetShop.EF.Repositories;
 using PetShop.Model;
-using PetShop.Web.Blazor.Shared.Pet;
+using PetShop.Web.Blazor.Shared.PetFood;
 
 namespace PetShop.Web.Blazor.Server.Controllers {
     [Route("[controller]")]
