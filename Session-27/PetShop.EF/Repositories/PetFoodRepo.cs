@@ -35,7 +35,7 @@ namespace PetShop.EF.Repositories {
             return context.PetFoods.ToList();
         }
 
-        public PetFood? GetById(int? id) {
+        public PetFood? GetById(int id) {
 
             using var context = new PetShopDbContext();
             return context.PetFoods.SingleOrDefault(petFood => petFood.Id == id);
