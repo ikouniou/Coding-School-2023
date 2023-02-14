@@ -43,7 +43,7 @@ else
         </tbody>
     </table>
 
-    @code {
+@code {
     private List<TransactionListDto> transactionList = new();
     bool isLoading { get; set; } = true;
     protected override async Task OnInitializedAsync()
@@ -51,17 +51,16 @@ else
         await LoadItemsFromServer();
         isLoading = false;
     }
-    private async Task LoadIteamFromServer()
-    {
-        transactionList = await HttpClient.GetFromJsonAsync<List<TransactionListDto>>("customer");
+    private async Task LoadItemsFromServer() {
+        transactionList = await httpClient.GetFromJsonAsync<List<TransactionListDto>>("transaction");
     }
-    private void CreateIteam()
+    private void CreateItem()
     {
         navigationManager.NavigateTo("transactionlist/edit");
     }
     private void EditItem(TransactionListDto transaction)
     {
-        NavigationManager.NavigateTo($"transactionlist/edit/{transaction.Id}");
+        navigationManager.NavigateTo($"transactionlist/edit/{transaction.Id}");
     }
     private async Task DeleteItem(TransactionListDto transaction)
     {
