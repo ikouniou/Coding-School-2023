@@ -4,7 +4,7 @@
 @using PetShop.Web.Blazor.Shared.Employee;
 @using PetShop.Web.Blazor.Shared.Pet;
 @using PetShop.Web.Blazor.Shared.PetFood;
-@using PetShop.Web.Blazor.Shared.Transaction
+@using PetShop.Web.Blazor.Shared.Transaction;
 
 @inject HttpClient httpClient
 @inject NavigationManager navigationManager
@@ -66,18 +66,18 @@ else
             <select class="form-control" @bind="@transactionDto.PetFoodId" bind:after="@getPetFoodPrice(transactionDto.PetFoodId)">
                 @foreach (var petFood in transactionDto.PetFoods) {
 
-                    <option value="@petFood.Id">@petFood.AnimalType</option>
-                }
-            </select>
-        </div>
-    </div>
+					<option value="@petFood.Id">@petFood.AnimalType</option>
+				}
+			</select>
+		</div>
+	</div>
 
-   <div class="row mt-2">
-       <div class="col">
-           <button class="btn btn-success" @onclick="OnSave">Save</button>
-           <button class="btn btn-danger" @onclick="OnCancel">Cancel</button>
-       </div>
-   </div>
+	<div class="row mt-2">
+		<div class="col">
+			<button class="btn btn-success" @onclick="OnSave">Save</button>
+			<button class="btn btn-danger" @onclick="OnCancel">Cancel</button>
+		</div>
+	</div>
 }
 
 @code {
