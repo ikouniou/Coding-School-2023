@@ -63,7 +63,12 @@ else
         </div>
         <div class="col-md-4">
             <label class="form-label">Pet Food</label>
-            <input class="form-control" @bind="@transactionDto.PetFoodId" />
+            <select class="form-control" @bind="@transactionDto.PetFoodId">
+                @foreach (var petFood in transactionDto.PetFoods) {
+
+                    <option value="@petFood.Id">@petFood.AnimalType</option>
+                }
+            </select>
         </div>
     </div>
 
