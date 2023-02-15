@@ -11,7 +11,7 @@
 
 <h3>TransactionEdit</h3>
 
-@if (Transaction == null)
+@if (isLoading)
 {
     <p>Loading...</p>
 }
@@ -20,24 +20,24 @@ else
     <div class="row">
         <div class="col-md-4">
             <label class="form-label">Date</label>
-            <input class="form-control"  @bind="@Transaction.Date" disabled />
+            <input class="form-control"  @bind="@transactionDto.Date" disabled />
         </div>
         <div class="col-md-4">
             <label class="form-label">PetPrice</label>
-            <input class="form-control" @bind="@Transaction.PetPrice"  />
+            <input class="form-control" @bind="@transactionDto.PetPrice"  />
         </div>
         <div class="col-md-4">
             <label class="form-label">PetFoodQty</label>
-            <input class="form-control" @bind="@Transaction.PetFoodQty" />
+            <input class="form-control" @bind="@transactionDto.PetFoodQty" />
         </div>
         <div class="col-md-4">
             <label class="form-label">PetFoodPrice</label>
-            <input class="form-control" @bind="@Transaction.PetFoodPrice" />
+            <input class="form-control" @bind="@transactionDto.PetFoodPrice" />
         </div>
         <div class="col-md-4">
             <label class="form-label">Employee</label>
-            <select class="form-control" @bind="@Transaction.EmployeeId" >
-                 @foreach (var employee in  Transaction.Employees)
+            <select class="form-control" @bind="@transactionDto.EmployeeId" >
+                 @foreach (var employee in  transactionDto.Employees)
             {
                 <option value="@employee.Id">@employee.Name</option>
             }
@@ -45,8 +45,8 @@ else
         </div>
         <div class="col-md-4">
             <label class="form-label">Customer</label>
-            <select class="form-control" @bind="@Transaction.CustomerId">
-                @foreach (var customer in Transaction.Customers)
+            <select class="form-control" @bind="@transactionDto.CustomerId">
+                @foreach (var customer in transactionDto.Customers)
                 {
                     <option value="@customer.Id">@customer.Name</option>
                 }
@@ -54,8 +54,8 @@ else
         </div>
         <div class="col-md-4">
             <label class="form-label">Pet</label>
-            <select class="form-control" @bind="@Transaction.PetId" >
-                @foreach (var pet in Transaction.Pets)
+            <select class="form-control" @bind="@transactionDto.PetId" >
+                @foreach (var pet in transactionDto.Pets)
                 {
                     <option value="@pet.Id">@pet.Breed</option>
                 }
@@ -63,7 +63,7 @@ else
         </div>
         <div class="col-md-4">
             <label class="form-label">Pet Food</label>
-            <input class="form-control" @bind="@Transaction.PetFoodId" />
+            <input class="form-control" @bind="@transactionDto.PetFoodId" />
         </div>
     </div>
 
@@ -77,30 +77,30 @@ else
 
 @code {
     [Parameter] public int? Id { get; set; }
-    TransactionEditDto Transaction { get; set; }
-    //private List<CustomerListDto> CustomerList = new();
-    //private List<EmployeeListDto> EmployeeList = new();
-    //private List<PetListDto> PetList = new();
-    //private List<PetFoodListDto> PetFoodList = new();
+    bool isLoading = true;
+    TransactionEditDto transactionDto { get; set; }
+
     protected override async Task OnInitializedAsync()
     {
         if (Id == null)
         {
-            Transaction = new();
-            Transaction.Customers = await httpClient.GetFromJsonAsync<List<CustomerEditDto>>("customer");
-            Transaction.Employees = await httpClient.GetFromJsonAsync<List<EmployeeEditDto>>("employee");
-            Transaction.Pets = await httpClient.GetFromJsonAsync<List<PetEditDto>>("pet");
-            Transaction.PetFoods = await httpClient.GetFromJsonAsync<List<PetFoodEditDto>>("petfood");
+            transactionDto = new();
+            transactionDto.Customers = await httpClient.GetFromJsonAsync<List<CustomerEditDto>>("customer");
+            transactionDto.Employees = await httpClient.GetFromJsonAsync<List<EmployeeEditDto>>("employee");
+            transactionDto.Pets = await httpClient.GetFromJsonAsync<List<PetEditDto>>("pet");
+            transactionDto.PetFoods = await httpClient.GetFromJsonAsync<List<PetFoodEditDto>>("petfood");
         }
         else
         {
 
-            Transaction = await httpClient.GetFromJsonAsync<TransactionEditDto>($"transaction/{Id}");
-            Transaction.Employees = await httpClient.GetFromJsonAsync<List<EmployeeEditDto>>("employee");
-            Transaction.Pets = await httpClient.GetFromJsonAsync<List<PetEditDto>>("pet");
-            Transaction.PetFoods = await httpClient.GetFromJsonAsync<List<PetFoodEditDto>>("petfood");
-            Transaction.Customers = await httpClient.GetFromJsonAsync<List<CustomerEditDto>>("customer");
+            transactionDto = await httpClient.GetFromJsonAsync<TransactionEditDto>($"transaction/{Id}");
+            transactionDto.Employees = await httpClient.GetFromJsonAsync<List<EmployeeEditDto>>("employee");
+            transactionDto.Pets = await httpClient.GetFromJsonAsync<List<PetEditDto>>("pet");
+            transactionDto.PetFoods = await httpClient.GetFromJsonAsync<List<PetFoodEditDto>>("petfood");
+            transactionDto.Customers = await httpClient.GetFromJsonAsync<List<CustomerEditDto>>("customer");
         }
+
+        isLoading = false;
     }
     private void OnCancel()
     {
@@ -108,14 +108,14 @@ else
     }
     private async Task OnSave()
     {
-        HttpResponseMessage? response = null;
+        HttpResponseMessage? response;
         if (Id == null)
         {
-            response = await httpClient.PostAsJsonAsync("transaction", Transaction);
+            response = await httpClient.PostAsJsonAsync("transaction", transactionDto);
         }
         else
         {
-            response = await httpClient.PutAsJsonAsync("transaction", Transaction);
+            response = await httpClient.PutAsJsonAsync("transaction", transactionDto);
         }
         response.EnsureSuccessStatusCode();
         navigationManager.NavigateTo("transactionlist");

@@ -72,7 +72,6 @@ namespace PetShop.EF.Repositories
             dbTransaction.PetPrice = entity.PetPrice;
             dbTransaction.TotalPrice = entity.TotalPrice;
             dbTransaction.PetFoodQty = entity.PetFoodQty;
-            dbTransaction.Date = entity.Date;
             dbTransaction.PetFoodPrice = entity.PetFoodPrice;
             dbTransaction.CustomerId = entity.CustomerId;
             dbTransaction.EmployeeId = entity.EmployeeId;
