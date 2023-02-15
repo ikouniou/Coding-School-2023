@@ -1,4 +1,5 @@
-﻿using PetShop.EF.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using PetShop.EF.Context;
 using PetShop.Model;
 using System;
 using System.Collections.Generic;
@@ -27,17 +28,19 @@ namespace PetShop.EF.Repositories {
 
         public IList<Employee> GetAll() {
             using var context = new PetShopDbContext();
-            return context.Employees.ToList();
+            return context.Employees.Include(employee => employee.Transactions).ToList();
         }
 
         public Employee GetById(int id) {
             using var context = new PetShopDbContext();
-            return context.Employees.SingleOrDefault(employee => employee.Id == id);
+            return context.Employees.Include(employee => employee.Transactions).SingleOrDefault(employee => employee.Id == id);
         }
 
         public void Update(int id, Employee entity) {
             using var context = new PetShopDbContext();
-            var dbEmployee = context.Employees.Where(employee => employee.Id == id).SingleOrDefault();
+            var dbEmployee = context.Employees
+                .Include(employee => employee.Transactions)
+                .Where(employee => employee.Id == id).SingleOrDefault();
             if(dbEmployee is null)
                 throw new KeyNotFoundException($"Given id '{id}' was not found in database");
             dbEmployee.Name = entity.Name;
