@@ -5,7 +5,7 @@
 @inject HttpClient httpClient
 @inject NavigationManager navigationManager
 
-<h3>Edit Employee</h3>
+<h3>@title</h3>
 
 @if (Employee == null) {
 	<p>Loading ...</p>
@@ -50,12 +50,14 @@
 @code {
 	[Parameter] public int? Id { get; set; }
 	EmployeeEditDto Employee { get; set; }
-
+	string? title;
 	protected override async Task OnInitializedAsync() {
 		if (Id == null) {
 			Employee = new();
+			title = "Create Employee";
 		} else {
 			Employee = await httpClient.GetFromJsonAsync<EmployeeEditDto>($"employee/{Id}");
+			title = "Edit Employee";
 		}
 	}
 

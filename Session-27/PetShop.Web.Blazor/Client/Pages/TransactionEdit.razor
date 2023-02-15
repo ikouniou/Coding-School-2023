@@ -84,7 +84,7 @@ else
     [Parameter] public int? Id { get; set; }
     bool isLoading = true;
     TransactionEditDto transactionDto { get; set; }
-    string title = null;
+    string? title;
 
     protected override async Task OnInitializedAsync()
     {
