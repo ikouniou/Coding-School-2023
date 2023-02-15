@@ -10,6 +10,10 @@
 } else {
 	<hr />
 	<dl class="row">
+		<dt class="col-sm-2">Id:</dt>
+		<dd class="col-sm-2">@customerDto.Id</dd>
+	</dl>
+	<dl class="row">
 		<dt class="col-sm-2">Name:</dt>
 		<dd class="col-sm-2">@customerDto.Name</dd>
 	</dl>
@@ -24,10 +28,6 @@
 	<dl class="row">
 		<dt class="col-sm-2">Tin:</dt>
 		<dd class="col-sm-2">@customerDto.Tin</dd>
-	</dl>
-	<dl class="row">
-		<dt class="col-sm-2">Id:</dt>
-		<dd class="col-sm-2">@customerDto.Id</dd>
 	</dl>
 	<hr />
 
@@ -55,11 +55,11 @@
 					<td>@item.CustomerId</td>
 					<td>@item.EmployeeId</td>
 					<td>@item.PetId</td>
-					<td>@item.PetPrice</td>
+					<td>@item.PetPrice €</td>
 					<td>@item.PetFoodId</td>
 					<td>@item.PetFoodQty</td>
-					<td>@item.PetFoodPrice</td>
-					<td>@item.TotalPrice</td>
+					<td>@item.PetFoodPrice €</td>
+					<td>@item.TotalPrice €</td>
 				</tr>
 			}
 		</tbody>

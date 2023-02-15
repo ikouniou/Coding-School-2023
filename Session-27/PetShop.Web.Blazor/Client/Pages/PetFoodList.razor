@@ -24,8 +24,8 @@
 			@foreach (var petFood in petFoodList) {
 				<tr>
 					<td>@petFood.AnimalType</td>
-					<td>@petFood.Price</td>
-					<td>@petFood.Cost</td>
+					<td>@petFood.Price €</td>
+					<td>@petFood.Cost €</td>
 					<td>
 						<button class="btn btn-primary" @onclick="()=> EditItem(petFood)">Edit</button>
 						<button class="btn btn-secondary" @onclick="()=> DetailsItem(petFood)">Details</button>
