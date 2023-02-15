@@ -115,7 +115,7 @@
 
     protected override async Task OnInitializedAsync() {
 
-        PetFoodDto = await httpClient.GetFromJsonAsync<PetFoodDetailsDto>($"petfood/{Id}");
+        PetFoodDto = await httpClient.GetFromJsonAsync<PetFoodDetailsDto>($"petfood/details/{Id}");
         isLoading = false;
     }
 
