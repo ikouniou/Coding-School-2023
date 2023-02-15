@@ -9,7 +9,7 @@
 @inject HttpClient httpClient
 @inject NavigationManager navigationManager
 
-<h3>TransactionEdit</h3>
+<h3>@title</h3>
 
 @if (isLoading)
 {
@@ -24,7 +24,7 @@ else
         </div>*@
         <div class="col-md-4">
             <label class="form-label">PetPrice</label>
-            <input class="form-control" @bind="@transactionDto.PetPrice"  />
+            <input class="form-control" @bind="@transactionDto.PetPrice" disabled  />
         </div>
         <div class="col-md-4">
             <label class="form-label">PetFoodQty</label>
@@ -32,7 +32,7 @@ else
         </div>
         <div class="col-md-4">
             <label class="form-label">PetFoodPrice</label>
-            <input class="form-control" @bind="@transactionDto.PetFoodPrice" />
+            <input class="form-control" @bind="@transactionDto.PetFoodPrice" disabled/>
         </div>
         <div class="col-md-4">
             <label class="form-label">Employee</label>
@@ -54,7 +54,7 @@ else
         </div>
         <div class="col-md-4">
             <label class="form-label">Pet</label>
-            <select class="form-control" @bind="@transactionDto.PetId" >
+            <select class="form-control" @bind="@transactionDto.PetId" bind:after="@getPetPrice(transactionDto.PetId)">
                 @foreach (var pet in transactionDto.Pets)
                 {
                     <option value="@pet.Id">@pet.Breed</option>
@@ -63,7 +63,7 @@ else
         </div>
         <div class="col-md-4">
             <label class="form-label">Pet Food</label>
-            <select class="form-control" @bind="@transactionDto.PetFoodId">
+            <select class="form-control" @bind="@transactionDto.PetFoodId" bind:after="@getPetFoodPrice(transactionDto.PetFoodId)">
                 @foreach (var petFood in transactionDto.PetFoods) {
 
                     <option value="@petFood.Id">@petFood.AnimalType</option>
@@ -84,11 +84,13 @@ else
     [Parameter] public int? Id { get; set; }
     bool isLoading = true;
     TransactionEditDto transactionDto { get; set; }
+    string title = null;
 
     protected override async Task OnInitializedAsync()
     {
         if (Id == null)
         {
+            title = "Create transaction";
             transactionDto = new();
             transactionDto.Customers = await httpClient.GetFromJsonAsync<List<CustomerEditDto>>("customer");
             transactionDto.Employees = await httpClient.GetFromJsonAsync<List<EmployeeEditDto>>("employee");
@@ -97,7 +99,7 @@ else
         }
         else
         {
-
+            title = "Edit Transaction";
             transactionDto = await httpClient.GetFromJsonAsync<TransactionEditDto>($"transaction/{Id}");
             transactionDto.Employees = await httpClient.GetFromJsonAsync<List<EmployeeEditDto>>("employee");
             transactionDto.Pets = await httpClient.GetFromJsonAsync<List<PetEditDto>>("pet");
@@ -124,5 +126,14 @@ else
         }
         response.EnsureSuccessStatusCode();
         navigationManager.NavigateTo("transactionlist");
+    }
+
+    async Task getPetPrice(int id)
+    {
+       transactionDto.PetPrice = transactionDto.Pets.FirstOrDefault(pet => pet.Id == id).Price;
+    }
+    async Task getPetFoodPrice(int id)
+    {
+        transactionDto.PetFoodPrice = transactionDto.PetFoods.FirstOrDefault(petFood => petFood.Id == id).Price;
     }
 }

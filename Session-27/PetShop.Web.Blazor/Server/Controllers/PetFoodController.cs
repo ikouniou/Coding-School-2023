@@ -63,5 +63,7 @@ namespace PetShop.Web.Blazor.Server.Controllers {
         {
             _petFoodRepo.Delete(id);
         }
+
+
     }
 }
