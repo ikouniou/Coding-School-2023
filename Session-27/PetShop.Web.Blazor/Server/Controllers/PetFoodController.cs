@@ -3,16 +3,19 @@ using Microsoft.AspNetCore.Mvc;
 using PetShop.EF.Repositories;
 using PetShop.Model;
 using PetShop.Web.Blazor.Shared.PetFood;
+using PetShop.Web.Blazor.Shared.Transaction;
 
 namespace PetShop.Web.Blazor.Server.Controllers {
     [Route("[controller]")]
     [ApiController]
     public class PetFoodController : ControllerBase {
         private readonly IEntityRepo<PetFood> _petFoodRepo;
+        private readonly IEntityRepo<Transaction> _transactionRepo;
 
-        public PetFoodController(IEntityRepo<PetFood> petFoodRepo)
+        public PetFoodController(IEntityRepo<PetFood> petFoodRepo, IEntityRepo<Transaction> transactionRepo)
         {
             _petFoodRepo = petFoodRepo;
+            _transactionRepo = transactionRepo;
         }
 
         [HttpGet]
@@ -28,16 +31,42 @@ namespace PetShop.Web.Blazor.Server.Controllers {
             });
         }
 
+        //[HttpGet("{id}")]
+        //public async Task<PetFoodEditDto> GetById(int id)
+        //{
+        //    var result = _petFoodRepo.GetById(id);
+        //    return new PetFoodEditDto
+        //    {
+        //        Id = id,
+        //        AnimalType = result.AnimalType,
+        //        Price = result.Price,
+        //        Cost = result.Cost,
+        //    };
+        //}
+
         [HttpGet("{id}")]
-        public async Task<PetFoodEditDto> GetById(int id)
-        {
-            var result = _petFoodRepo.GetById(id);
-            return new PetFoodEditDto
-            {
+        public async Task<PetFoodDetailsDto> GetByIdDetails(int id) {
+            var petFood = _petFoodRepo.GetById(id);
+            var transactions = _transactionRepo.GetAll();
+        
+            return new PetFoodDetailsDto {
                 Id = id,
-                AnimalType = result.AnimalType,
-                Price = result.Price,
-                Cost = result.Cost
+                AnimalType = petFood.AnimalType,
+                Price = petFood.Price,
+                Cost = petFood.Cost,
+                Transactions = transactions.Select(transaction => new TransactionDetailsDto {
+                    Id = transaction.Id,
+                    Date = transaction.Date,
+                    PetPrice = transaction.PetPrice,
+                    PetFoodQty = transaction.PetFoodQty,
+                    PetFoodPrice = transaction.PetFoodPrice,
+                    TotalPrice = transaction.TotalPrice,
+                    EmployeeId = transaction.EmployeeId,
+                    CustomerId = transaction.CustomerId,
+                    PetId = transaction.PetId,
+                    PetFoodId = transaction.PetFoodId,
+                }).ToList()
+                
             };
         }
 
