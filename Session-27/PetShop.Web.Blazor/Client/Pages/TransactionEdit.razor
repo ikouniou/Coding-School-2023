@@ -23,15 +23,15 @@ else
             <input class="form-control"  @bind="@transactionDto.Date" disabled />
         </div>*@
         <div class="col-md-4">
-            <label class="form-label">PetPrice</label>
+            <label class="form-label">Pet Price</label>
             <input class="form-control" @bind="@transactionDto.PetPrice" disabled  />
         </div>
         <div class="col-md-4">
-            <label class="form-label">PetFoodQty</label>
+            <label class="form-label">Pet Food Qty</label>
             <input class="form-control" @bind="@transactionDto.PetFoodQty" />
         </div>
         <div class="col-md-4">
-            <label class="form-label">PetFoodPrice</label>
+            <label class="form-label">Pet Food Price</label>
             <input class="form-control" @bind="@transactionDto.PetFoodPrice" disabled/>
         </div>
         <div class="col-md-4">
@@ -128,11 +128,11 @@ else
         navigationManager.NavigateTo("transactionlist");
     }
 
-    async Task getPetPrice(int id)
+    private async Task getPetPrice(int id)
     {
        transactionDto.PetPrice = transactionDto.Pets.FirstOrDefault(pet => pet.Id == id).Price;
     }
-    async Task getPetFoodPrice(int id)
+    private async Task getPetFoodPrice(int id)
     {
         transactionDto.PetFoodPrice = transactionDto.PetFoods.FirstOrDefault(petFood => petFood.Id == id).Price;
     }
