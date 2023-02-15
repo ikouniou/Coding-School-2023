@@ -4,6 +4,7 @@ using PetShop.EF.Repositories;
 using PetShop.Model;
 using PetShop.Web.Blazor.Shared.PetFood;
 using PetShop.Web.Blazor.Shared.Transaction;
+using System.Linq;
 
 namespace PetShop.Web.Blazor.Server.Controllers {
     [Route("[controller]")]
@@ -68,7 +69,7 @@ namespace PetShop.Web.Blazor.Server.Controllers {
                     CustomerId = transaction.CustomerId,
                     PetId = transaction.PetId,
                     PetFoodId = transaction.PetFoodId,
-                }).ToList()
+                }).ToList().FindAll(transaction => transaction.PetFoodId == id)
                 
             };
         }
