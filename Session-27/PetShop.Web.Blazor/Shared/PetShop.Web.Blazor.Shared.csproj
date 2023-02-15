@@ -11,10 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Customer\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\PetShop.Model\PetShop.Model.csproj" />
   </ItemGroup>
 </Project>

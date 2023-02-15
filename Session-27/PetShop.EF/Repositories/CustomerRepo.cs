@@ -1,4 +1,5 @@
-﻿using PetShop.EF.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using PetShop.EF.Context;
 using PetShop.Model;
 using System;
 using System.Collections.Generic;
@@ -38,14 +39,16 @@ namespace PetShop.EF.Repositories
         public IList<Customer> GetAll()
         {
             using var context = new PetShopDbContext();
-            return context.Customers.ToList();
+            return context.Customers.Include(customer => customer.Transactions).ToList();
         }
 
 
         public Customer? GetById(int id)
         {
             using var context = new PetShopDbContext();
-            return context.Customers.SingleOrDefault(customer => customer.Id == id);
+            return context.Customers
+				.Include(customer => customer.Transactions)
+				.SingleOrDefault(customer => customer.Id == id);
 
         }
         public void Update(int id, Customer entity)
