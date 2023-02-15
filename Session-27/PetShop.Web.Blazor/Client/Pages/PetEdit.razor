@@ -4,7 +4,7 @@
 @inject HttpClient httpClient
 @inject NavigationManager navigationManager
 
-<h3>Pet Edit</h3>
+<h3>@title</h3>
 
 @if (Pet == null) {
 	<p>Loading ...</p>
@@ -65,12 +65,15 @@
 @code {
 	[Parameter] public int? Id { get; set; }
 	PetEditDto Pet { get; set; }
+	string? title;
 
 	protected override async Task OnInitializedAsync() {
 		if (Id == null) {
 			Pet = new();
+			title = "Create Pet";
 		} else {
 			Pet = await httpClient.GetFromJsonAsync<PetEditDto>($"pet/{Id}");
+			title = "Edit Pet";
 		}
 	}
 

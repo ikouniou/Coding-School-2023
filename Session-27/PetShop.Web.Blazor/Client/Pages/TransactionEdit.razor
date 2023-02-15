@@ -23,15 +23,15 @@ else
             <input class="form-control"  @bind="@transactionDto.Date" disabled />
         </div>*@
         <div class="col-md-4">
-            <label class="form-label">PetPrice</label>
+            <label class="form-label">Pet Price</label>
             <input class="form-control" @bind="@transactionDto.PetPrice" disabled  />
         </div>
         <div class="col-md-4">
-            <label class="form-label">PetFoodQty</label>
+            <label class="form-label">Pet Food Qty</label>
             <input class="form-control" @bind="@transactionDto.PetFoodQty" />
         </div>
         <div class="col-md-4">
-            <label class="form-label">PetFoodPrice</label>
+            <label class="form-label">Pet Food Price</label>
             <input class="form-control" @bind="@transactionDto.PetFoodPrice" disabled/>
         </div>
         <div class="col-md-4">
@@ -70,6 +70,10 @@ else
 				}
 			</select>
 		</div>
+        <div class="col-md-4">
+            <label class="form-label">Total Price</label>
+            <input class="form-control" @bind="@transactionDto.TotalPrice" disabled />
+        </div>
 	</div>
 
 	<div class="row mt-2">
@@ -84,7 +88,7 @@ else
     [Parameter] public int? Id { get; set; }
     bool isLoading = true;
     TransactionEditDto transactionDto { get; set; }
-    string title = null;
+    string? title;
 
     protected override async Task OnInitializedAsync()
     {
@@ -94,17 +98,20 @@ else
             transactionDto = new();
             transactionDto.Customers = await httpClient.GetFromJsonAsync<List<CustomerEditDto>>("customer");
             transactionDto.Employees = await httpClient.GetFromJsonAsync<List<EmployeeEditDto>>("employee");
-            transactionDto.Pets = await httpClient.GetFromJsonAsync<List<PetEditDto>>("pet");
+            transactionDto.Pets = (await httpClient.GetFromJsonAsync<List<PetEditDto>>("pet")).FindAll(pet => (((int)pet.PetStatus == 1) || (int)pet.PetStatus == 3));
             transactionDto.PetFoods = await httpClient.GetFromJsonAsync<List<PetFoodEditDto>>("petfood");
+            transactionDto.TotalPrice = transactionDto.PetPrice + transactionDto.PetFoodPrice * transactionDto.PetFoodQty;
+
         }
         else
         {
             title = "Edit Transaction";
             transactionDto = await httpClient.GetFromJsonAsync<TransactionEditDto>($"transaction/{Id}");
             transactionDto.Employees = await httpClient.GetFromJsonAsync<List<EmployeeEditDto>>("employee");
-            transactionDto.Pets = await httpClient.GetFromJsonAsync<List<PetEditDto>>("pet");
+            transactionDto.Pets = (await httpClient.GetFromJsonAsync<List<PetEditDto>>("pet")).FindAll(pet => (((int)pet.PetStatus == 1) || (int)pet.PetStatus == 3)); ;
             transactionDto.PetFoods = await httpClient.GetFromJsonAsync<List<PetFoodEditDto>>("petfood");
             transactionDto.Customers = await httpClient.GetFromJsonAsync<List<CustomerEditDto>>("customer");
+
         }
 
         isLoading = false;
@@ -128,12 +135,21 @@ else
         navigationManager.NavigateTo("transactionlist");
     }
 
-    async Task getPetPrice(int id)
+    private async Task getPetPrice(int id)
     {
-       transactionDto.PetPrice = transactionDto.Pets.FirstOrDefault(pet => pet.Id == id).Price;
+        transactionDto.PetPrice = transactionDto.Pets.FirstOrDefault(pet => pet.Id == id).Price;
+        int x =(int) transactionDto.Pets.Find(x => x.Id == id).AnimalType;
+        
+        //if (x == y)
+        //{
+        //    transactionDto.TotalPrice = transactionDto.PetPrice + transactionDto.PetFoodPrice * (transactionDto.PetFoodQty-1);
+        //}
+        transactionDto.TotalPrice = transactionDto.PetPrice + transactionDto.PetFoodPrice * transactionDto.PetFoodQty;
     }
-    async Task getPetFoodPrice(int id)
+    private async Task getPetFoodPrice(int id)
     {
+        int y = (int)transactionDto.PetFoods.Find(x => x.Id == id).AnimalType;
         transactionDto.PetFoodPrice = transactionDto.PetFoods.FirstOrDefault(petFood => petFood.Id == id).Price;
+        transactionDto.TotalPrice = transactionDto.PetPrice + transactionDto.PetFoodPrice * transactionDto.PetFoodQty;
     }
 }
