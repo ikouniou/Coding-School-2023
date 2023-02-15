@@ -1,4 +1,5 @@
-﻿using PetShop.Web.Blazor.Shared.Customer;
+﻿using PetShop.Model.Enums;
+using PetShop.Web.Blazor.Shared.Customer;
 using PetShop.Web.Blazor.Shared.Employee;
 using PetShop.Web.Blazor.Shared.Pet;
 using PetShop.Web.Blazor.Shared.PetFood;
@@ -24,5 +25,10 @@ namespace PetShop.Web.Blazor.Shared.Transaction {
         public List<EmployeeListDto> Employees { get; set; } = new();
         public List<PetFoodListDto> PetFoods { get; set; } = new();
         public List<PetListDto> Pets { get; set; } = new();
+
+        public string CustomerFullName { get; set; } = null!;
+        public string EmployeeFullName { get; set; } = null!;
+        public AnimalType PetFoodAnimalType { get; set; }
+        public string PetBreed { get; set; } = null!;
     }
 }
