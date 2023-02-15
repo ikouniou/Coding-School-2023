@@ -1,4 +1,5 @@
-﻿using PetShop.EF.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using PetShop.EF.Context;
 using PetShop.Model;
 using System;
 using System.Collections.Generic;
@@ -39,17 +40,31 @@ namespace PetShop.EF.Repositories
         public IList<Transaction> GetAll()
         {
             using var context = new PetShopDbContext();
-            return context.Transactions.ToList();
+            return context.Transactions.
+                Include(transaction => transaction.Customer).
+                Include(transaction => transaction.Employee).
+                Include(transaction => transaction.Pet).
+                Include(transaction => transaction.PetFood).ToList();
         }
         public Transaction GetById(int id)
         {
             using var context = new PetShopDbContext();
-            return context.Transactions.SingleOrDefault(Transaction => Transaction.Id == id);
+            return context.Transactions.
+                Include(transaction => transaction.Customer).
+                Include(transaction => transaction.Employee).
+                Include(transaction => transaction.Pet).
+                Include(transaction => transaction.PetFood).
+                SingleOrDefault(Transaction => Transaction.Id == id);
         }
         public void Update(int id, Transaction entity)
         {
             using var context = new PetShopDbContext();
-            var dbTransaction = context.Transactions.SingleOrDefault(transaction => transaction.Id == id);
+            var dbTransaction = context.Transactions.
+                Include(transaction => transaction.Customer).
+                Include(transaction => transaction.Employee).
+                Include(transaction => transaction.Pet).
+                Include(transaction => transaction.PetFood).
+                SingleOrDefault(transaction => transaction.Id == id);
             if (dbTransaction is null)
             {
                 throw new KeyNotFoundException($"Given id '{id}' was not found in database");
@@ -59,6 +74,10 @@ namespace PetShop.EF.Repositories
             dbTransaction.PetFoodQty = entity.PetFoodQty;
             dbTransaction.Date = entity.Date;
             dbTransaction.PetFoodPrice = entity.PetFoodPrice;
+            dbTransaction.CustomerId = entity.CustomerId;
+            dbTransaction.EmployeeId = entity.EmployeeId;
+            dbTransaction.PetFoodId = entity.PetFoodId;
+            dbTransaction.PetId = entity.PetId;
             context.SaveChanges();
 
         }

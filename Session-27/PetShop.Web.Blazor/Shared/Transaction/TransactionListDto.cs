@@ -1,4 +1,8 @@
-﻿using System;
+﻿using PetShop.Web.Blazor.Shared.Customer;
+using PetShop.Web.Blazor.Shared.Employee;
+using PetShop.Web.Blazor.Shared.Pet;
+using PetShop.Web.Blazor.Shared.PetFood;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,5 +16,13 @@ namespace PetShop.Web.Blazor.Shared.Transaction {
         public int PetFoodQty { get; set; }
         public decimal PetFoodPrice { get; set; }
         public decimal TotalPrice { get; set; }
+        public int CustomerId { get; set; }
+        public int EmployeeId { get; set; }
+        public int PetId { get; set; }
+        public int PetFoodId { get; set; }
+        public List<CustomerListDto> Customers { get; set; } = new();
+        public List<EmployeeListDto> Employees { get; set; } = new();
+        public List<PetFoodListDto> PetFoods { get; set; } = new();
+        public List<PetListDto> Pets { get; set; } = new();
     }
 }

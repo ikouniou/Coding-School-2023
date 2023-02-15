@@ -1,5 +1,9 @@
 ﻿@page "/transactionlist/edit/{Id:int?}"
 @using PetShop.Model
+@using PetShop.Web.Blazor.Shared.Customer;
+@using PetShop.Web.Blazor.Shared.Employee;
+@using PetShop.Web.Blazor.Shared.Pet;
+@using PetShop.Web.Blazor.Shared.PetFood;
 @using PetShop.Web.Blazor.Shared.Transaction
 
 @inject HttpClient httpClient
@@ -14,25 +18,52 @@
 else
 {
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <label class="form-label">Date</label>
-            <input class="form-control" @bind="@Transaction.Date" />
+            <input class="form-control"  @bind="@Transaction.Date" disabled />
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <label class="form-label">PetPrice</label>
-            <input class="form-control" @bind="@Transaction.PetPrice" />
+            <input class="form-control" @bind="@Transaction.PetPrice"  />
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <label class="form-label">PetFoodQty</label>
             <input class="form-control" @bind="@Transaction.PetFoodQty" />
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <label class="form-label">PetFoodPrice</label>
             <input class="form-control" @bind="@Transaction.PetFoodPrice" />
         </div>
-        <div class="col-md-6">
-            <label class="form-label">TotalCost</label>
-            <input class="form-control" @bind="@Transaction.TotalPrice" />
+        <div class="col-md-4">
+            <label class="form-label">Employee</label>
+            <select class="form-control" @bind="@Transaction.EmployeeId" >
+                 @foreach (var employee in  Transaction.Employees)
+            {
+                <option value="@employee.Id">@employee.Name</option>
+            }
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Customer</label>
+            <select class="form-control" @bind="@Transaction.CustomerId">
+                @foreach (var customer in Transaction.Customers)
+                {
+                    <option value="@customer.Id">@customer.Name</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Pet</label>
+            <select class="form-control" @bind="@Transaction.PetId" >
+                @foreach (var pet in Transaction.Pets)
+                {
+                    <option value="@pet.Id">@pet.Breed</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Pet Food</label>
+            <input class="form-control" @bind="@Transaction.PetFoodId" />
         </div>
     </div>
 
@@ -47,16 +78,28 @@ else
 @code {
     [Parameter] public int? Id { get; set; }
     TransactionEditDto Transaction { get; set; }
-
+    //private List<CustomerListDto> CustomerList = new();
+    //private List<EmployeeListDto> EmployeeList = new();
+    //private List<PetListDto> PetList = new();
+    //private List<PetFoodListDto> PetFoodList = new();
     protected override async Task OnInitializedAsync()
     {
         if (Id == null)
         {
             Transaction = new();
+            Transaction.Customers = await httpClient.GetFromJsonAsync<List<CustomerEditDto>>("customer");
+            Transaction.Employees = await httpClient.GetFromJsonAsync<List<EmployeeEditDto>>("employee");
+            Transaction.Pets = await httpClient.GetFromJsonAsync<List<PetEditDto>>("pet");
+            Transaction.PetFoods = await httpClient.GetFromJsonAsync<List<PetFoodEditDto>>("petfood");
         }
         else
         {
+
             Transaction = await httpClient.GetFromJsonAsync<TransactionEditDto>($"transaction/{Id}");
+            Transaction.Employees = await httpClient.GetFromJsonAsync<List<EmployeeEditDto>>("employee");
+            Transaction.Pets = await httpClient.GetFromJsonAsync<List<PetEditDto>>("pet");
+            Transaction.PetFoods = await httpClient.GetFromJsonAsync<List<PetFoodEditDto>>("petfood");
+            Transaction.Customers = await httpClient.GetFromJsonAsync<List<CustomerEditDto>>("customer");
         }
     }
     private void OnCancel()
