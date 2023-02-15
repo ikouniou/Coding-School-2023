@@ -47,11 +47,6 @@ namespace PetShop.Web.Blazor.Server.Controllers {
         public async Task<PetFoodDetailsDto> GetByIdDetails(int id) {
             var petFood = _petFoodRepo.GetById(id);
             var transactions = _transactionRepo.GetAll();
-            //foreach(var transaction in transactions) {
-            //    if(transaction.Id != id) { 
-            //        transactions.Remove(transaction);
-            //    }
-            //}
         
             return new PetFoodDetailsDto {
                 Id = id,
