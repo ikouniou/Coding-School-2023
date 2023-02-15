@@ -1,47 +1,86 @@
 ﻿@page "/transactionlist/edit/{Id:int?}"
 @using PetShop.Model
-@using PetShop.Web.Blazor.Shared.Transaction
+@using PetShop.Web.Blazor.Shared.Customer;
+@using PetShop.Web.Blazor.Shared.Employee;
+@using PetShop.Web.Blazor.Shared.Pet;
+@using PetShop.Web.Blazor.Shared.PetFood;
+@using PetShop.Web.Blazor.Shared.Transaction;
 
 @inject HttpClient httpClient
 @inject NavigationManager navigationManager
 
 <h3>Transaction Edit</h3>
 
-@if (Transaction == null) {
+@if (isLoading) {
 	<p>Loading...</p>
 } else {
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-4">
 			<label class="form-label">Date</label>
-			<input class="form-control" @bind="@Transaction.Date" />
+			<input class="form-control" @bind="@transactionDto.Date" disabled />
 		</div>
 	</div>
-
 	<div class="row">
-		<div class="col-md-6">
+
+		<div class="col-md-4">
 			<label class="form-label">Pet Price</label>
-			<input class="form-control" @bind="@Transaction.PetPrice" />
+			<input class="form-control" @bind="@transactionDto.PetPrice" />
 		</div>
 	</div>
 
 	<div class="row">
-		<div class="col-md-6">
+
+		<div class="col-md-4">
 			<label class="form-label">Pet Food Qty</label>
-			<input class="form-control" @bind="@Transaction.PetFoodQty" />
+			<input class="form-control" @bind="@transactionDto.PetFoodQty" />
 		</div>
 	</div>
 
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-4">
 			<label class="form-label">Pet Food Price</label>
-			<input class="form-control" @bind="@Transaction.PetFoodPrice" />
+			<input class="form-control" @bind="@transactionDto.PetFoodPrice" />
 		</div>
 	</div>
 
 	<div class="row">
-		<div class="col-md-6">
-			<label class="form-label">Total Cost</label>
-			<input class="form-control" @bind="@Transaction.TotalPrice" />
+		<div class="col-md-4">
+			<label class="form-label">Employee</label>
+			<select class="form-control" @bind="@transactionDto.EmployeeId">
+				@foreach (var employee in transactionDto.Employees) {
+					<option value="@employee.Id">@employee.Name</option>
+				}
+			</select>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-4">
+			<label class="form-label">Customer</label>
+			<select class="form-control" @bind="@transactionDto.CustomerId">
+				@foreach (var customer in transactionDto.Customers) {
+					<option value="@customer.Id">@customer.Name</option>
+				}
+			</select>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-4">
+			<label class="form-label">Pet</label>
+			<select class="form-control" @bind="@transactionDto.PetId">
+				@foreach (var pet in transactionDto.Pets) {
+					<option value="@pet.Id">@pet.Breed</option>
+				}
+			</select>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-4">
+			<label class="form-label">Pet Food</label>
+			<input class="form-control" @bind="@transactionDto.PetFoodId" />
+
 		</div>
 	</div>
 
@@ -55,24 +94,36 @@
 
 @code {
 	[Parameter] public int? Id { get; set; }
-	TransactionEditDto Transaction { get; set; }
+	bool isLoading = true;
+	TransactionEditDto transactionDto { get; set; }
 
 	protected override async Task OnInitializedAsync() {
 		if (Id == null) {
-			Transaction = new();
+			transactionDto = new();
+			transactionDto.Customers = await httpClient.GetFromJsonAsync<List<CustomerEditDto>>("customer");
+			transactionDto.Employees = await httpClient.GetFromJsonAsync<List<EmployeeEditDto>>("employee");
+			transactionDto.Pets = await httpClient.GetFromJsonAsync<List<PetEditDto>>("pet");
+			transactionDto.PetFoods = await httpClient.GetFromJsonAsync<List<PetFoodEditDto>>("petfood");
 		} else {
-			Transaction = await httpClient.GetFromJsonAsync<TransactionEditDto>($"transaction/{Id}");
+
+			transactionDto = await httpClient.GetFromJsonAsync<TransactionEditDto>($"transaction/{Id}");
+			transactionDto.Employees = await httpClient.GetFromJsonAsync<List<EmployeeEditDto>>("employee");
+			transactionDto.Pets = await httpClient.GetFromJsonAsync<List<PetEditDto>>("pet");
+			transactionDto.PetFoods = await httpClient.GetFromJsonAsync<List<PetFoodEditDto>>("petfood");
+			transactionDto.Customers = await httpClient.GetFromJsonAsync<List<CustomerEditDto>>("customer");
 		}
+
+		isLoading = false;
 	}
 	private void OnCancel() {
 		navigationManager.NavigateTo("transactionlist");
 	}
 	private async Task OnSave() {
-		HttpResponseMessage? response = null;
+		HttpResponseMessage? response;
 		if (Id == null) {
-			response = await httpClient.PostAsJsonAsync("transaction", Transaction);
+			response = await httpClient.PostAsJsonAsync("transaction", transactionDto);
 		} else {
-			response = await httpClient.PutAsJsonAsync("transaction", Transaction);
+			response = await httpClient.PutAsJsonAsync("transaction", transactionDto);
 		}
 		response.EnsureSuccessStatusCode();
 		navigationManager.NavigateTo("transactionlist");
