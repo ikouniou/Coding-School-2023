@@ -18,10 +18,10 @@
 else
 {
     <div class="row">
-        <div class="col-md-4">
+        @*<div class="col-md-4">
             <label class="form-label">Date</label>
             <input class="form-control"  @bind="@transactionDto.Date" disabled />
-        </div>
+        </div>*@
         <div class="col-md-4">
             <label class="form-label">PetPrice</label>
             <input class="form-control" @bind="@transactionDto.PetPrice"  />
@@ -39,7 +39,7 @@ else
             <select class="form-control" @bind="@transactionDto.EmployeeId" >
                  @foreach (var employee in  transactionDto.Employees)
             {
-                <option value="@employee.Id">@employee.Name</option>
+                <option value="@employee.Id">@employee.Name @employee.Surname</option>
             }
             </select>
         </div>
@@ -48,7 +48,7 @@ else
             <select class="form-control" @bind="@transactionDto.CustomerId">
                 @foreach (var customer in transactionDto.Customers)
                 {
-                    <option value="@customer.Id">@customer.Name</option>
+                    <option value="@customer.Id">@customer.Name @customer.Surname</option>
                 }
             </select>
         </div>
