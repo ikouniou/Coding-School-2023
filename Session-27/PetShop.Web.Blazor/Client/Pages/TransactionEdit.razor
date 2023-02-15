@@ -63,10 +63,10 @@ else
         </div>
         <div class="col-md-4">
             <label class="form-label">Pet Food</label>
-            <select class="form-control" @bind="@transactionDto.PetFoodId" bind:after="@getPetFoodPrice(transactionDto.PetFoodId)">
+            <select class="form-control"  @bind="@transactionDto.PetFoodId" bind:after="@getPetFoodPrice(transactionDto.PetFoodId)">
                 @foreach (var petFood in transactionDto.PetFoods) {
 
-					<option value="@petFood.Id">@petFood.AnimalType</option>
+                    <option  value="@petFood.Id">@petFood.AnimalType</option>
 				}
 			</select>
 		</div>
@@ -135,21 +135,44 @@ else
         navigationManager.NavigateTo("transactionlist");
     }
 
-    private async Task getPetPrice(int id)
+    async Task getPetPrice(int id)
     {
         transactionDto.PetPrice = transactionDto.Pets.FirstOrDefault(pet => pet.Id == id).Price;
-        int x =(int) transactionDto.Pets.Find(x => x.Id == id).AnimalType;
-        
-        //if (x == y)
-        //{
-        //    transactionDto.TotalPrice = transactionDto.PetPrice + transactionDto.PetFoodPrice * (transactionDto.PetFoodQty-1);
-        //}
         transactionDto.TotalPrice = transactionDto.PetPrice + transactionDto.PetFoodPrice * transactionDto.PetFoodQty;
+        transactionDto.PetType = transactionDto.Pets.Find(x => x.Id == id).AnimalType;
+
+        if (transactionDto.PetType == transactionDto.FoodType)
+        {
+            if (transactionDto.PetFoodQty > 0)
+            {
+                transactionDto.TotalPrice = transactionDto.PetPrice + transactionDto.PetFoodPrice * (transactionDto.PetFoodQty - 1);
+                
+            }
+            else
+            {
+                transactionDto.TotalPrice = transactionDto.PetPrice + transactionDto.PetFoodPrice * transactionDto.PetFoodQty;
+            }
+        }
+
     }
-    private async Task getPetFoodPrice(int id)
+    async Task getPetFoodPrice(int id)
     {
-        int y = (int)transactionDto.PetFoods.Find(x => x.Id == id).AnimalType;
+
         transactionDto.PetFoodPrice = transactionDto.PetFoods.FirstOrDefault(petFood => petFood.Id == id).Price;
         transactionDto.TotalPrice = transactionDto.PetPrice + transactionDto.PetFoodPrice * transactionDto.PetFoodQty;
+        transactionDto.FoodType =  transactionDto.PetFoods.Find(x => x.Id == id).AnimalType;
+        if (transactionDto.PetType == transactionDto.FoodType)
+        {
+            if(transactionDto.PetFoodQty>0){
+                transactionDto.TotalPrice = transactionDto.PetPrice + transactionDto.PetFoodPrice * (transactionDto.PetFoodQty-1);
+            }
+            else
+            {
+                transactionDto.TotalPrice = transactionDto.PetPrice + transactionDto.PetFoodPrice * transactionDto.PetFoodQty;   
+            }
+        }
+        
     }
+    
+    
 }
