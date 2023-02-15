@@ -1,0 +1,23 @@
+﻿@page "/employeelist/details/{Id:int?}"
+@using PetShop.Web.Blazor.Shared.Employee;
+@inject HttpClient httpClient
+@inject NavigationManager navigationManager
+
+
+<h3>Employee Details</h3>
+
+
+
+@code {
+	[Parameter] public int? Id { get; set; }
+	EmployeeEditDto Employee { get; set; }
+
+	protected override async Task OnInitializedAsync() {
+		if (Id == null) {
+			Employee = new();
+		} else {
+			Employee = await httpClient.GetFromJsonAsync<EmployeeEditDto>($"employee/{Id}");
+		}
+	}
+
+}
