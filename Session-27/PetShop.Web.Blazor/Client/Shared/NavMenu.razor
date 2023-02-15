@@ -1,6 +1,6 @@
 ﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">PetShop.Web.Blazor</a>
+    <div class="container-fluid d-flex justify-content-center align-items-center">
+        <a class="navbar-brand" href="">Pet Shop</a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -11,37 +11,73 @@
     <nav class="flex-column">
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
+                <span class="d-inline-block align-middle mr-2">
+                    <img src="img/Home.png" alt="Home">
+                </span>
+                <span class="align-middle" style="margin-left: 10px;">Home</span>
             </NavLink>
         </div>
+
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
-            </NavLink>
+        <NavLink class="nav-link" href="customerList">
+            <span class="d-inline-block align-middle mr-2">
+                <img src="img/Customer.png" alt="Counter">
+            </span>
+            <span class="align-middle" style="margin-left: 10px;">Customer</span>
+        </NavLink>
         </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="customerlist">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Customer
-            </NavLink>
-        </div>
+
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="petFoodList">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Pet Food
+                <span class="d-inline-block align-middle mr-2">
+                    <img src="img/PetFood.png" alt="PetFood">
+                </span>
+                <span class="align-middle" style="margin-left: 10px;">Pet Food</span>
             </NavLink>
         </div>
+
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="employeeList">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Employee
+                <span class="d-inline-block align-middle mr-2">
+                    <img src="img/Employee.png" alt="Employee">
+                </span>
+                <span class="align-middle" style="margin-left: 10px;">Employee</span>
             </NavLink>
         </div>
+
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="petlist">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Pet
+                <span class="d-inline-block align-middle mr-2">
+                    <img src="img/Pet.png" alt="Pet">
+                </span>
+                <span class="align-middle" style="margin-left: 10px;">Pet</span>
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="transactionlist">
+                <span class="d-inline-block align-middle mr-2">
+                    <img src="img/Transaction.png" alt="Pet">
+                </span>
+                <span class="align-middle" style="margin-left: 10px;">Transaction</span>
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="monthlyledger">
+                <span class="d-inline-block align-middle mr-2">
+                    <img src="img/MonthlyLedger.png" alt="Monthly Ledger">
+                </span>
+                <span class="align-middle" style="margin-left: 10px;">Monthly Ledger</span>
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="petreport">
+                <span class="d-inline-block align-middle mr-2">
+                    <img src="img/PetReport.png" alt="Pet Report">
+                </span>
+                <span class="align-middle" style="margin-left: 10px;">Pet Report</span>
             </NavLink>
         </div>
     </nav>
