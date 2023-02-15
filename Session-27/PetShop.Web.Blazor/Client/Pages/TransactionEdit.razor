@@ -15,13 +15,12 @@
 	<p>Loading...</p>
 } else {
 	<div class="row">
-		<div class="col-md-4">
-			<label class="form-label">Date</label>
-			<input class="form-control" @bind="@transactionDto.Date" disabled />
-		</div>
+		@*<div class="col-md-4">
+	<label class="form-label">Date</label>
+	<input class="form-control"  @bind="@transactionDto.Date" disabled />
+	</div>*@
 	</div>
 	<div class="row">
-
 		<div class="col-md-4">
 			<label class="form-label">Pet Price</label>
 			<input class="form-control" @bind="@transactionDto.PetPrice" />
@@ -29,7 +28,6 @@
 	</div>
 
 	<div class="row">
-
 		<div class="col-md-4">
 			<label class="form-label">Pet Food Qty</label>
 			<input class="form-control" @bind="@transactionDto.PetFoodQty" />
@@ -48,7 +46,7 @@
 			<label class="form-label">Employee</label>
 			<select class="form-control" @bind="@transactionDto.EmployeeId">
 				@foreach (var employee in transactionDto.Employees) {
-					<option value="@employee.Id">@employee.Name</option>
+					<option value="@employee.Id">@employee.Name @employee.Surname</option>
 				}
 			</select>
 		</div>
@@ -59,7 +57,7 @@
 			<label class="form-label">Customer</label>
 			<select class="form-control" @bind="@transactionDto.CustomerId">
 				@foreach (var customer in transactionDto.Customers) {
-					<option value="@customer.Id">@customer.Name</option>
+					<option value="@customer.Id">@customer.Name @customer.Surname</option>
 				}
 			</select>
 		</div>
@@ -79,8 +77,12 @@
 	<div class="row">
 		<div class="col-md-4">
 			<label class="form-label">Pet Food</label>
-			<input class="form-control" @bind="@transactionDto.PetFoodId" />
+			<select class="form-control" @bind="@transactionDto.PetFoodId">
+				@foreach (var petFood in transactionDto.PetFoods) {
 
+					<option value="@petFood.Id">@petFood.AnimalType</option>
+				}
+			</select>
 		</div>
 	</div>
 
