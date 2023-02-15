@@ -31,6 +31,7 @@
 					<td>@pet.Cost</td>
 					<td>
 						<button class="btn btn-primary" @onclick="()=> EditItem(pet)">Edit</button>
+						<button class="btn btn-secondary" @onclick="()=> DetailsItem(pet)">Details</button>
 						<button class="btn btn-danger" @onclick="()=> DeleteItem(pet)">Delete</button>
 					</td>
 				</tr>
@@ -57,6 +58,10 @@
 
 	private void EditItem(PetListDto pet) {
 		navigationManager.NavigateTo($"petlist/edit/{pet.Id}");
+	}
+
+	private void DetailsItem(PetListDto pet) {
+		navigationManager.NavigateTo($"petlist/details/{pet.Id}");
 	}
 
 	private async Task DeleteItem(PetListDto pet) {
