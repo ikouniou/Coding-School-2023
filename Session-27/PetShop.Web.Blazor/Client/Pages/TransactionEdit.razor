@@ -17,6 +17,7 @@
 	<EditForm Model="Transaction" OnValidSubmit="OnSave">
 		<DataAnnotationsValidator />
 		<ValidationSummary />
+
 		<div class="row">
 			@*<div class="col-md-4">
 		<label class="form-label">Date</label>
@@ -38,7 +39,7 @@
 		<div class="row">
 			<div class="col-md-4">
 				<label class="form-label">Pet Food</label>
-				<InputSelect class="form-control" @bind-Value="@Transaction.PetFoodId" @bind-Value:after="@( ()=> getPetFoodPrice(Transaction.PetFoodId))">
+				<InputSelect class="form-control" @bind-Value="@Transaction.PetFoodId" @bind:after="@( ()=> getPetFoodPrice(Transaction.PetFoodId))">
 					@foreach (var petFood in Transaction.PetFoods) {
 
 						<option value="@petFood.Id">@petFood.AnimalType</option>
