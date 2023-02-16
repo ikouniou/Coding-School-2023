@@ -14,15 +14,12 @@ namespace PetShop.Web.Blazor.Shared.Transaction {
     public class TransactionEditDto 
     {
 		public int Id { get; set; }
-		[Required]
 		public DateTime Date { get; set; }
-		[Required]
 		public decimal PetPrice { get; set; }
 		[Required]
 		[Range(1, 99)]
 		public int PetFoodQty { get; set; }
 		public int SoldFoodQty { get; set; }
-		[Required]
 		public decimal PetFoodPrice { get; set; }
 		public decimal TotalPrice { get; set; }
 		public int CustomerId { get; set; }

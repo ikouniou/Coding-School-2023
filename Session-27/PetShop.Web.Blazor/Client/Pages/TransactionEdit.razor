@@ -14,77 +14,81 @@
 @if (isLoading) {
     <LoadingSpinner Type="LoadingSpinnerType.Border" />
 } else {
-    <div class="row">
-        @*<div class="col-md-4">
-    <label class="form-label">Date</label>
-    <input class="form-control"  @bind="@Transaction.Date" disabled />
-    </div>*@
-        <div class="col-md-4">
-            <label class="form-label">Pet</label>
-            <select class="form-control" @bind="@Transaction.PetId" @bind:after="@( ()=> getPetPrice(Transaction.PetId))">
-                @foreach (var pet in Transaction.Pets) {
-                    <option value="@pet.Id">@pet.Breed</option>
-                }
-            </select>
+    <EditForm Model="Transaction" OnValidSubmit="OnSave">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <div class="row">
+            @*<div class="col-md-4">
+        <label class="form-label">Date</label>
+        <input class="form-control"  @bind="@Transaction.Date" disabled />
+        </div>*@
+            <div class="col-md-4">
+                <label class="form-label">Pet</label>
+                <InputSelect class="form-control" @bind-Value="@Transaction.PetId" @bind-Value:after="@( ()=> getPetPrice(Transaction.PetId))">
+                    @foreach (var pet in Transaction.Pets) {
+                        <option value="@pet.Id">@pet.Breed</option>
+                    }
+                </InputSelect>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Pet Price</label>
+                <InputNumber class="form-control" @bind-Value="@Transaction.PetPrice" disabled />
+            </div>
         </div>
-        <div class="col-md-4">
-            <label class="form-label">Pet Price</label>
-            <input class="form-control" @bind="@Transaction.PetPrice" disabled />
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <label class="form-label">Pet Food</label>
-            <select class="form-control" @bind="@Transaction.PetFoodId" @bind:after="@( ()=> getPetFoodPrice(Transaction.PetFoodId))">
-                @foreach (var petFood in Transaction.PetFoods) {
+        <div class="row">
+            <div class="col-md-4">
+                <label class="form-label">Pet Food</label>
+                <InputSelect class="form-control" @bind-Value="@Transaction.PetFoodId" @bind-Value:after="@( ()=> getPetFoodPrice(Transaction.PetFoodId))">
+                    @foreach (var petFood in Transaction.PetFoods) {
 
-                    <option value="@petFood.Id">@petFood.AnimalType</option>
-                }
-            </select>
+                        <option value="@petFood.Id">@petFood.AnimalType</option>
+                    }
+                </InputSelect>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Pet Food Price</label>
+                <InputNumber class="form-control" @bind-Value="@Transaction.PetFoodPrice" disabled />
+            </div>
         </div>
-        <div class="col-md-4">
-            <label class="form-label">Pet Food Price</label>
-            <input class="form-control" @bind="@Transaction.PetFoodPrice" disabled />
+        <div class="row">
+            <div class="col-md-4">
+                <label class="form-label">Pet Food Qty</label>
+                <InputNumber class="form-control" @bind-Value="@Transaction.PetFoodQty" @bind-Value:after="@(() =>getTot())" />
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <label class="form-label">Pet Food Qty</label>
-            <input class="form-control" @bind="@Transaction.PetFoodQty" @bind:after="@(() =>getTot())" />
+        <div class="row">
+            <div class="col-md-4">
+                <label class="form-label">Total Price</label>
+                <InputNumber class="form-control" @bind-Value="@Transaction.TotalPrice" disabled />
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <label class="form-label">Total Price</label>
-            <input class="form-control" @bind="@Transaction.TotalPrice" disabled />
+        <div class="row">
+            <div class="col-md-4">
+                <label class="form-label">Customer</label>
+                <InputSelect class="form-control" @bind-Value="@Transaction.CustomerId">
+                    @foreach (var customer in Transaction.Customers) {
+                        <option value="@customer.Id">@customer.Name @customer.Surname</option>
+                    }
+                </InputSelect>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <label class="form-label">Customer</label>
-            <select class="form-control" @bind="@Transaction.CustomerId">
-                @foreach (var customer in Transaction.Customers) {
-                    <option value="@customer.Id">@customer.Name @customer.Surname</option>
-                }
-            </select>
+        <div class="row">
+            <div class="col-md-4">
+                <label class="form-label">Employee</label>
+                <InputSelect class="form-control" @bind-Value="@Transaction.EmployeeId">
+                    @foreach (var employee in Transaction.Employees) {
+                        <option value="@employee.Id">@employee.Name @employee.Surname</option>
+                    }
+                </InputSelect>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <label class="form-label">Employee</label>
-            <select class="form-control" @bind="@Transaction.EmployeeId">
-                @foreach (var employee in Transaction.Employees) {
-                    <option value="@employee.Id">@employee.Name @employee.Surname</option>
-                }
-            </select>
+        <div class="row mt-2">
+            <div class="col">
+                <button class="btn btn-success" type="submit">Save</button>
+                <button class="btn btn-danger" @onclick="OnCancel">Cancel</button>
+            </div>
         </div>
-    </div>
-    <div class="row mt-2">
-        <div class="col">
-            <button class="btn btn-success" @onclick="OnSave">Save</button>
-            <button class="btn btn-danger" @onclick="OnCancel">Cancel</button>
-        </div>
-    </div>
+    </EditForm>
 }
 
 @code {
