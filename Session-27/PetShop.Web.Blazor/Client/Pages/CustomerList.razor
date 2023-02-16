@@ -46,6 +46,8 @@
 @code {
 	private List<CustomerListDto> customerList = new();
 	bool isLoading { get; set; } = true;
+	string errorMessage = null;
+
 	protected override async Task OnInitializedAsync() {
 		await LoadItemsFromServer();
 		isLoading = false;
@@ -65,11 +67,17 @@
 	}
 
 	private async Task DeleteItem(CustomerListDto customer) {
+
+		errorMessage = null;
 		var confirm = await jsRuntime.InvokeAsync<bool>("confirm", "Delete Item. Are you sure?");
 		if (confirm) {
 			var response = await httpClient.DeleteAsync($"customer/{customer.Id}");
-			response.EnsureSuccessStatusCode();
-			await LoadItemsFromServer();
+			if (response.IsSuccessStatusCode) {
+				await LoadItemsFromServer();
+			} else {
+				errorMessage = await response.Content.ReadAsStringAsync();
+				await jsRuntime.InvokeVoidAsync("alert", errorMessage);
+			}
 		}
 	}
 }
