@@ -16,11 +16,11 @@ namespace PetShop.Web.Blazor.Shared.Pet
 		public string Breed { get; set; } = null!;
         public AnimalType AnimalType { get; set; }
         public PetStatus PetStatus { get; set; }
-		[RegularExpression(@"^(0|[1-9][0-9]?)(.\d{1,2})?$", ErrorMessage = "Invalid Price Number. Must have precision (4,2).")]
-		[Range(1, 99, ErrorMessage ="Invalid Price Number. Must have precision (4,2).")]
-		public decimal Price { get; set; }
-		[RegularExpression(@"^(0|[1-9][0-9]?)(.\d{1,2})?$", ErrorMessage = "Invalid Cost Number. Must have precision (4,2).")]
-		[Range(1, 99, ErrorMessage = "Invalid Price Number. Must have precision (4,2).")]
-		public decimal Cost { get; set; }
+        [RegularExpression(@"^(0|[1-9][0-9]?)(.\d{1,2})?$", ErrorMessage = "Invalid Price Number. Must have precision (4,2).")]
+        [Range(1, 99, ErrorMessage = "Invalid Price Number. Must have precision (4,2).")]
+        public decimal Price { get; set; }
+        [RegularExpression(@"^(0|[1-9][0-9]?)(.\d{1,2})?$", ErrorMessage = "Invalid Cost Number. Must have precision (4,2).")]
+        [Range(1, 99, ErrorMessage = "Invalid Price Number. Must have precision (4,2).")]
+        public decimal Cost { get; set; }
     }
 }
