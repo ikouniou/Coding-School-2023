@@ -83,12 +83,14 @@
 
 		List<TransactionListDto> transactionsThisMonth2 = Transactions.FindAll(c => c.Date.Month == month).FindAll(c => c.Date.Year == year).ToList();
 		foreach (var transaction in transactionsThisMonth2) {
-			foreach (var pet in transaction.Pets) {
-				petCostSum += pet.Cost;
-			}
-			foreach (var petFood in transaction.PetFoods) {
-				petFoodCostSum += petFood.Cost * transaction.PetFoodQty;
-			}
+			petCostSum += transaction.PetCost;
+			//foreach (var pet in transaction.Pets) {
+			//	petCostSum += pet.Cost;
+			//}
+			petFoodCostSum += transaction.PetFoodCost * transaction.PetFoodQty;
+			//foreach (var petFood in transaction.PetFoods) {
+			//	petFoodCostSum += petFood.Cost * transaction.PetFoodQty;
+			//}
 		}
 
 		return petFoodCostSum + petCostSum + 2000;

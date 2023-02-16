@@ -41,15 +41,17 @@ namespace PetShop.Web.Blazor.Server.Controllers
                 PetFoodId = transaction.PetFoodId,
                 PetFoodAnimalType = transaction.PetFood.AnimalType,
                 PetBreed = transaction.Pet.Breed,
-				Pets = pett.Select(pett => new PetListDto
-                {
-                    Id = pett.Id,
-                    Breed = pett.Breed,
-                    AnimalType= pett.AnimalType,
-                    Cost= pett.Cost,
-                    Price= pett.Price
+                PetFoodCost = transaction.PetFood.Cost,
+                PetCost = transaction.Pet.Cost,
+				//Pets = pett.Select(pett => new PetListDto
+    //            {
+    //                Id = pett.Id,
+    //                Breed = pett.Breed,
+    //                AnimalType= pett.AnimalType,
+    //                Cost= pett.Cost,
+    //                Price= pett.Price
 
-                }).ToList(),
+    //            }).ToList(),
                 PetFoods = pettFood.Select(pettFood => new PetFoodListDto
                 {
                     Id = pettFood.Id,

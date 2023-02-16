@@ -21,6 +21,10 @@ namespace PetShop.Web.Blazor.Shared.Transaction {
 		public int EmployeeId { get; set; }
 		public int PetId { get; set; }
 		public int PetFoodId { get; set; }
+		public decimal PetFoodCost { get; set; }
+		public decimal PetCost { get; set; }
+		
+
 		public List<CustomerListDto> Customers { get; set; } = new();
 		public List<EmployeeListDto> Employees { get; set; } = new();
 		public List<PetFoodListDto> PetFoods { get; set; } = new();
