@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PetShop.EF.Repositories;
 using PetShop.Model;
+using PetShop.Web.Blazor.Shared.Pet;
 using PetShop.Web.Blazor.Shared.Transaction;
 
 namespace PetShop.Web.Blazor.Server.Controllers
@@ -21,6 +22,7 @@ namespace PetShop.Web.Blazor.Server.Controllers
         public async Task<IEnumerable<TransactionListDto>> Get()
         {
             var result = _transactionRepo.GetAll();
+            var pets = _petRepo.GetAll();
             return result.Select(transaction => new TransactionListDto
             {
                 Id = transaction.Id,
@@ -32,8 +34,9 @@ namespace PetShop.Web.Blazor.Server.Controllers
                 PetId = transaction.PetId,
                 PetFoodId = transaction.PetFoodId,
                 PetFoodAnimalType = transaction.PetFood.AnimalType,
-                PetBreed = transaction.Pet.Breed
-            });
+                PetBreed = transaction.Pet.Breed,
+				
+			});
         }
     }
 }
