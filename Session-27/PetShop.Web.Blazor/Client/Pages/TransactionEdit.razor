@@ -54,7 +54,7 @@ else
     <div class="row">
         <div class="col-md-4">
             <label class="form-label">Pet Food Qty</label>
-            <input class="form-control" @bind="@transactionDto.PetFoodQty" />
+            <input class="form-control" @bind="@transactionDto.PetFoodQty" @bind:after="@(() =>getTot())"/>
         </div>
     </div>
     <div class="row">
@@ -141,7 +141,21 @@ else
         response.EnsureSuccessStatusCode();
         navigationManager.NavigateTo("transactionlist");
     }
+    async Task getTot()
+    {
+        if (transactionDto.PetType == transactionDto.FoodType)
+        {
+            if (transactionDto.PetFoodQty > 0)
+            {
+                transactionDto.TotalPrice = transactionDto.PetPrice + transactionDto.PetFoodPrice * (transactionDto.PetFoodQty - 1);
 
+            }
+            else
+            {
+                transactionDto.TotalPrice = transactionDto.PetPrice + transactionDto.PetFoodPrice * transactionDto.PetFoodQty;
+            }
+        }
+    }
     async Task getPetPrice(int id)
     {
         transactionDto.PetPrice = transactionDto.Pets.FirstOrDefault(pet => pet.Id == id).Price;
