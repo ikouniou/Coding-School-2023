@@ -14,19 +14,20 @@ namespace PetShop.Web.Blazor.Server.Controllers
         private readonly IEntityRepo<Customer> _customerRepo;
         private readonly IEntityRepo<Pet> _petRepo;
         private readonly IEntityRepo<PetFood> _petFoodRepo;
-        public MonthlyLedgerController(IEntityRepo<Transaction> transactionRepo, IEntityRepo<Customer> customerRepo, IEntityRepo<Pet> petRepo, IEntityRepo<PetFood> petFoodRepo)
+		
+		public MonthlyLedgerController(IEntityRepo<Transaction> transactionRepo, IEntityRepo<Customer> customerRepo, IEntityRepo<Pet> petRepo, IEntityRepo<PetFood> petFoodRepo)
         {
             _transactionRepo = transactionRepo;
             _customerRepo = customerRepo;
             _petRepo = petRepo;
             _petFoodRepo = petFoodRepo;
         }
-
 		[HttpGet]
 		public async Task<IEnumerable<TransactionListDto>> Get()
         {
             var result = _transactionRepo.GetAll();
-            var pets = _petRepo.GetAll();
+            var pett = _petRepo.GetAll();
+            
             return result.Select(transaction => new TransactionListDto
             {
                 Id = transaction.Id,
@@ -39,7 +40,15 @@ namespace PetShop.Web.Blazor.Server.Controllers
                 PetFoodId = transaction.PetFoodId,
                 PetFoodAnimalType = transaction.PetFood.AnimalType,
                 PetBreed = transaction.Pet.Breed,
-				
+				Pets = pett.Select(pett => new PetListDto
+                {
+                    Id = pett.Id,
+                    Breed = pett.Breed,
+                    AnimalType= pett.AnimalType,
+                    Cost= pett.Cost,
+                    Price= pett.Price
+
+                }).ToList()
 			});
         }
     }
