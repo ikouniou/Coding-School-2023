@@ -35,5 +35,6 @@ namespace PetShop.Web.Blazor.Shared.Transaction {
 		public AnimalType PetFoodAnimalType { get; set; }
 		public string PetBreed { get; set; } = null!;
 		public AnimalType PetType { get; set; }
+		public decimal EmployeeSalary { get; set; }
 	}
 }

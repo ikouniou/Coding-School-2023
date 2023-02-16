@@ -43,6 +43,7 @@ namespace PetShop.Web.Blazor.Server.Controllers
                 PetBreed = transaction.Pet.Breed,
                 PetFoodCost = transaction.PetFood.Cost,
                 PetCost = transaction.Pet.Cost,
+                EmployeeSalary = transaction.Employee.SalaryPerMonth,
 				//Pets = pett.Select(pett => new PetListDto
     //            {
     //                Id = pett.Id,

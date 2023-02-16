@@ -1,5 +1,6 @@
 ﻿@page "/MonthlyLedger"
 @using PetShop.Model;
+@using PetShop.Web.Blazor.Shared.Employee;
 @using PetShop.Web.Blazor.Shared.MonthlyLedger;
 @using PetShop.Web.Blazor.Shared.Transaction;
 @inject HttpClient httpClient
@@ -35,6 +36,7 @@
 
 @code {
 	private List<TransactionListDto> Transactions = new();
+	private List<EmployeeListDto> Employees = new();
 	bool isLoading { get; set; } = true;
 	int year = 2023;
 	int month = 1;
@@ -64,6 +66,7 @@
 	}
 	private async Task LoadItemsFromServer() {
 		Transactions = await httpClient.GetFromJsonAsync<List<TransactionListDto>>("monthlyledger");
+		Employees = await httpClient.GetFromJsonAsync<List<EmployeeListDto>>("employee");
 	}
 	private decimal CalculateMonthlyIncome(DateTime date) {
 		int month = date.Month;
@@ -78,21 +81,19 @@
 	private decimal CalculateMonthlyExpenses(DateTime date) {
 		int month = date.Month;
 		int year = date.Year;
+		decimal salaries=0;
 		decimal petCostSum = 0;
 		decimal petFoodCostSum = 0;
 
 		List<TransactionListDto> transactionsThisMonth2 = Transactions.FindAll(c => c.Date.Month == month).FindAll(c => c.Date.Year == year).ToList();
 		foreach (var transaction in transactionsThisMonth2) {
 			petCostSum += transaction.PetCost;
-			//foreach (var pet in transaction.Pets) {
-			//	petCostSum += pet.Cost;
-			//}
 			petFoodCostSum += transaction.PetFoodCost * transaction.PetFoodQty;
-			//foreach (var petFood in transaction.PetFoods) {
-			//	petFoodCostSum += petFood.Cost * transaction.PetFoodQty;
-			//}
 		}
-
-		return petFoodCostSum + petCostSum + 2000;
+		foreach (var employee in Employees)
+		{
+			salaries += employee.SalaryPerMonth;
+		}
+		return petFoodCostSum + petCostSum + 2000 + salaries ;
 	}
 }
