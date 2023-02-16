@@ -3,9 +3,11 @@
 @using PetShop.Web.Blazor.Shared.MonthlyLedger;
 @using PetShop.Web.Blazor.Shared.Transaction;
 @inject HttpClient httpClient
-<h3>MonthlyLedger</h3>
+
+
+<h3>Monthly Ledger</h3>
 @if (isLoading) {
-	<p> Loading ... </p>
+	<LoadingSpinner Type="LoadingSpinnerType.Border" />
 } else {
 	<table class="table table-striped table-hover">
 		<thead>

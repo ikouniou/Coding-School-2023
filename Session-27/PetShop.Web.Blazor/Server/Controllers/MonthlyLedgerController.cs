@@ -6,7 +6,9 @@ using PetShop.Web.Blazor.Shared.Transaction;
 
 namespace PetShop.Web.Blazor.Server.Controllers
 {
-    public class MonthlyLedgerController : Controller
+	[Route("[controller]")]
+	[ApiController]
+	public class MonthlyLedgerController : ControllerBase
     {
         private readonly IEntityRepo<Transaction> _transactionRepo;
         private readonly IEntityRepo<Customer> _customerRepo;
@@ -19,7 +21,9 @@ namespace PetShop.Web.Blazor.Server.Controllers
             _petRepo = petRepo;
             _petFoodRepo = petFoodRepo;
         }
-        public async Task<IEnumerable<TransactionListDto>> Get()
+
+		[HttpGet]
+		public async Task<IEnumerable<TransactionListDto>> Get()
         {
             var result = _transactionRepo.GetAll();
             var pets = _petRepo.GetAll();
