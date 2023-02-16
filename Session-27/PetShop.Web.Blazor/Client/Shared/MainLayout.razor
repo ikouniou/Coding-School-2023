@@ -1,17 +1,46 @@
 ﻿@inherits LayoutComponentBase
 
+
 <div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
+	<div class="sidebar">
+		<NavMenu />
+	</div>
 
-    <main>
-        <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-        </div>
+	<main>
 
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
+		<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+			<div class="container-fluid">
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+					<ul class="navbar-nav d-flex flex-row me-1">
+						<li class="nav-item me-3 me-lg-0">
+							<a class="nav-link mx-1 text-white" href="#"><i class="oi oi-heart"></i> Wishlist</a>
+						</li>
+						<li class="nav-item me-3 me-lg-0">
+							<a class="nav-link mx-1 text-white" href="#"><i class="oi oi-calendar"></i> Monthly Ledger</a>
+						</li>
+						<li class="nav-item me-3 me-lg-0">
+							<a class="nav-link mx-1 text-white" href="#"><i class="oi oi-document"></i> Pet Repor</a>
+						</li>
+						<li class="nav-item me-3 me-lg-0">
+							<a class="nav-link mx-1 text-white" href="#" ><i class="oi oi-person"></i> Customer</a>
+						</li>
+						<li>
+							<a href="https://www.epsilonnet.gr/" target="_blank">
+								<img src="/img/EpsilonNetLogo.png" alt="Home" style="width: 5rem; height: 2.5rem;" />
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<article class="content px-4">
+			@Body
+		</article>
+	</main>
 </div>
+
+@code{
+
+}
