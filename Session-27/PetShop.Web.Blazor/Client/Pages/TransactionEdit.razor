@@ -54,7 +54,7 @@ else
         </div>
         <div class="col-md-4">
             <label class="form-label">Pet</label>
-            <select class="form-control" @bind="@transactionDto.PetId" bind:after="@getPetPrice(transactionDto.PetId)">
+            <select class="form-control" @bind="@transactionDto.PetId" @bind:after="@( ()=> getPetPrice(transactionDto.PetId))">
                 @foreach (var pet in transactionDto.Pets)
                 {
                     <option value="@pet.Id">@pet.Breed</option>
@@ -63,7 +63,7 @@ else
         </div>
         <div class="col-md-4">
             <label class="form-label">Pet Food</label>
-            <select class="form-control"  @bind="@transactionDto.PetFoodId" bind:after="@getPetFoodPrice(transactionDto.PetFoodId)">
+            <select class="form-control"  @bind="@transactionDto.PetFoodId" @bind:after="@( ()=> getPetFoodPrice(transactionDto.PetFoodId))">
                 @foreach (var petFood in transactionDto.PetFoods) {
 
                     <option  value="@petFood.Id">@petFood.AnimalType</option>
