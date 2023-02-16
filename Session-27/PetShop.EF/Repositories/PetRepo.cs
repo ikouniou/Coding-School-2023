@@ -59,6 +59,7 @@ namespace PetShop.EF.Repositories
             dbPet.AnimalType = entity.AnimalType;
             dbPet.Breed = entity.Breed;
             dbPet.Cost = entity.Cost;
+            dbPet.Price = entity.Price;
             context.SaveChanges();
         }
     }
