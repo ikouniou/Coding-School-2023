@@ -2,6 +2,7 @@
 using PetShop.EF.Repositories;
 using PetShop.Model;
 using PetShop.Web.Blazor.Shared.Pet;
+using PetShop.Web.Blazor.Shared.PetFood;
 using PetShop.Web.Blazor.Shared.Transaction;
 
 namespace PetShop.Web.Blazor.Server.Controllers
@@ -11,14 +12,13 @@ namespace PetShop.Web.Blazor.Server.Controllers
 	public class MonthlyLedgerController : ControllerBase
     {
         private readonly IEntityRepo<Transaction> _transactionRepo;
-        private readonly IEntityRepo<Customer> _customerRepo;
+        
         private readonly IEntityRepo<Pet> _petRepo;
         private readonly IEntityRepo<PetFood> _petFoodRepo;
 		
-		public MonthlyLedgerController(IEntityRepo<Transaction> transactionRepo, IEntityRepo<Customer> customerRepo, IEntityRepo<Pet> petRepo, IEntityRepo<PetFood> petFoodRepo)
+		public MonthlyLedgerController(IEntityRepo<Transaction> transactionRepo, IEntityRepo<Pet> petRepo, IEntityRepo<PetFood> petFoodRepo)
         {
             _transactionRepo = transactionRepo;
-            _customerRepo = customerRepo;
             _petRepo = petRepo;
             _petFoodRepo = petFoodRepo;
         }
@@ -27,6 +27,7 @@ namespace PetShop.Web.Blazor.Server.Controllers
         {
             var result = _transactionRepo.GetAll();
             var pett = _petRepo.GetAll();
+            var pettFood = _petFoodRepo.GetAll();
             
             return result.Select(transaction => new TransactionListDto
             {
@@ -48,6 +49,13 @@ namespace PetShop.Web.Blazor.Server.Controllers
                     Cost= pett.Cost,
                     Price= pett.Price
 
+                }).ToList(),
+                PetFoods = pettFood.Select(pettFood => new PetFoodListDto
+                {
+                    Id = pettFood.Id,
+                    AnimalType=pettFood.AnimalType,
+                    Cost= pettFood.Cost,
+                    Price= pettFood.Price
                 }).ToList()
 			});
         }

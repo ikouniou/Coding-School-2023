@@ -2,39 +2,46 @@
 using PetShop.EF.Repositories;
 using PetShop.Model;
 using PetShop.Model.Enums;
+using PetShop.Web.Blazor.Shared.Pet;
 using PetShop.Web.Blazor.Shared.PetReport;
+using PetShop.Web.Blazor.Shared.Transaction;
 
-namespace PetShop.Web.Blazor.Server.Controllers {
+namespace PetShop.Web.Blazor.Server.Controllers
+{
 
     [Route("[controller]")]
     [ApiController]
-    public class PetReportController : ControllerBase{
+    public class PetReportController : ControllerBase
+    {
         private readonly IEntityRepo<Transaction> _transactionRepo;
-        private readonly IEntityRepo<Customer> _customerRepo;
         private readonly IEntityRepo<Pet> _petRepo;
-        private readonly IEntityRepo<PetFood> _petFoodRepo;
 
-        public PetReportController(IEntityRepo<Transaction> transactionRepo, IEntityRepo<Customer> customerRepo, IEntityRepo<Pet> petRepo, IEntityRepo<PetFood> petFoodRepo) {
+        public PetReportController(IEntityRepo<Transaction> transactionRepo, IEntityRepo<Pet> petRepo)
+        {
             _transactionRepo = transactionRepo;
-            _customerRepo = customerRepo;
             _petRepo = petRepo;
-            _petFoodRepo = petFoodRepo;
         }
 
         [HttpGet]
-        public IEnumerable<PetReportListDto> Get(int year, int month, AnimalType animalType) {
-            var transactions = _transactionRepo.GetAll()
-                .Where(t => t.Date.Year == year && t.Date.Month == month);
+        public async Task<IEnumerable<TransactionListDto>> Get()
+        {
+            var result = _transactionRepo.GetAll();
+            var pett = _petRepo.GetAll();
+            return result.Select(transaction => new TransactionListDto
+            {
+                Id = transaction.Id,
+                Date = transaction.Date,
+                PetPrice = transaction.PetPrice,
+                PetFoodQty = transaction.PetFoodQty,
+                PetFoodPrice = transaction.PetFoodPrice,
+                TotalPrice = transaction.TotalPrice,
+                PetId = transaction.PetId,
+                PetFoodId = transaction.PetFoodId,
+                PetFoodAnimalType = transaction.PetFood.AnimalType,
+                PetBreed = transaction.Pet.Breed,
+                PetType = transaction.Pet.AnimalType
 
-            var pets = _petRepo.GetAll()
-                .Where(p => p.AnimalType == animalType);
-
-            var petReportList = pets.Select(pet => new PetReportListDto {
-                AnimalType = pet.AnimalType,
-                TotalSold = transactions.Count(t => t.PetId == pet.Id)
-            }).ToList();
-
-            return petReportList;
+            });
         }
     }
 }

@@ -13,4 +13,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\PetShop.Model\PetShop.Model.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="NewFolder\" />
+  </ItemGroup>
 </Project>

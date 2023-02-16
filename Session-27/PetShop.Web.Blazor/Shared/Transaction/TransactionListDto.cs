@@ -30,5 +30,6 @@ namespace PetShop.Web.Blazor.Shared.Transaction {
 		public string EmployeeFullName { get; set; } = null!;
 		public AnimalType PetFoodAnimalType { get; set; }
 		public string PetBreed { get; set; } = null!;
+		public AnimalType PetType { get; set; }
 	}
 }

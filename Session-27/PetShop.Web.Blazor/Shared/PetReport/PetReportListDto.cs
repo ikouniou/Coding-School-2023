@@ -6,31 +6,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PetShop.Web.Blazor.Shared.PetReport {
-    public class PetReportListDto {
+namespace PetShop.Web.Blazor.Shared.PetReport
+{
+    public class PetReportListDto
+    {
         public int Year { get; set; }
         public int Month { get; set; }
         public AnimalType AnimalType { get; set; }
-        public int TotalSold { get; set; }
+        public int BirdSold { get; set; }
+        public int MammalSold { get; set; }
+        public int ReptileSold { get; set; }
+        public int FishSold { get; set; }
+       // public int TotalSold { get; set; }
+        public PetReportListDto(DateTime date)
+        {
+            Year = date.Year;
+            Month = date.Month;
+        }
 
-        //public static List<PetReportListDto> FromTransactions(IEnumerable<TransactionListDto> transactions, int year, int month) {
-        //    var result = new List<PetReportListDto>();
+        public void UpdateSold(int birdSold, int mammalSold, int reptileSold, int fishSold)
+        {
+            BirdSold = birdSold;
+            MammalSold = mammalSold;
+            ReptileSold = reptileSold;
+            FishSold = fishSold;
 
-        //    foreach (AnimalType animalType in Enum.GetValues(typeof(AnimalType))) {
-        //        int totalSold = transactions
-        //            .Where(t => t.Date.Year == year && t.Date.Month == month)
-        //            .Sum(t => t.PetFoodQty);
+        }
 
-        //        result.Add(new PetReportListDto {
-        //            Year = year,
-        //            Month = month,
-        //            AnimalType = animalType,
-        //            TotalSold = totalSold
-        //        });
-        //    }
-
-        //    return result;
-        //}
 
     }
 }
