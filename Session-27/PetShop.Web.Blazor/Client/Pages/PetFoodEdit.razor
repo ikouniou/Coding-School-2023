@@ -9,40 +9,43 @@
 @if (PetFood == null) {
 	<LoadingSpinner Type="LoadingSpinnerType.Border" />
 } else {
-	<div class="row">
-		<div class="col-md-6">
-			<label class="form-label">Animal Type</label>
-			<select class="form-control" @bind="PetFood.AnimalType">
 
-				@foreach (var enumValue in Enum.GetValues<AnimalType>()) {
-					<option value="@enumValue">@enumValue</option>
-				}
-
-			</select>
-		</div>
+	<EditForm Model="PetFood" OnValidSubmit="OnSave">
+		<DataAnnotationsValidator />
+		<ValidationSummary />
 		<div class="row">
 			<div class="col-md-6">
-				<label class="form-label">Price</label>
-				<input class="form-control" @bind="@PetFood.Price" />
+				<label class="form-label">Animal Type</label>
+				<InputSelect class="form-control" @bind-Value="PetFood.AnimalType">
+
+					@foreach (var enumValue in Enum.GetValues<AnimalType>()) {
+						<option value="@enumValue">@enumValue</option>
+					}
+
+				</InputSelect>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<label class="form-label">Price</label>
+					<InputNumber class="form-control" @bind-Value="@PetFood.Price" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<label class="form-label">Cost</label>
+					<InputNumber class="form-control" @bind-Value="@PetFood.Cost" />
+				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<label class="form-label">Cost</label>
-				<input class="form-control" @bind="@PetFood.Cost" />
+
+		<div class="row mt-2">
+			<div class="col">
+				<button class="btn btn-success" type="submit">Save</button>
+				<button class="btn btn-danger" @onclick="OnCancel">Cancel</button>
 			</div>
+
 		</div>
-
-
-	</div>
-
-	<div class="row mt-2">
-		<div class="col">
-			<button class="btn btn-success" @onclick="OnSave">Save</button>
-			<button class="btn btn-danger" @onclick="OnCancel">Cancel</button>
-		</div>
-
-	</div>
+	</EditForm>
 }
 
 @code {
