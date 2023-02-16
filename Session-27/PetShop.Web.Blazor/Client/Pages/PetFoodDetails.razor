@@ -6,7 +6,7 @@
 <h3>Pet Food Details</h3>
 
 @if (isLoading) {
-		<p>Loading...</p>
+    <LoadingSpinner Type="LoadingSpinnerType.Border" />
 } else {
     <hr />
     <dl class="row">
@@ -76,19 +76,19 @@
                         @item.Date
                     </td>
                     <td>
-                        @item.CustomerId
+                        @item.CustomerFullName
                     </td>
                     <td>
-                        @item.EmployeeId
+                        @item.EmployeeFullName
                     </td>
                     <td>
-                        @item.PetId
+                        @item.PetBreed
                     </td>
                     <td>
                         @item.PetPrice €
                     </td>
                     <td>
-                        @item.PetFoodId
+                        @item.PetFoodAnimalType
                     </td>
                     <td>
                         @item.PetFoodQty

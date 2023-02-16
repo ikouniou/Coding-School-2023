@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PetShop.Model.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,5 +17,10 @@ namespace PetShop.Web.Blazor.Shared.Transaction {
         public int EmployeeId { get; set; }
         public int PetId { get; set; }
         public int PetFoodId { get; set; }
+
+        public string CustomerFullName { get; set; } = null!;
+        public string EmployeeFullName { get; set; } = null!;
+        public AnimalType PetFoodAnimalType { get; set; }
+        public string PetBreed { get; set; } = null!;
     }
 }
