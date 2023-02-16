@@ -5,6 +5,7 @@ using PetShop.Web.Blazor.Shared.Pet;
 using PetShop.Web.Blazor.Shared.PetFood;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,8 @@ namespace PetShop.Web.Blazor.Shared.Transaction {
 		public DateTime Date { get; set; }
 		public decimal PetPrice { get; set; } 
 		public int PetFoodQty { get; set; }
-        public int SoldFoodQty { get; set; }
+		[Range(1, 99)]
+		public int SoldFoodQty { get; set; }
         public decimal PetFoodPrice { get; set; }
 		public decimal TotalPrice { get; set; }
 		public int CustomerId { get; set; }
