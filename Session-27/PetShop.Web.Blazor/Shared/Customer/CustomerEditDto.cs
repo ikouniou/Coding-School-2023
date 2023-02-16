@@ -11,7 +11,7 @@ namespace PetShop.Web.Blazor.Shared.Customer
     {
         public int Id { get; set; }
 		[Required]
-		[MaxLength(50, ErrorMessage = "Name must have max length 50 digits.")]
+		[MaxLength(50, ErrorMessage = "Name must have max length 50 letters.")]
 		public string Name { get; set; } = null!;
 		[Required]
 		[MaxLength(50, ErrorMessage = "Surname must have max length 50 letters.")]
