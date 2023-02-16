@@ -17,26 +17,26 @@
     <div class="row">
         @*<div class="col-md-4">
     <label class="form-label">Date</label>
-    <input class="form-control"  @bind="@transactionDto.Date" disabled />
+    <input class="form-control"  @bind="@Transaction.Date" disabled />
     </div>*@
         <div class="col-md-4">
             <label class="form-label">Pet</label>
-            <select class="form-control" @bind="@transactionDto.PetId" @bind:after="@( ()=> getPetPrice(transactionDto.PetId))">
-                @foreach (var pet in transactionDto.Pets) {
+            <select class="form-control" @bind="@Transaction.PetId" @bind:after="@( ()=> getPetPrice(Transaction.PetId))">
+                @foreach (var pet in Transaction.Pets) {
                     <option value="@pet.Id">@pet.Breed</option>
                 }
             </select>
         </div>
         <div class="col-md-4">
             <label class="form-label">Pet Price</label>
-            <input class="form-control" @bind="@transactionDto.PetPrice" disabled />
+            <input class="form-control" @bind="@Transaction.PetPrice" disabled />
         </div>
     </div>
     <div class="row">
         <div class="col-md-4">
             <label class="form-label">Pet Food</label>
-            <select class="form-control" @bind="@transactionDto.PetFoodId" @bind:after="@( ()=> getPetFoodPrice(transactionDto.PetFoodId))">
-                @foreach (var petFood in transactionDto.PetFoods) {
+            <select class="form-control" @bind="@Transaction.PetFoodId" @bind:after="@( ()=> getPetFoodPrice(Transaction.PetFoodId))">
+                @foreach (var petFood in Transaction.PetFoods) {
 
                     <option value="@petFood.Id">@petFood.AnimalType</option>
                 }
@@ -44,26 +44,26 @@
         </div>
         <div class="col-md-4">
             <label class="form-label">Pet Food Price</label>
-            <input class="form-control" @bind="@transactionDto.PetFoodPrice" disabled />
+            <input class="form-control" @bind="@Transaction.PetFoodPrice" disabled />
         </div>
     </div>
     <div class="row">
         <div class="col-md-4">
             <label class="form-label">Pet Food Qty</label>
-            <input class="form-control" @bind="@transactionDto.PetFoodQty" @bind:after="@(() =>getTot())" />
+            <input class="form-control" @bind="@Transaction.PetFoodQty" @bind:after="@(() =>getTot())" />
         </div>
     </div>
     <div class="row">
         <div class="col-md-4">
             <label class="form-label">Total Price</label>
-            <input class="form-control" @bind="@transactionDto.TotalPrice" disabled />
+            <input class="form-control" @bind="@Transaction.TotalPrice" disabled />
         </div>
     </div>
     <div class="row">
         <div class="col-md-4">
             <label class="form-label">Customer</label>
-            <select class="form-control" @bind="@transactionDto.CustomerId">
-                @foreach (var customer in transactionDto.Customers) {
+            <select class="form-control" @bind="@Transaction.CustomerId">
+                @foreach (var customer in Transaction.Customers) {
                     <option value="@customer.Id">@customer.Name @customer.Surname</option>
                 }
             </select>
@@ -72,8 +72,8 @@
     <div class="row">
         <div class="col-md-4">
             <label class="form-label">Employee</label>
-            <select class="form-control" @bind="@transactionDto.EmployeeId">
-                @foreach (var employee in transactionDto.Employees) {
+            <select class="form-control" @bind="@Transaction.EmployeeId">
+                @foreach (var employee in Transaction.Employees) {
                     <option value="@employee.Id">@employee.Name @employee.Surname</option>
                 }
             </select>
@@ -90,26 +90,26 @@
 @code {
     [Parameter] public int? Id { get; set; }
     bool isLoading = true;
-    TransactionEditDto transactionDto { get; set; }
+    TransactionEditDto Transaction { get; set; }
     string? title;
 
     protected override async Task OnInitializedAsync() {
         if (Id == null) {
             title = "Create transaction";
-            transactionDto = new();
-            transactionDto.Customers = await httpClient.GetFromJsonAsync<List<CustomerEditDto>>("customer");
-            transactionDto.Employees = await httpClient.GetFromJsonAsync<List<EmployeeEditDto>>("employee");
-            transactionDto.Pets = (await httpClient.GetFromJsonAsync<List<PetEditDto>>("pet")).FindAll(pet => (((int)pet.PetStatus == 1) || (int)pet.PetStatus == 3));
-            transactionDto.PetFoods = await httpClient.GetFromJsonAsync<List<PetFoodEditDto>>("petfood");
-            transactionDto.TotalPrice = transactionDto.PetPrice + transactionDto.PetFoodPrice * transactionDto.PetFoodQty;
+            Transaction = new();
+            Transaction.Customers = await httpClient.GetFromJsonAsync<List<CustomerEditDto>>("customer");
+            Transaction.Employees = await httpClient.GetFromJsonAsync<List<EmployeeEditDto>>("employee");
+            Transaction.Pets = (await httpClient.GetFromJsonAsync<List<PetEditDto>>("pet")).FindAll(pet => (((int)pet.PetStatus == 1) || (int)pet.PetStatus == 3));
+            Transaction.PetFoods = await httpClient.GetFromJsonAsync<List<PetFoodEditDto>>("petfood");
+            Transaction.TotalPrice = Transaction.PetPrice + Transaction.PetFoodPrice * Transaction.PetFoodQty;
 
         } else {
             title = "Edit Transaction";
-            transactionDto = await httpClient.GetFromJsonAsync<TransactionEditDto>($"transaction/{Id}");
-            transactionDto.Employees = await httpClient.GetFromJsonAsync<List<EmployeeEditDto>>("employee");
-            transactionDto.Pets = (await httpClient.GetFromJsonAsync<List<PetEditDto>>("pet")).FindAll(pet => (((int)pet.PetStatus == 1) || (int)pet.PetStatus == 3)); ;
-            transactionDto.PetFoods = await httpClient.GetFromJsonAsync<List<PetFoodEditDto>>("petfood");
-            transactionDto.Customers = await httpClient.GetFromJsonAsync<List<CustomerEditDto>>("customer");
+            Transaction = await httpClient.GetFromJsonAsync<TransactionEditDto>($"transaction/{Id}");
+            Transaction.Employees = await httpClient.GetFromJsonAsync<List<EmployeeEditDto>>("employee");
+            Transaction.Pets = (await httpClient.GetFromJsonAsync<List<PetEditDto>>("pet")).FindAll(pet => (((int)pet.PetStatus == 1) || (int)pet.PetStatus == 3)); ;
+            Transaction.PetFoods = await httpClient.GetFromJsonAsync<List<PetFoodEditDto>>("petfood");
+            Transaction.Customers = await httpClient.GetFromJsonAsync<List<CustomerEditDto>>("customer");
 
         }
 
@@ -121,52 +121,52 @@
     private async Task OnSave() {
         HttpResponseMessage? response;
         if (Id == null) {
-            response = await httpClient.PostAsJsonAsync("transaction", transactionDto);
+            response = await httpClient.PostAsJsonAsync("transaction", Transaction);
         } else {
-            response = await httpClient.PutAsJsonAsync("transaction", transactionDto);
+            response = await httpClient.PutAsJsonAsync("transaction", Transaction);
         }
         response.EnsureSuccessStatusCode();
         navigationManager.NavigateTo("transactionlist");
     }
     async Task getTot() {
-        if (transactionDto.PetType == transactionDto.FoodType) {
-            if (transactionDto.PetFoodQty > 0) {
-                transactionDto.TotalPrice = transactionDto.PetPrice + transactionDto.PetFoodPrice * (transactionDto.PetFoodQty - 1);
+        if (Transaction.PetType == Transaction.FoodType) {
+            if (Transaction.PetFoodQty > 0) {
+                Transaction.TotalPrice = Transaction.PetPrice + Transaction.PetFoodPrice * (Transaction.PetFoodQty - 1);
 
             } else {
-                transactionDto.TotalPrice = transactionDto.PetPrice + transactionDto.PetFoodPrice * transactionDto.PetFoodQty;
+                Transaction.TotalPrice = Transaction.PetPrice + Transaction.PetFoodPrice * Transaction.PetFoodQty;
             }
         } else {
-            transactionDto.TotalPrice = transactionDto.PetPrice + transactionDto.PetFoodPrice * transactionDto.PetFoodQty;
+            Transaction.TotalPrice = Transaction.PetPrice + Transaction.PetFoodPrice * Transaction.PetFoodQty;
         }
     }
     async Task getPetPrice(int id) {
-        transactionDto.PetPrice = transactionDto.Pets.FirstOrDefault(pet => pet.Id == id).Price;
-        transactionDto.TotalPrice = transactionDto.PetPrice + transactionDto.PetFoodPrice * transactionDto.PetFoodQty;
-        transactionDto.PetType = transactionDto.Pets.Find(x => x.Id == id).AnimalType;
+        Transaction.PetPrice = Transaction.Pets.FirstOrDefault(pet => pet.Id == id).Price;
+        Transaction.TotalPrice = Transaction.PetPrice + Transaction.PetFoodPrice * Transaction.PetFoodQty;
+        Transaction.PetType = Transaction.Pets.Find(x => x.Id == id).AnimalType;
 
-        if (transactionDto.PetType == transactionDto.FoodType) {
-            if (transactionDto.PetFoodQty > 0) {
-                transactionDto.TotalPrice = transactionDto.PetPrice + transactionDto.PetFoodPrice * (transactionDto.PetFoodQty - 1);
+        if (Transaction.PetType == Transaction.FoodType) {
+            if (Transaction.PetFoodQty > 0) {
+                Transaction.TotalPrice = Transaction.PetPrice + Transaction.PetFoodPrice * (Transaction.PetFoodQty - 1);
 
             } else {
-                transactionDto.TotalPrice = transactionDto.PetPrice + transactionDto.PetFoodPrice * transactionDto.PetFoodQty;
+                Transaction.TotalPrice = Transaction.PetPrice + Transaction.PetFoodPrice * Transaction.PetFoodQty;
             }
         } else {
-            transactionDto.TotalPrice = transactionDto.PetPrice + transactionDto.PetFoodPrice * transactionDto.PetFoodQty;
+            Transaction.TotalPrice = Transaction.PetPrice + Transaction.PetFoodPrice * Transaction.PetFoodQty;
         }
 
     }
     async Task getPetFoodPrice(int id) {
 
-        transactionDto.PetFoodPrice = transactionDto.PetFoods.FirstOrDefault(petFood => petFood.Id == id).Price;
-        transactionDto.TotalPrice = transactionDto.PetPrice + transactionDto.PetFoodPrice * transactionDto.PetFoodQty;
-        transactionDto.FoodType = transactionDto.PetFoods.Find(x => x.Id == id).AnimalType;
-        if (transactionDto.PetType == transactionDto.FoodType) {
-            if (transactionDto.PetFoodQty > 0) {
-                transactionDto.TotalPrice = transactionDto.PetPrice + transactionDto.PetFoodPrice * (transactionDto.PetFoodQty - 1);
+        Transaction.PetFoodPrice = Transaction.PetFoods.FirstOrDefault(petFood => petFood.Id == id).Price;
+        Transaction.TotalPrice = Transaction.PetPrice + Transaction.PetFoodPrice * Transaction.PetFoodQty;
+        Transaction.FoodType = Transaction.PetFoods.Find(x => x.Id == id).AnimalType;
+        if (Transaction.PetType == Transaction.FoodType) {
+            if (Transaction.PetFoodQty > 0) {
+                Transaction.TotalPrice = Transaction.PetPrice + Transaction.PetFoodPrice * (Transaction.PetFoodQty - 1);
             } else {
-                transactionDto.TotalPrice = transactionDto.PetPrice + transactionDto.PetFoodPrice * transactionDto.PetFoodQty;
+                Transaction.TotalPrice = Transaction.PetPrice + Transaction.PetFoodPrice * Transaction.PetFoodQty;
             }
         }
 
