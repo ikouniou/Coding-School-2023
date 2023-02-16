@@ -155,6 +155,10 @@ else
                 transactionDto.TotalPrice = transactionDto.PetPrice + transactionDto.PetFoodPrice * transactionDto.PetFoodQty;
             }
         }
+        else
+        {
+            transactionDto.TotalPrice = transactionDto.PetPrice + transactionDto.PetFoodPrice * transactionDto.PetFoodQty;
+        }
     }
     async Task getPetPrice(int id)
     {
@@ -173,6 +177,10 @@ else
             {
                 transactionDto.TotalPrice = transactionDto.PetPrice + transactionDto.PetFoodPrice * transactionDto.PetFoodQty;
             }
+        }
+           else
+        {
+            transactionDto.TotalPrice = transactionDto.PetPrice + transactionDto.PetFoodPrice * transactionDto.PetFoodQty;
         }
 
     }
