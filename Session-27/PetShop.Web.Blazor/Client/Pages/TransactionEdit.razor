@@ -13,7 +13,7 @@
 
 @if (isLoading)
 {
-    <p>Loading...</p>
+    <LoadingSpinner Type="LoadingSpinnerType.Border" />
 }
 else
 {
@@ -22,36 +22,6 @@ else
             <label class="form-label">Date</label>
             <input class="form-control"  @bind="@transactionDto.Date" disabled />
         </div>*@
-        <div class="col-md-4">
-            <label class="form-label">Pet Price</label>
-            <input class="form-control" @bind="@transactionDto.PetPrice" disabled  />
-        </div>
-        <div class="col-md-4">
-            <label class="form-label">Pet Food Qty</label>
-            <input class="form-control" @bind="@transactionDto.PetFoodQty" />
-        </div>
-        <div class="col-md-4">
-            <label class="form-label">Pet Food Price</label>
-            <input class="form-control" @bind="@transactionDto.PetFoodPrice" disabled/>
-        </div>
-        <div class="col-md-4">
-            <label class="form-label">Employee</label>
-            <select class="form-control" @bind="@transactionDto.EmployeeId" >
-                 @foreach (var employee in  transactionDto.Employees)
-            {
-                <option value="@employee.Id">@employee.Name @employee.Surname</option>
-            }
-            </select>
-        </div>
-        <div class="col-md-4">
-            <label class="form-label">Customer</label>
-            <select class="form-control" @bind="@transactionDto.CustomerId">
-                @foreach (var customer in transactionDto.Customers)
-                {
-                    <option value="@customer.Id">@customer.Name @customer.Surname</option>
-                }
-            </select>
-        </div>
         <div class="col-md-4">
             <label class="form-label">Pet</label>
             <select class="form-control" @bind="@transactionDto.PetId" @bind:after="@( ()=> getPetPrice(transactionDto.PetId))">
@@ -62,20 +32,57 @@ else
             </select>
         </div>
         <div class="col-md-4">
+            <label class="form-label">Pet Price</label>
+            <input class="form-control" @bind="@transactionDto.PetPrice" disabled  />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
             <label class="form-label">Pet Food</label>
-            <select class="form-control"  @bind="@transactionDto.PetFoodId" @bind:after="@( ()=> getPetFoodPrice(transactionDto.PetFoodId))">
+            <select class="form-control" @bind="@transactionDto.PetFoodId" @bind:after="@( ()=> getPetFoodPrice(transactionDto.PetFoodId))">
                 @foreach (var petFood in transactionDto.PetFoods) {
 
-                    <option  value="@petFood.Id">@petFood.AnimalType</option>
-				}
-			</select>
-		</div>
+                    <option value="@petFood.Id">@petFood.AnimalType</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Pet Food Price</label>
+            <input class="form-control" @bind="@transactionDto.PetFoodPrice" disabled />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label class="form-label">Pet Food Qty</label>
+            <input class="form-control" @bind="@transactionDto.PetFoodQty" />
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-4">
             <label class="form-label">Total Price</label>
             <input class="form-control" @bind="@transactionDto.TotalPrice" disabled />
         </div>
-	</div>
-
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label class="form-label">Customer</label>
+            <select class="form-control" @bind="@transactionDto.CustomerId">
+                @foreach (var customer in transactionDto.Customers) {
+                    <option value="@customer.Id">@customer.Name @customer.Surname</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label class="form-label">Employee</label>
+            <select class="form-control" @bind="@transactionDto.EmployeeId">
+                @foreach (var employee in transactionDto.Employees) {
+                    <option value="@employee.Id">@employee.Name @employee.Surname</option>
+                }
+            </select>
+        </div>
+    </div>
 	<div class="row mt-2">
 		<div class="col">
 			<button class="btn btn-success" @onclick="OnSave">Save</button>

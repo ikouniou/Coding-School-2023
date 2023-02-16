@@ -75,7 +75,11 @@ namespace PetShop.Web.Blazor.Server.Controllers
 					CustomerId = transaction.CustomerId,
 					PetId = transaction.PetId,
 					PetFoodId = transaction.PetFoodId,
-				}).ToList().FindAll(transaction => transaction.PetId == id)
+                    CustomerFullName = $"{transaction.Customer.Name} {transaction.Customer.Surname}",
+                    EmployeeFullName = $"{transaction.Employee.Name} {transaction.Employee.Surname}",
+                    PetFoodAnimalType = transaction.PetFood.AnimalType,
+                    PetBreed = transaction.Pet.Breed
+                }).ToList().FindAll(transaction => transaction.PetId == id)
 
 			};
 		}
