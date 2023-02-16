@@ -18,6 +18,7 @@
             <th>Mammals Sold</th>
             <th>Reptiles Sold</th>
             <th>Fishes Sold</th>
+            <th>Total Sold</th>
         </tr>
     </thead>
     <tbody>
@@ -29,6 +30,7 @@
                 <td>@petReport.MammalSold</td>
                 <td>@petReport.ReptileSold</td>
                 <td>@petReport.FishSold</td>
+                <td>@($"{petReport.BirdSold + petReport.MammalSold + petReport.ReptileSold + petReport.FishSold}")</td>
             </tr>
         }
     </tbody>
@@ -38,7 +40,7 @@
     private List<TransactionListDto> Transactions = new();
     bool isLoading { get; set; } = true;
     int year = 2023;
-    int month = 2;
+    int month = 1;
     int monthNow = DateTime.Now.Month;
     int yearNow = DateTime.Now.Year;
     int BirdsSold;
@@ -50,7 +52,7 @@
         await LoadItemsFromServer();
         for (int i = year; i <= yearNow; i++) {
 
-            for (int j = 2; j <= 12; j++) {
+            for (int j = 1; j <= 12; j++) {
                 if (i == yearNow && j > monthNow) {
                     break;
                 }
