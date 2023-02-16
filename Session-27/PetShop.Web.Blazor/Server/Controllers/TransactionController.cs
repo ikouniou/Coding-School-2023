@@ -39,7 +39,8 @@ namespace PetShop.Web.Blazor.Server.Controllers
                 CustomerFullName = $"{transaction.Customer.Name} {transaction.Customer.Surname}",
                 EmployeeFullName = $"{transaction.Employee.Name} {transaction.Employee.Surname}",
                 PetFoodAnimalType = transaction.PetFood.AnimalType,
-                PetBreed = transaction.Pet.Breed
+                PetBreed = transaction.Pet.Breed,
+
             });
         }
         [HttpGet("{id}")]
