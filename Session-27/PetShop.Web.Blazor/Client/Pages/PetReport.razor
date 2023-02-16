@@ -18,6 +18,7 @@
             <th>Mammals Sold</th>
             <th>Reptiles Sold</th>
             <th>Fishes Sold</th>
+            <th>Total Sold</th>
         </tr>
     </thead>
     <tbody>
@@ -29,6 +30,7 @@
                 <td>@petReport.MammalSold</td>
                 <td>@petReport.ReptileSold</td>
                 <td>@petReport.FishSold</td>
+                <td>@($"{petReport.BirdSold + petReport.MammalSold + petReport.ReptileSold + petReport.FishSold}")</td>
             </tr>
         }
     </tbody>
