@@ -9,6 +9,9 @@
 @if (isLoading) {
 	<LoadingSpinner Type="LoadingSpinnerType.Border"/>
 } else {
+	@if (errorMessage != null) {
+		<p class="text-danger">@errorMessage</p>
+	}
 	<button class="btn btn-primary" @onclick="CreateItem">Create</button>
 
 	<table class="table table-striped table-hover">
@@ -40,6 +43,8 @@
 @code {
 	private List<PetFoodListDto> petFoodList = new();
 	bool isLoading { get; set; } = true;
+	string errorMessage = null;
+
 
 	protected override async Task OnInitializedAsync() {
 		await LoadItemsFromServer();
@@ -63,11 +68,15 @@
 	}
 
 	private async Task DeleteItem(PetFoodListDto petFood) {
+		errorMessage = null;
 		var confirm = await jsRuntime.InvokeAsync<bool>("confirm", "Delete Item. Are you sure?");
 		if (confirm) {
 			var response = await httpClient.DeleteAsync($"petfood/{petFood.Id}");
-			response.EnsureSuccessStatusCode();
-			await LoadItemsFromServer();
+			if (response.IsSuccessStatusCode) {
+				await LoadItemsFromServer();
+			} else {
+				errorMessage = "You can't delete this pet food.";
+			}
 		}
 	}
 }
