@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace FuelStation.EF.Context {
-    public class FuelStationDbContext : DbContext{
+    public class FuelStationDbContext : DbContext {
         public DbSet<Customer> Customers { get; set; } = null!;
         public DbSet<Employee> Employees { get; set; } = null!;
         public DbSet<Item> Items { get; set; } = null!;
