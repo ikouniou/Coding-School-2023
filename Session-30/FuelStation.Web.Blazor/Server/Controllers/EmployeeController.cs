@@ -28,5 +28,43 @@ namespace FuelStation.Web.Blazor.Server.Controllers {
                 EmployeeType = employee.EmployeeType
             });
         }
-    }
+
+		[HttpGet("{id}")]
+		public async Task<EmployeeEditDto> GetById(int id) {
+			var result = _employeeRepo.GetById(id);
+			return new EmployeeEditDto {
+				Id = id,
+				Name = result.Name,
+				Surname = result.Surname,
+				HireDateStart = result.HireDateStart,
+				HireDateEnd = result.HireDateEnd,
+				SallaryPerMonth = result.SallaryPerMonth,
+				EmployeeType = result.EmployeeType
+			};
+		}
+
+
+		[HttpPost]
+		public async Task Post(EmployeeEditDto employee) {
+			var newEmployee = new Employee(employee.Name, employee.Surname, employee.HireDateStart, employee.HireDateEnd, employee.SallaryPerMonth, employee.EmployeeType);
+			_employeeRepo.Add(newEmployee);
+		}
+
+		[HttpPut]
+		public async Task Put(EmployeeEditDto employee) {
+			var itemToUpdate = _employeeRepo.GetById(employee.Id);
+			itemToUpdate.Name = employee.Name;
+			itemToUpdate.Surname = employee.Surname;
+			itemToUpdate.HireDateStart = employee.HireDateStart;
+			itemToUpdate.HireDateEnd = employee.HireDateEnd;
+			itemToUpdate.SallaryPerMonth = employee.SallaryPerMonth;
+			itemToUpdate.EmployeeType = employee.EmployeeType;
+			_employeeRepo.Update(employee.Id, itemToUpdate);
+		}
+
+		[HttpDelete("{id}")]
+		public async Task Delete(int id) {
+			_employeeRepo.Delete(id);
+		}
+	}
 }
