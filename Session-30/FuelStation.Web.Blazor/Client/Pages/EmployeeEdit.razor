@@ -12,36 +12,40 @@
 } else {
 	<EditForm Model="Employee" OnValidSubmit="OnSave">
 		<DataAnnotationsValidator />
-		<ValidationSummary />
 
 		<div class="row">
 			<div class="col-md-6">
 				<label class="form-label">Name</label>
 				<InputText class="form-control" @bind-Value="@Employee.Name" />
+				<ValidationMessage For="@(()=>Employee.Name)" />
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-6">
 				<label class="form-label">Surname</label>
 				<InputText class="form-control" @bind-Value="@Employee.Surname" />
+				<ValidationMessage For="@(()=>Employee.Surname)" />
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-6">
 				<label class="form-label">Hire Date Start</label>
 				<InputDate class="form-control" @bind-Value="@Employee.HireDateStart" />
+				<ValidationMessage For="@(()=>Employee.HireDateStart)" />
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-6">
 				<label class="form-label">Hire Date End</label>
 				<InputDate class="form-control" @bind-Value="@Employee.HireDateEnd" />
+				<ValidationMessage For="@(()=>Employee.HireDateEnd)" />
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-6">
 				<label class="form-label">Salary Per Month</label>
 				<InputNumber class="form-control" @bind-Value="@Employee.SallaryPerMonth" />
+				<ValidationMessage For="@(()=>Employee.SallaryPerMonth)" />
 			</div>
 		</div>
 		<div class="row">
