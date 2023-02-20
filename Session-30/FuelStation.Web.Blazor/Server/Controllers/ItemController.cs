@@ -27,6 +27,15 @@ namespace FuelStation.Web.Blazor.Server.Controllers {
 			});
 		}
 
+		[HttpGet("codes")]
+		public async Task<IEnumerable<ItemCodeDto>> GetCode() {
+			var result = _itemRepo.GetAll();
+			return result.Select(item => new ItemCodeDto {
+				Id = item.Id,
+				Code = item.Code
+			});
+		}
+
 		[HttpGet("{id}")]
 		public async Task<ItemEditDto> GetById(int id) {
 			var result = _itemRepo.GetById(id);

@@ -3,6 +3,7 @@
 @using FuelStation.Web.Blazor.Shared.Item;
 @inject HttpClient httpClient
 @inject NavigationManager navigationManager
+@inject IJSRuntime jsRuntime
 
 
 <h3>@title</h3>
@@ -65,13 +66,17 @@
 	[Parameter] public int? Id { get; set; }
 	ItemEditDto Item { get; set; }
 	string? title;
+	private List<ItemCodeDto> itemCode = new();
+	bool sameCode;
 
 	protected override async Task OnInitializedAsync() {
+		itemCode = await httpClient.GetFromJsonAsync<List<ItemCodeDto>>("item/codes");
 		if (Id == null) {
 			Item = new();
 			title = "Create Item";
 		} else {
 			Item = await httpClient.GetFromJsonAsync<ItemEditDto>($"item/{Id}");
+
 			title = "Edit Item";
 		}
 	}
@@ -82,13 +87,38 @@
 
 	private async Task OnSave() {
 		HttpResponseMessage? response = null;
+		sameCode = false;
 		if (Id == null) {
-			response = await httpClient.PostAsJsonAsync("item", Item);
+			foreach(var code in itemCode) {
+				string cod = code.Code;
+				if (string.Compare(cod, Item.Code) == 0) {
+					sameCode = true;
+				}
+			}
+			if (sameCode) {
+				await jsRuntime.InvokeVoidAsync("alert", "Code already exist. Code must be unique.");
+			} else {
+				response = await httpClient.PostAsJsonAsync("item", Item);
+				response.EnsureSuccessStatusCode();
+				navigationManager.NavigateTo("itemlist");
+			}
+			
 		} else {
-			response = await httpClient.PutAsJsonAsync("item", Item);
+			
+			foreach (var code in itemCode) {
+				string cod = code.Code;
+				if (string.Compare(cod, Item.Code) == 0) {
+					sameCode = true;
+				}
+			}
+			if (sameCode) {
+				await jsRuntime.InvokeVoidAsync("alert", "Code already exist. Code must be unique.");
+			} else {
+				response = await httpClient.PutAsJsonAsync("item", Item);
+				response.EnsureSuccessStatusCode();
+				navigationManager.NavigateTo("itemlist");
+			}
 		}
-
-		response.EnsureSuccessStatusCode();
-		navigationManager.NavigateTo("itemlist");
+	
 	}
 }
