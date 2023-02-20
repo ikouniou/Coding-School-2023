@@ -3,6 +3,7 @@
 @using FuelStation.Web.Blazor.Shared.Employee;
 @inject HttpClient httpClient
 @inject NavigationManager navigationManager
+@inject IJSRuntime jsRuntime
 
 
 <h3>@title</h3>
@@ -72,6 +73,11 @@
 	[Parameter] public int? Id { get; set; }
 	EmployeeEditDto Employee { get; set; }
 	string? title;
+	private List<EmployeeListDto> employeeList = new();
+	private int _managersSum = 0;
+	private int _cashiersSum = 0;
+	private int _staffSum = 0;
+	string message = "";
 
 	protected override async Task OnInitializedAsync() {
 		if (Id == null) {
@@ -81,6 +87,7 @@
 			Employee = await httpClient.GetFromJsonAsync<EmployeeEditDto>($"employee/{Id}");
 			title = "Edit Employee";
 		}
+		employeeList = await httpClient.GetFromJsonAsync<List<EmployeeListDto>>("employee");
 	}
 
 	private void OnCancel() {
@@ -89,13 +96,79 @@
 
 	private async Task OnSave() {
 		HttpResponseMessage? response = null;
-		if (Id == null) {
-			response = await httpClient.PostAsJsonAsync("employee", Employee);
-		} else {
-			response = await httpClient.PutAsJsonAsync("employee", Employee);
+
+		foreach (var employee in employeeList) {
+			if(employee.EmployeeType.ToString() == "Manager") {
+				_managersSum += 1;
+			}
+			if(employee.EmployeeType.ToString() == "Staff") {
+				_staffSum += 1;
+			}
+			if(employee.EmployeeType.ToString() == "Cashier") {
+				_cashiersSum += 1;
+			}
 		}
 
-		response.EnsureSuccessStatusCode();
-		navigationManager.NavigateTo("employeelist");
+		if (Id == null) {
+			if(Employee.EmployeeType.ToString() == "Manager" && _managersSum < 3) {
+				response = await httpClient.PostAsJsonAsync("employee", Employee);
+				response.EnsureSuccessStatusCode();
+				navigationManager.NavigateTo("employeelist");
+			}
+			else if(Employee.EmployeeType.ToString() == "Staff" && _staffSum < 10) {
+				response = await httpClient.PostAsJsonAsync("employee", Employee);
+				response.EnsureSuccessStatusCode();
+				navigationManager.NavigateTo("employeelist");
+			}
+			else if(Employee.EmployeeType.ToString() == "Cashier" && _cashiersSum < 4) {
+				response = await httpClient.PostAsJsonAsync("employee", Employee);
+				response.EnsureSuccessStatusCode();
+				navigationManager.NavigateTo("employeelist");
+			} 
+			else {
+				if(Employee.EmployeeType.ToString() == "Manager") {
+					message = "Fuel Station can't have more than 3 Managers.";
+				}
+				else if(Employee.EmployeeType.ToString() == "Staff"){
+					message = "Fuel Station can't have more than 10 Staff Members.";
+				} 
+				else {
+					message = "Fuel Station can't have more than 4 Cashiers.";
+				}
+				await jsRuntime.InvokeVoidAsync("alert", message);
+				navigationManager.NavigateTo("employeelist");	
+			}
+
+		} else {
+			if (Employee.EmployeeType.ToString() == "Manager" && _managersSum < 3) {
+				response = await httpClient.PutAsJsonAsync("employee", Employee);
+				response.EnsureSuccessStatusCode();
+				navigationManager.NavigateTo("employeelist");
+			} 
+			else if (Employee.EmployeeType.ToString() == "Staff" && _staffSum < 10) {
+				response = await httpClient.PutAsJsonAsync("employee", Employee);
+				response.EnsureSuccessStatusCode();
+				navigationManager.NavigateTo("employeelist");
+			} 
+			else if (Employee.EmployeeType.ToString() == "Cashier" && _cashiersSum < 4) {
+				response = await httpClient.PutAsJsonAsync("employee", Employee);
+				response.EnsureSuccessStatusCode();
+				navigationManager.NavigateTo("employeelist");
+			} 
+			else {
+				if (Employee.EmployeeType.ToString() == "Manager") {
+					message = "Fuel Station can't have more than 3 Managers.";
+				} 
+				else if (Employee.EmployeeType.ToString() == "Staff") {
+					message = "Fuel Station can't have more than 10 Staff Members.";
+				} 
+				else {
+					message = "Fuel Station can't have more than 4 Cashiers.";
+				}
+				await jsRuntime.InvokeVoidAsync("alert", message);
+				navigationManager.NavigateTo("employeelist");
+			}
+		}
+
 	}
 }
