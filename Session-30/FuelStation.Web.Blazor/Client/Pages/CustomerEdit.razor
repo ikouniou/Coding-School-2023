@@ -2,6 +2,7 @@
 @using FuelStation.Web.Blazor.Shared.Customer;
 @inject HttpClient httpClient
 @inject NavigationManager navigationManager
+@inject IJSRuntime jsRuntime
 
 
 <h3>@title</h3>
@@ -47,13 +48,18 @@
 	[Parameter] public int? Id { get; set; }
 	CustomerEditDto Customer { get; set; }
 	string? title;
+	private List<CustomerCardNumberDto> customerCardNumbers = new();
+	bool sameCardNumber;
+	private List<CustomerCardNumberDto> cardNumbersEdit = new();
 
 	protected override async Task OnInitializedAsync() {
+		customerCardNumbers = await httpClient.GetFromJsonAsync<List<CustomerCardNumberDto>>("customer/cardnumbers");
 		if (Id == null) {
 			Customer = new();
 			title = "Create Customer";
 		} else {
 			Customer = await httpClient.GetFromJsonAsync<CustomerEditDto>($"customer/{Id}");
+			cardNumbersEdit = customerCardNumbers.FindAll(number => number.CardNumber != Customer.CardNumber);
 			title = "Edit Customer";
 		}
 	}
@@ -64,13 +70,38 @@
 
 	private async Task OnSave() {
 		HttpResponseMessage? response = null;
+		sameCardNumber = false;
 		if (Id == null) {
-			response = await httpClient.PostAsJsonAsync("customer", Customer);
+			foreach (var cardNumber in customerCardNumbers) {
+				string number = cardNumber.CardNumber;
+				if (string.Compare(number, Customer.CardNumber) == 0) {
+					sameCardNumber = true;
+				}
+			}
+			if (sameCardNumber) {
+				await jsRuntime.InvokeVoidAsync("alert", "Card Number already exist. Card Number must be unique.");
+			} else {
+				response = await httpClient.PostAsJsonAsync("customer", Customer);
+				response.EnsureSuccessStatusCode();
+				navigationManager.NavigateTo("customerlist");
+			}
+
 		} else {
-			response = await httpClient.PutAsJsonAsync("customer", Customer);
+			foreach (var cardNumber in cardNumbersEdit) {
+				string number = cardNumber.CardNumber;
+				if (string.Compare(number, Customer.CardNumber) == 0) {
+					sameCardNumber = true;
+				}
+			}
+			if (sameCardNumber) {
+				await jsRuntime.InvokeVoidAsync("alert", "Card Number already exist. Card Number must be unique.");
+			} else {
+				response = await httpClient.PutAsJsonAsync("customer", Customer);
+				response.EnsureSuccessStatusCode();
+				navigationManager.NavigateTo("customerlist");
+			}
+			
 		}
 
-		response.EnsureSuccessStatusCode();
-		navigationManager.NavigateTo("customerlist");
 	}
 }

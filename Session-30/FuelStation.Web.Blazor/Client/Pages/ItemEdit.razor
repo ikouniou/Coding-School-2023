@@ -66,17 +66,18 @@
 	[Parameter] public int? Id { get; set; }
 	ItemEditDto Item { get; set; }
 	string? title;
-	private List<ItemCodeDto> itemCode = new();
+	private List<ItemCodeDto> itemCodes = new();
 	bool sameCode;
+	private List<ItemCodeDto> itemCodesEdit = new();
 
 	protected override async Task OnInitializedAsync() {
-		itemCode = await httpClient.GetFromJsonAsync<List<ItemCodeDto>>("item/codes");
+		itemCodes = await httpClient.GetFromJsonAsync<List<ItemCodeDto>>("item/codes");
 		if (Id == null) {
 			Item = new();
 			title = "Create Item";
 		} else {
 			Item = await httpClient.GetFromJsonAsync<ItemEditDto>($"item/{Id}");
-
+			itemCodesEdit = itemCodes.FindAll(code => code.Code != Item.Code);
 			title = "Edit Item";
 		}
 	}
@@ -89,7 +90,7 @@
 		HttpResponseMessage? response = null;
 		sameCode = false;
 		if (Id == null) {
-			foreach(var code in itemCode) {
+			foreach(var code in itemCodes) {
 				string cod = code.Code;
 				if (string.Compare(cod, Item.Code) == 0) {
 					sameCode = true;
@@ -105,7 +106,7 @@
 			
 		} else {
 			
-			foreach (var code in itemCode) {
+			foreach (var code in itemCodesEdit) {
 				string cod = code.Code;
 				if (string.Compare(cod, Item.Code) == 0) {
 					sameCode = true;

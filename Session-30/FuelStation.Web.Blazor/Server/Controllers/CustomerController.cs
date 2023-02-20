@@ -1,6 +1,7 @@
 ﻿using FuelStation.EF.Repositories;
 using FuelStation.Model;
 using FuelStation.Web.Blazor.Shared.Customer;
+using FuelStation.Web.Blazor.Shared.Item;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,7 +26,16 @@ namespace FuelStation.Web.Blazor.Server.Controllers {
             });
         }
 
-        [HttpGet("{id}")]
+		[HttpGet("cardnumbers")]
+		public async Task<IEnumerable<CustomerCardNumberDto>> GetCardNumber() {
+			var result = _customerRepo.GetAll();
+			return result.Select(item => new CustomerCardNumberDto {
+				Id = item.Id,
+				CardNumber = item.CardNumber
+			});
+		}
+
+		[HttpGet("{id}")]
         public async Task<CustomerEditDto> GetById(int id) {
             var result = _customerRepo.GetById(id);
             return new CustomerEditDto {
