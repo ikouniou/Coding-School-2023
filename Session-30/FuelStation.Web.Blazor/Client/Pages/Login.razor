@@ -1,0 +1,28 @@
+﻿@page "/login"
+@using FuelStation.Model.Enums;
+@inject NavigationManager navigationManager
+
+<h3>Login as:</h3>
+
+<div>
+	<button class="btn btn-secondary" @onclick="() => ManagerType()">Manager</button>
+	<button class="btn btn-secondary" @onclick="() => CashierType()">Cashier</button>
+	<button class="btn btn-secondary" @onclick="()=> StaffType()">Staff Member</button>
+</div>
+
+
+@code {
+
+	private void ManagerType() {
+		navigationManager.NavigateTo("employeelist");
+	}
+
+	private void CashierType() {
+		navigationManager.NavigateTo("customerlist");
+	}
+
+	private void StaffType() {
+		navigationManager.NavigateTo("itemlist");
+	}
+
+}
