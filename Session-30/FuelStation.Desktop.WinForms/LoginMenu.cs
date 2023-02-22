@@ -9,15 +9,18 @@ namespace FuelStation.Desktop.WinForms {
 		}
 
 		private void btnManager_Click(object sender, EventArgs e) {
-
+			ManagerForm managerForm = new();
+			managerForm.ShowDialog();
 		}
 
 		private void btnStaff_Click(object sender, EventArgs e) {
-
+			StaffForm staffForm = new();
+			staffForm.ShowDialog();
 		}
 
 		private void btnCashier_Click(object sender, EventArgs e) {
-
+			CashierForm cashierForm = new();
+			cashierForm.ShowDialog();
 		}
 	}
 }
