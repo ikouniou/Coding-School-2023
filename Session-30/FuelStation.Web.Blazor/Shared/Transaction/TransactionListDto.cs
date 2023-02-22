@@ -15,6 +15,6 @@ namespace FuelStation.Web.Blazor.Shared.Transaction {
 		public int CustomerId { get; set; }
 		public int EmployeeId { get; set; }
 
-		public List<TransactionLine> TransactionLines { get; set; } = new();
+		public List<FuelStation.Model.TransactionLine> TransactionLines { get; set; } = new();
 	}
 }
