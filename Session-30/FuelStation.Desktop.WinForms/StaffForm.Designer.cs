@@ -32,14 +32,16 @@
 			this.colPrice = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colCost = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.ItemBs = new System.Windows.Forms.BindingSource(this.components);
+			this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
 			((System.ComponentModel.ISupportInitialize)(this.grdItems)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.grvItems)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.ItemBs)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// grdItems
 			// 
-			this.grdItems.Location = new System.Drawing.Point(12, 86);
+			this.grdItems.Location = new System.Drawing.Point(12, 70);
 			this.grdItems.MainView = this.grvItems;
 			this.grdItems.Name = "grdItems";
 			this.grdItems.Size = new System.Drawing.Size(776, 300);
@@ -110,11 +112,25 @@
 			this.colCost.VisibleIndex = 4;
 			this.colCost.Width = 94;
 			// 
+			// textEdit1
+			// 
+			this.textEdit1.EditValue = "Items";
+			this.textEdit1.Location = new System.Drawing.Point(12, 30);
+			this.textEdit1.Name = "textEdit1";
+			this.textEdit1.Properties.Appearance.BackColor = System.Drawing.SystemColors.Control;
+			this.textEdit1.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			this.textEdit1.Properties.Appearance.Options.UseBackColor = true;
+			this.textEdit1.Properties.Appearance.Options.UseFont = true;
+			this.textEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.textEdit1.Size = new System.Drawing.Size(106, 34);
+			this.textEdit1.TabIndex = 1;
+			// 
 			// StaffForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Controls.Add(this.textEdit1);
 			this.Controls.Add(this.grdItems);
 			this.Name = "StaffForm";
 			this.Text = "Staff";
@@ -122,6 +138,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.grdItems)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.grvItems)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.ItemBs)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -136,5 +153,6 @@
 		private DevExpress.XtraGrid.Columns.GridColumn colPrice;
 		private DevExpress.XtraGrid.Columns.GridColumn colCost;
 		private BindingSource ItemBs;
+		private DevExpress.XtraEditors.TextEdit textEdit1;
 	}
 }
