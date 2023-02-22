@@ -119,8 +119,10 @@
 			this.textEdit1.Name = "textEdit1";
 			this.textEdit1.Properties.Appearance.BackColor = System.Drawing.SystemColors.Control;
 			this.textEdit1.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			this.textEdit1.Properties.Appearance.ForeColor = System.Drawing.SystemColors.ButtonShadow;
 			this.textEdit1.Properties.Appearance.Options.UseBackColor = true;
 			this.textEdit1.Properties.Appearance.Options.UseFont = true;
+			this.textEdit1.Properties.Appearance.Options.UseForeColor = true;
 			this.textEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.textEdit1.Size = new System.Drawing.Size(106, 34);
 			this.textEdit1.TabIndex = 1;
@@ -132,6 +134,7 @@
 			this.ClientSize = new System.Drawing.Size(800, 450);
 			this.Controls.Add(this.textEdit1);
 			this.Controls.Add(this.grdItems);
+			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.Name = "StaffForm";
 			this.Text = "Staff";
 			this.Load += new System.EventHandler(this.StaffForm_Load);
