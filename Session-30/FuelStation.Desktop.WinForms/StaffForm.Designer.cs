@@ -44,6 +44,7 @@
 			this.grdItems.Name = "grdItems";
 			this.grdItems.Size = new System.Drawing.Size(776, 300);
 			this.grdItems.TabIndex = 0;
+			this.grdItems.UseEmbeddedNavigator = true;
 			this.grdItems.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grvItems});
 			// 
