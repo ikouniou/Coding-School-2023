@@ -23,6 +23,7 @@
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
+			this.components = new System.ComponentModel.Container();
 			this.grdItems = new DevExpress.XtraGrid.GridControl();
 			this.grvItems = new DevExpress.XtraGrid.Views.Grid.GridView();
 			this.colCode = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -30,13 +31,15 @@
 			this.colItemType = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colPrice = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colCost = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.ItemBs = new System.Windows.Forms.BindingSource(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.grdItems)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.grvItems)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ItemBs)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// grdItems
 			// 
-			this.grdItems.Location = new System.Drawing.Point(12, 91);
+			this.grdItems.Location = new System.Drawing.Point(12, 86);
 			this.grdItems.MainView = this.grvItems;
 			this.grdItems.Name = "grdItems";
 			this.grdItems.Size = new System.Drawing.Size(776, 300);
@@ -54,6 +57,7 @@
             this.colCost});
 			this.grvItems.GridControl = this.grdItems;
 			this.grvItems.Name = "grvItems";
+			this.grvItems.OptionsView.ShowGroupPanel = false;
 			// 
 			// colCode
 			// 
@@ -116,6 +120,7 @@
 			this.Load += new System.EventHandler(this.StaffForm_Load);
 			((System.ComponentModel.ISupportInitialize)(this.grdItems)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.grvItems)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ItemBs)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -129,5 +134,6 @@
 		private DevExpress.XtraGrid.Columns.GridColumn colItemType;
 		private DevExpress.XtraGrid.Columns.GridColumn colPrice;
 		private DevExpress.XtraGrid.Columns.GridColumn colCost;
+		private BindingSource ItemBs;
 	}
 }
