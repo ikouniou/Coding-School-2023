@@ -1,5 +1,5 @@
 ﻿namespace FuelStation.Desktop.WinForms {
-	partial class Form1 {
+	partial class LoginMenu {
 		/// <summary>
 		///  Required designer variable.
 		/// </summary>
@@ -25,13 +25,14 @@
 		private void InitializeComponent() {
 			this.SuspendLayout();
 			// 
-			// Form1
+			// LoginMenu
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(960, 520);
-			this.Name = "Form1";
-			this.Text = "Form1";
+			this.Name = "LoginMenu";
+			this.Text = "Login Menu";
+			this.Load += new System.EventHandler(this.LoginMenu_Load);
 			this.ResumeLayout(false);
 
 		}
