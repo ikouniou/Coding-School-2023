@@ -13,5 +13,9 @@ namespace FuelStation.Desktop.WinForms {
 		public StaffForm() {
 			InitializeComponent();
 		}
+
+		private void StaffForm_Load(object sender, EventArgs e) {
+
+		}
 	}
 }
