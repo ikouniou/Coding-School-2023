@@ -124,9 +124,22 @@ namespace FuelStation.Desktop.WinForms {
 			GridView view = sender as GridView;
 
 			if (view.FocusedColumn.FieldName == "Code") {
+				string editedCode = e.Value as string;
 				if (string.IsNullOrEmpty(e.Value as string)) {
 					e.Valid = false;
 					e.ErrorText = "Code is required.";
+				} else {
+					for (int i = 0; i < view.DataRowCount; i++) {
+						if (i == view.FocusedRowHandle) {
+							continue;
+						}
+						string code = view.GetRowCellValue(i, "Code") as string;
+						if (code == editedCode) {
+							e.Valid = false;
+							e.ErrorText = "Code must be unique.";
+							break;
+						}
+					}
 				}
 			}
 			else if (view.FocusedColumn.FieldName == "Description") {
