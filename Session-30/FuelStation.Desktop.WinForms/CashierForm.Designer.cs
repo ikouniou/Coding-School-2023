@@ -29,11 +29,11 @@
 			this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
 			this.grdCustomers = new DevExpress.XtraGrid.GridControl();
 			this.grvCustomers = new DevExpress.XtraGrid.Views.Grid.GridView();
-			this.Transactions = new DevExpress.XtraBars.Navigation.TabNavigationPage();
 			this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colSurname = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colCardNumber = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.Transactions = new DevExpress.XtraBars.Navigation.TabNavigationPage();
 			this.CustomersBs = new System.Windows.Forms.BindingSource(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.tabPane1)).BeginInit();
 			this.tabPane1.SuspendLayout();
@@ -86,6 +86,7 @@
 			// 
 			// grdCustomers
 			// 
+			this.grdCustomers.EmbeddedNavigator.ButtonClick += new DevExpress.XtraEditors.NavigatorButtonClickEventHandler(this.grdCustomers_EmbeddedNavigator_ButtonClick);
 			this.grdCustomers.Location = new System.Drawing.Point(9, 68);
 			this.grdCustomers.MainView = this.grvCustomers;
 			this.grdCustomers.Name = "grdCustomers";
@@ -105,12 +106,6 @@
 			this.grvCustomers.GridControl = this.grdCustomers;
 			this.grvCustomers.Name = "grvCustomers";
 			this.grvCustomers.OptionsView.ShowGroupPanel = false;
-			// 
-			// Transactions
-			// 
-			this.Transactions.Caption = "Transactions";
-			this.Transactions.Name = "Transactions";
-			this.Transactions.Size = new System.Drawing.Size(776, 426);
 			// 
 			// colId
 			// 
@@ -151,6 +146,12 @@
 			this.colCardNumber.Visible = true;
 			this.colCardNumber.VisibleIndex = 3;
 			this.colCardNumber.Width = 94;
+			// 
+			// Transactions
+			// 
+			this.Transactions.Caption = "Transactions";
+			this.Transactions.Name = "Transactions";
+			this.Transactions.Size = new System.Drawing.Size(776, 426);
 			// 
 			// CashierForm
 			// 
