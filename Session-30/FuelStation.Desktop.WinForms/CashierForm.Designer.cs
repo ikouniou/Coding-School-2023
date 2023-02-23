@@ -75,6 +75,7 @@
 			// textEdit1
 			// 
 			this.textEdit1.EditValue = "Customers";
+			this.textEdit1.Enabled = false;
 			this.textEdit1.Location = new System.Drawing.Point(9, 28);
 			this.textEdit1.Name = "textEdit1";
 			this.textEdit1.Properties.Appearance.BackColor = System.Drawing.SystemColors.Control;

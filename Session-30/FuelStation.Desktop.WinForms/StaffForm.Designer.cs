@@ -129,6 +129,7 @@
 			// textEdit1
 			// 
 			this.textEdit1.EditValue = "Items";
+			this.textEdit1.Enabled = false;
 			this.textEdit1.Location = new System.Drawing.Point(12, 30);
 			this.textEdit1.Name = "textEdit1";
 			this.textEdit1.Properties.Appearance.BackColor = System.Drawing.SystemColors.Control;

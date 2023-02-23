@@ -60,6 +60,7 @@
 			// textEdit1
 			// 
 			this.textEdit1.EditValue = "Login As:";
+			this.textEdit1.Enabled = false;
 			this.textEdit1.Location = new System.Drawing.Point(366, 100);
 			this.textEdit1.Name = "textEdit1";
 			this.textEdit1.Properties.Appearance.BackColor = System.Drawing.SystemColors.Control;
