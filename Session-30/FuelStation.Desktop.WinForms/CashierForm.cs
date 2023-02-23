@@ -26,10 +26,10 @@ namespace FuelStation.Desktop.WinForms {
 
 		private void CashierForm_Load(object sender, EventArgs e) {
 
-			GetItems();
+			GetCustomers();
 		}
 
-		private async Task GetItems() {
+		private async Task GetCustomers() {
 
 			using (HttpClient client = new HttpClient()) {
 
@@ -98,7 +98,7 @@ namespace FuelStation.Desktop.WinForms {
 				response.EnsureSuccessStatusCode();
 
 			}
-			GetItems();
+			GetCustomers();
 		}
 
 		private async Task PutRow(CustomerEditDto updatedCustomer) {
@@ -108,7 +108,7 @@ namespace FuelStation.Desktop.WinForms {
 				response.EnsureSuccessStatusCode();
 
 			}
-			GetItems();
+			GetCustomers();
 		}
 
 		private void grvCustomers_ValidatingEditor(object sender, BaseContainerValidateEditorEventArgs e) {
