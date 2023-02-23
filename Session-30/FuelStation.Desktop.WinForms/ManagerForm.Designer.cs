@@ -35,11 +35,13 @@
 			this.colItemType = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colPrice = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colCost = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
 			((System.ComponentModel.ISupportInitialize)(this.tabPane1)).BeginInit();
 			this.tabPane1.SuspendLayout();
 			this.Items.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.grdItems)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.grvItems)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tabPane1
@@ -68,6 +70,7 @@
 			// Items
 			// 
 			this.Items.Caption = "Items";
+			this.Items.Controls.Add(this.textEdit1);
 			this.Items.Controls.Add(this.grdItems);
 			this.Items.Name = "Items";
 			this.Items.Size = new System.Drawing.Size(776, 385);
@@ -83,7 +86,7 @@
 			this.grdItems.Location = new System.Drawing.Point(19, 61);
 			this.grdItems.MainView = this.grvItems;
 			this.grdItems.Name = "grdItems";
-			this.grdItems.Size = new System.Drawing.Size(500, 250);
+			this.grdItems.Size = new System.Drawing.Size(739, 284);
 			this.grdItems.TabIndex = 0;
 			this.grdItems.UseEmbeddedNavigator = true;
 			this.grdItems.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -160,6 +163,21 @@
 			this.colCost.VisibleIndex = 4;
 			this.colCost.Width = 94;
 			// 
+			// textEdit1
+			// 
+			this.textEdit1.EditValue = "Items";
+			this.textEdit1.Location = new System.Drawing.Point(19, 21);
+			this.textEdit1.Name = "textEdit1";
+			this.textEdit1.Properties.Appearance.BackColor = System.Drawing.SystemColors.Control;
+			this.textEdit1.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			this.textEdit1.Properties.Appearance.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+			this.textEdit1.Properties.Appearance.Options.UseBackColor = true;
+			this.textEdit1.Properties.Appearance.Options.UseFont = true;
+			this.textEdit1.Properties.Appearance.Options.UseForeColor = true;
+			this.textEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.textEdit1.Size = new System.Drawing.Size(106, 34);
+			this.textEdit1.TabIndex = 2;
+			// 
 			// ManagerForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -173,6 +191,7 @@
 			this.Items.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.grdItems)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.grvItems)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -191,5 +210,6 @@
 		private DevExpress.XtraGrid.Columns.GridColumn colPrice;
 		private DevExpress.XtraGrid.Columns.GridColumn colCost;
 		private DevExpress.XtraBars.Navigation.TabNavigationPage Transactions;
+		private DevExpress.XtraEditors.TextEdit textEdit1;
 	}
 }
