@@ -31,9 +31,9 @@
 			this.colItemType = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colPrice = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colCost = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.ItemBs = new System.Windows.Forms.BindingSource(this.components);
 			this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
-			this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
 			((System.ComponentModel.ISupportInitialize)(this.grdItems)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.grvItems)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.ItemBs)).BeginInit();
@@ -42,6 +42,9 @@
 			// 
 			// grdItems
 			// 
+			this.grdItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.grdItems.EmbeddedNavigator.ButtonClick += new DevExpress.XtraEditors.NavigatorButtonClickEventHandler(this.grdItems_EmbeddedNavigator_ButtonClick);
 			this.grdItems.Location = new System.Drawing.Point(12, 70);
 			this.grdItems.MainView = this.grvItems;
@@ -115,6 +118,14 @@
 			this.colCost.VisibleIndex = 4;
 			this.colCost.Width = 94;
 			// 
+			// colId
+			// 
+			this.colId.Caption = "Id";
+			this.colId.FieldName = "Id";
+			this.colId.MinWidth = 25;
+			this.colId.Name = "colId";
+			this.colId.Width = 94;
+			// 
 			// textEdit1
 			// 
 			this.textEdit1.EditValue = "Items";
@@ -129,14 +140,6 @@
 			this.textEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.textEdit1.Size = new System.Drawing.Size(106, 34);
 			this.textEdit1.TabIndex = 1;
-			// 
-			// colId
-			// 
-			this.colId.Caption = "Id";
-			this.colId.FieldName = "Id";
-			this.colId.MinWidth = 25;
-			this.colId.Name = "colId";
-			this.colId.Width = 94;
 			// 
 			// StaffForm
 			// 
