@@ -1,6 +1,8 @@
 ﻿using DevExpress.ClipboardSource.SpreadsheetML;
 using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Views.Grid;
 using FuelStation.Web.Blazor.Shared.Item;
 using System;
 using System.Collections.Generic;
@@ -19,6 +21,7 @@ namespace FuelStation.Desktop.WinForms {
 			InitializeComponent();
 			grvItems.RowDeleted += grvItems_RowDeleted;
 			grvItems.RowUpdated += grvItems_RowUpdated;
+			grvItems.ValidatingEditor += grvItems_ValidatingEditor;
 
 		}
 
@@ -115,5 +118,48 @@ namespace FuelStation.Desktop.WinForms {
 			}
 			GetItems();
 		}
+
+		private void grvItems_ValidatingEditor(object sender, BaseContainerValidateEditorEventArgs e) {
+			GridView view = sender as GridView;
+			if (view.FocusedColumn.FieldName == "Price") {
+				double price = 0;
+				if (string.IsNullOrEmpty(e.Value as string)) {
+					e.Valid = false;
+					e.ErrorText = "Price is required.";
+				}
+				else if (!Double.TryParse(e.Value as String, out price)) {
+					e.Valid = false;
+					e.ErrorText = "Only numeric values are accepted.";
+				}
+				else if (price < 0 || price > 999.99) {
+					e.Valid = false;
+					e.ErrorText = "The price must be between 0 and 999.99.";
+				}
+	            else if (Math.Round(price, 2) != price) {
+					e.Valid = false;
+					e.ErrorText = "The price must have precision(5,2).";
+				}
+				
+			}
+
+			if (view.FocusedColumn.FieldName == "Cost") {
+				double price = 0;
+				if (string.IsNullOrEmpty(e.Value as string)) {
+					e.Valid = false;
+					e.ErrorText = "Cost is required.";
+				} else if (!Double.TryParse(e.Value as String, out price)) {
+					e.Valid = false;
+					e.ErrorText = "Only numeric values are accepted.";
+				} else if (price < 0 || price > 999.99) {
+					e.Valid = false;
+					e.ErrorText = "The cost must be between 0 and 999.99.";
+				} else if (Math.Round(price, 2) != price) {
+					e.Valid = false;
+					e.ErrorText = "The cost must have precision(5,2).";
+				}
+
+			}
+		}
+
 	}
 }

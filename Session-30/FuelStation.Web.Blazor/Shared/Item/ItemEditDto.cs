@@ -19,11 +19,11 @@ namespace FuelStation.Web.Blazor.Shared.Item {
 		public ItemType ItemType { get; set; }
 		[Required]
 		[RegularExpression(@"^(0|[1-9]\d{0,2})(.\d{1,2})?$", ErrorMessage = "Invalid Price Number. Must have precision (5,2).")]
-		[Range(1, 999.99, ErrorMessage = "Invalid Price Number. Must have range (1,999.99).")]
+		[Range(0, 999.99, ErrorMessage = "Invalid Price Number. Must have range (0,999.99).")]
 		public decimal Price { get; set; }
 		[Required]
 		[RegularExpression(@"^(0|[1-9]\d{0,2})(.\d{1,2})?$", ErrorMessage = "Invalid Price Number. Must have precision (5,2).")]
-		[Range(1, 999.99, ErrorMessage = "Invalid Price Number. Must have range (1,999.99).")]
+		[Range(0, 999.99, ErrorMessage = "Invalid Price Number. Must have range (0,999.99).")]
 		public decimal Cost { get; set; }
 	}
 }
