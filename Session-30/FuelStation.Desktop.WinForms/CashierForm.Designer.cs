@@ -23,6 +23,7 @@
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
+			this.components = new System.ComponentModel.Container();
 			this.tabPane1 = new DevExpress.XtraBars.Navigation.TabPane();
 			this.Customers = new DevExpress.XtraBars.Navigation.TabNavigationPage();
 			this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
@@ -33,12 +34,14 @@
 			this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colSurname = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colCardNumber = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.CustomersBs = new System.Windows.Forms.BindingSource(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.tabPane1)).BeginInit();
 			this.tabPane1.SuspendLayout();
 			this.Customers.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.grdCustomers)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.grvCustomers)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.CustomersBs)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tabPane1
@@ -157,12 +160,14 @@
 			this.Controls.Add(this.tabPane1);
 			this.Name = "CashierForm";
 			this.Text = "Cashier";
+			this.Load += new System.EventHandler(this.CashierForm_Load);
 			((System.ComponentModel.ISupportInitialize)(this.tabPane1)).EndInit();
 			this.tabPane1.ResumeLayout(false);
 			this.Customers.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.grdCustomers)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.grvCustomers)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.CustomersBs)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -179,5 +184,6 @@
 		private DevExpress.XtraGrid.Columns.GridColumn colName;
 		private DevExpress.XtraGrid.Columns.GridColumn colSurname;
 		private DevExpress.XtraGrid.Columns.GridColumn colCardNumber;
+		private BindingSource CustomersBs;
 	}
 }
