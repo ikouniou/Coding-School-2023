@@ -12,6 +12,7 @@ using System.Drawing;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -114,7 +115,43 @@ namespace FuelStation.Desktop.WinForms {
 		private void grvCustomers_ValidatingEditor(object sender, BaseContainerValidateEditorEventArgs e) {
 			GridView view = sender as GridView;
 
-			
+			if (view.FocusedColumn.FieldName == "Name") {
+				if (string.IsNullOrEmpty(e.Value as string)) {
+					e.Valid = false;
+					e.ErrorText = "Name is required.";
+				}
+
+			} 
+			else if (view.FocusedColumn.FieldName == "Surname") {
+				if (string.IsNullOrEmpty(e.Value as string)) {
+					e.Valid = false;
+					e.ErrorText = "Surname is required.";
+				}
+
+			} else if (view.FocusedColumn.FieldName == "CardNumber") {
+				string editedCardNumber = e.Value as string;
+				Regex regex = new Regex("^A\\d+$");
+				if (string.IsNullOrEmpty(e.Value as string)) {
+					e.Valid = false;
+					e.ErrorText = "Card Number is required.";
+				} 
+				else if (!regex.IsMatch(editedCardNumber)) {
+					e.Valid = false;
+					e.ErrorText = "Card Number must start with 'A' and have only numbers.";
+				} else {
+					for (int i = 0; i < view.DataRowCount; i++) {
+						if (i == view.FocusedRowHandle) {
+							continue;
+						}
+						string cardNumber = view.GetRowCellValue(i, "CardNumber") as string;
+						if (cardNumber == editedCardNumber) {
+							e.Valid = false;
+							e.ErrorText = "Card Number must be unique.";
+							break;
+						}
+					}
+				}
+			} 
 
 		}
 	}
