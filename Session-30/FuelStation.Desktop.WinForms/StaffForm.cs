@@ -123,7 +123,13 @@ namespace FuelStation.Desktop.WinForms {
 		private void grvItems_ValidatingEditor(object sender, BaseContainerValidateEditorEventArgs e) {
 			GridView view = sender as GridView;
 
-			if (view.FocusedColumn.FieldName == "Description") {
+			if (view.FocusedColumn.FieldName == "Code") {
+				if (string.IsNullOrEmpty(e.Value as string)) {
+					e.Valid = false;
+					e.ErrorText = "Code is required.";
+				}
+			}
+			else if (view.FocusedColumn.FieldName == "Description") {
 				if (string.IsNullOrEmpty(e.Value as string)) {
 					e.Valid = false;
 					e.ErrorText = "Description is required.";
