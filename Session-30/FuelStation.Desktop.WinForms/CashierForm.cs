@@ -1,4 +1,7 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraSpreadsheet.TileLayout;
 using FuelStation.Web.Blazor.Shared.Customer;
 using System;
@@ -17,6 +20,8 @@ namespace FuelStation.Desktop.WinForms {
 		public CashierForm() {
 			InitializeComponent();
 			grvCustomers.RowDeleted += grvCustomers_RowDeleted;
+			grvCustomers.RowUpdated += grvCustomers_RowUpdated;
+			grvCustomers.ValidatingEditor += grvCustomers_ValidatingEditor;
 		}
 
 		private void CashierForm_Load(object sender, EventArgs e) {
@@ -62,6 +67,55 @@ namespace FuelStation.Desktop.WinForms {
 				var response = await client.DeleteAsync($"https://localhost:7119/customer/{row}");
 
 			}
+		}
+
+		private void grvCustomers_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e) {
+
+			if (e.RowHandle == GridControl.NewItemRowHandle) // check if the updated row is the new row
+			{
+				var Customer = (CustomerListDto)e.Row; // get the data object of the new row
+				CustomerEditDto newCustomer = new();
+				newCustomer.Name = Customer.Name;
+				newCustomer.Surname = Customer.Surname;
+				newCustomer.CardNumber = Customer.CardNumber;
+				PostRow(newCustomer);
+			} else {
+				// handle updated row
+				var row = (CustomerListDto)e.Row;
+				CustomerEditDto updatedRow = new();
+				updatedRow.Id = row.Id;
+				updatedRow.Name = row.Name;
+				updatedRow.Surname = row.Surname;
+				updatedRow.CardNumber = row.CardNumber;
+				PutRow(updatedRow);
+			}
+		}
+
+		private async Task PostRow(CustomerEditDto newCustomer) {
+
+			using (HttpClient client = new HttpClient()) {
+				var response = await client.PostAsJsonAsync("https://localhost:7119/customer", newCustomer);
+				response.EnsureSuccessStatusCode();
+
+			}
+			GetItems();
+		}
+
+		private async Task PutRow(CustomerEditDto updatedCustomer) {
+
+			using (HttpClient client = new HttpClient()) {
+				var response = await client.PutAsJsonAsync("https://localhost:7119/customer", updatedCustomer);
+				response.EnsureSuccessStatusCode();
+
+			}
+			GetItems();
+		}
+
+		private void grvCustomers_ValidatingEditor(object sender, BaseContainerValidateEditorEventArgs e) {
+			GridView view = sender as GridView;
+
+			
+
 		}
 	}
 }
