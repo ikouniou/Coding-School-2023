@@ -33,6 +33,7 @@
 			this.colCost = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.ItemBs = new System.Windows.Forms.BindingSource(this.components);
 			this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
+			this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
 			((System.ComponentModel.ISupportInitialize)(this.grdItems)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.grvItems)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.ItemBs)).BeginInit();
@@ -58,7 +59,8 @@
             this.colDescription,
             this.colItemType,
             this.colPrice,
-            this.colCost});
+            this.colCost,
+            this.colId});
 			this.grvItems.GridControl = this.grdItems;
 			this.grvItems.Name = "grvItems";
 			this.grvItems.OptionsView.ShowGroupPanel = false;
@@ -128,6 +130,14 @@
 			this.textEdit1.Size = new System.Drawing.Size(106, 34);
 			this.textEdit1.TabIndex = 1;
 			// 
+			// colId
+			// 
+			this.colId.Caption = "Id";
+			this.colId.FieldName = "Id";
+			this.colId.MinWidth = 25;
+			this.colId.Name = "colId";
+			this.colId.Width = 94;
+			// 
 			// StaffForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -158,5 +168,6 @@
 		private DevExpress.XtraGrid.Columns.GridColumn colCost;
 		private BindingSource ItemBs;
 		private DevExpress.XtraEditors.TextEdit textEdit1;
+		private DevExpress.XtraGrid.Columns.GridColumn colId;
 	}
 }
