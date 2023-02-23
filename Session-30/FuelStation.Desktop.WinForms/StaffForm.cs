@@ -89,8 +89,9 @@ namespace FuelStation.Desktop.WinForms {
 			using (HttpClient client = new HttpClient()) {
 				var response = await client.PostAsJsonAsync("https://localhost:7119/item", newItem);
 				response.EnsureSuccessStatusCode();
-				GetItems();
+				
 			}
+			GetItems();
 		}
 	}
 }
