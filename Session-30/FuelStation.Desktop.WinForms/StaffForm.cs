@@ -1,4 +1,5 @@
 ﻿using DevExpress.ClipboardSource.SpreadsheetML;
+using DevExpress.PivotGrid.PivotQuery;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid;
@@ -121,7 +122,14 @@ namespace FuelStation.Desktop.WinForms {
 
 		private void grvItems_ValidatingEditor(object sender, BaseContainerValidateEditorEventArgs e) {
 			GridView view = sender as GridView;
-			if (view.FocusedColumn.FieldName == "Price") {
+
+			if (view.FocusedColumn.FieldName == "Description") {
+				if (string.IsNullOrEmpty(e.Value as string)) {
+					e.Valid = false;
+					e.ErrorText = "Description is required.";
+				}
+			}
+			else if (view.FocusedColumn.FieldName == "Price") {
 				double price = 0;
 				if (string.IsNullOrEmpty(e.Value as string)) {
 					e.Valid = false;
@@ -141,8 +149,7 @@ namespace FuelStation.Desktop.WinForms {
 				}
 				
 			}
-
-			if (view.FocusedColumn.FieldName == "Cost") {
+			else if (view.FocusedColumn.FieldName == "Cost") {
 				double price = 0;
 				if (string.IsNullOrEmpty(e.Value as string)) {
 					e.Valid = false;
@@ -159,6 +166,7 @@ namespace FuelStation.Desktop.WinForms {
 				}
 
 			}
+		
 		}
 
 	}
