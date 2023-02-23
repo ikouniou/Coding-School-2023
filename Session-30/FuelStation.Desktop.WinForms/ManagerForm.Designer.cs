@@ -23,10 +23,11 @@
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
+			this.components = new System.ComponentModel.Container();
 			this.tabPane1 = new DevExpress.XtraBars.Navigation.TabPane();
 			this.customers = new DevExpress.XtraBars.Navigation.TabNavigationPage();
 			this.Items = new DevExpress.XtraBars.Navigation.TabNavigationPage();
-			this.Transactions = new DevExpress.XtraBars.Navigation.TabNavigationPage();
+			this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
 			this.grdItems = new DevExpress.XtraGrid.GridControl();
 			this.grvItems = new DevExpress.XtraGrid.Views.Grid.GridView();
 			this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -35,13 +36,15 @@
 			this.colItemType = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colPrice = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colCost = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
+			this.Transactions = new DevExpress.XtraBars.Navigation.TabNavigationPage();
+			this.ItemBs = new System.Windows.Forms.BindingSource(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.tabPane1)).BeginInit();
 			this.tabPane1.SuspendLayout();
 			this.Items.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.grdItems)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.grvItems)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ItemBs)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tabPane1
@@ -75,11 +78,20 @@
 			this.Items.Name = "Items";
 			this.Items.Size = new System.Drawing.Size(776, 385);
 			// 
-			// Transactions
+			// textEdit1
 			// 
-			this.Transactions.Caption = "Transactions";
-			this.Transactions.Name = "Transactions";
-			this.Transactions.Size = new System.Drawing.Size(776, 426);
+			this.textEdit1.EditValue = "Items";
+			this.textEdit1.Location = new System.Drawing.Point(19, 21);
+			this.textEdit1.Name = "textEdit1";
+			this.textEdit1.Properties.Appearance.BackColor = System.Drawing.SystemColors.Control;
+			this.textEdit1.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			this.textEdit1.Properties.Appearance.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+			this.textEdit1.Properties.Appearance.Options.UseBackColor = true;
+			this.textEdit1.Properties.Appearance.Options.UseFont = true;
+			this.textEdit1.Properties.Appearance.Options.UseForeColor = true;
+			this.textEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.textEdit1.Size = new System.Drawing.Size(106, 34);
+			this.textEdit1.TabIndex = 2;
 			// 
 			// grdItems
 			// 
@@ -163,20 +175,11 @@
 			this.colCost.VisibleIndex = 4;
 			this.colCost.Width = 94;
 			// 
-			// textEdit1
+			// Transactions
 			// 
-			this.textEdit1.EditValue = "Items";
-			this.textEdit1.Location = new System.Drawing.Point(19, 21);
-			this.textEdit1.Name = "textEdit1";
-			this.textEdit1.Properties.Appearance.BackColor = System.Drawing.SystemColors.Control;
-			this.textEdit1.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			this.textEdit1.Properties.Appearance.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-			this.textEdit1.Properties.Appearance.Options.UseBackColor = true;
-			this.textEdit1.Properties.Appearance.Options.UseFont = true;
-			this.textEdit1.Properties.Appearance.Options.UseForeColor = true;
-			this.textEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-			this.textEdit1.Size = new System.Drawing.Size(106, 34);
-			this.textEdit1.TabIndex = 2;
+			this.Transactions.Caption = "Transactions";
+			this.Transactions.Name = "Transactions";
+			this.Transactions.Size = new System.Drawing.Size(776, 426);
 			// 
 			// ManagerForm
 			// 
@@ -186,12 +189,14 @@
 			this.Controls.Add(this.tabPane1);
 			this.Name = "ManagerForm";
 			this.Text = "Manager";
+			this.Load += new System.EventHandler(this.ManagerForm_Load);
 			((System.ComponentModel.ISupportInitialize)(this.tabPane1)).EndInit();
 			this.tabPane1.ResumeLayout(false);
 			this.Items.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.grdItems)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.grvItems)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ItemBs)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -211,5 +216,6 @@
 		private DevExpress.XtraGrid.Columns.GridColumn colCost;
 		private DevExpress.XtraBars.Navigation.TabNavigationPage Transactions;
 		private DevExpress.XtraEditors.TextEdit textEdit1;
+		private BindingSource ItemBs;
 	}
 }
