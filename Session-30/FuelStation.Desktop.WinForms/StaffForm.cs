@@ -1,5 +1,6 @@
 ﻿using DevExpress.ClipboardSource.SpreadsheetML;
 using DevExpress.XtraEditors;
+using DevExpress.XtraGrid;
 using FuelStation.Web.Blazor.Shared.Item;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace FuelStation.Desktop.WinForms {
 		public StaffForm() {
 			InitializeComponent();
 			grvItems.RowDeleted += grvItems_RowDeleted;
+			grvItems.RowUpdated += grvItems_RowUpdated;
 
 		}
 
@@ -49,6 +51,7 @@ namespace FuelStation.Desktop.WinForms {
 					e.Handled = true; // Prevent the row from being deleted
 				}
 			}
+
 		}
 
 		private void grvItems_RowDeleted(object sender, DevExpress.Data.RowDeletedEventArgs e) {
@@ -63,6 +66,30 @@ namespace FuelStation.Desktop.WinForms {
 
 				var response = await client.DeleteAsync($"https://localhost:7119/item/{row}");
 
+			}
+		}
+
+		private void grvItems_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e) {
+			
+			if (e.RowHandle == GridControl.NewItemRowHandle) // check if the updated row is the new row
+			{
+				var Item = (ItemListDto)e.Row; // get the data object of the new row
+				ItemEditDto newItem = new();
+				newItem.Code = Item.Code;
+				newItem.Description = Item.Description;
+				newItem.ItemType = Item.ItemType;
+				newItem.Price = Item.Price;
+				newItem.Cost = Item.Cost;
+				PostRow(newItem);
+			}
+		}
+
+		private async Task PostRow(ItemEditDto newItem) {
+
+			using (HttpClient client = new HttpClient()) {
+				var response = await client.PostAsJsonAsync("https://localhost:7119/item", newItem);
+				response.EnsureSuccessStatusCode();
+				GetItems();
 			}
 		}
 	}
