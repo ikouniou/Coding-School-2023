@@ -34,7 +34,6 @@ namespace FuelStation.Desktop.WinForms {
 				grdItems.DataSource = ItemBs;
 			}
 
-			
 		}
 	}
 }
