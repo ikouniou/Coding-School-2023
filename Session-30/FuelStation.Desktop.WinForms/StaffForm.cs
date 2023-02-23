@@ -61,7 +61,10 @@ namespace FuelStation.Desktop.WinForms {
 		private void grvItems_RowDeleted(object sender, DevExpress.Data.RowDeletedEventArgs e) {
 
 			int deletedRowId = ((ItemListDto)e.Row).Id;
-			DeleteRow(deletedRowId);
+			if(deletedRowId != 0) {
+				DeleteRow(deletedRowId);
+			}
+			
 
 		}
 
@@ -89,14 +92,25 @@ namespace FuelStation.Desktop.WinForms {
 			else {
 				// handle updated row
 				var row = (ItemListDto)e.Row;
-				ItemEditDto updatedRow = new();
-				updatedRow.Id = row.Id;
-				updatedRow.Code = row.Code;
-				updatedRow.Description = row.Description;
-				updatedRow.ItemType = row.ItemType;
-				updatedRow.Price = row.Price;
-				updatedRow.Cost = row.Cost;
-				PutRow(updatedRow);
+				if(row.Id != 0) {
+					ItemEditDto updatedRow = new();
+					updatedRow.Id = row.Id;
+					updatedRow.Code = row.Code;
+					updatedRow.Description = row.Description;
+					updatedRow.ItemType = row.ItemType;
+					updatedRow.Price = row.Price;
+					updatedRow.Cost = row.Cost;
+					PutRow(updatedRow);
+				} else {
+					ItemEditDto newItem = new();
+					newItem.Code = row.Code;
+					newItem.Description = row.Description;
+					newItem.ItemType = row.ItemType;
+					newItem.Price = row.Price;
+					newItem.Cost = row.Cost;
+					PostRow(newItem);
+				}
+				
 			}
 		}
 
