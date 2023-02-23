@@ -97,7 +97,7 @@
 			// textEdit1
 			// 
 			this.textEdit1.EditValue = "Items";
-			this.textEdit1.Location = new System.Drawing.Point(19, 21);
+			this.textEdit1.Location = new System.Drawing.Point(3, 21);
 			this.textEdit1.Name = "textEdit1";
 			this.textEdit1.Properties.Appearance.BackColor = System.Drawing.SystemColors.Control;
 			this.textEdit1.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -115,10 +115,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.grdItems.EmbeddedNavigator.ButtonClick += new DevExpress.XtraEditors.NavigatorButtonClickEventHandler(this.grdItems_EmbeddedNavigator_ButtonClick);
-			this.grdItems.Location = new System.Drawing.Point(19, 61);
+			this.grdItems.Location = new System.Drawing.Point(3, 61);
 			this.grdItems.MainView = this.grvItems;
 			this.grdItems.Name = "grdItems";
-			this.grdItems.Size = new System.Drawing.Size(739, 284);
+			this.grdItems.Size = new System.Drawing.Size(770, 284);
 			this.grdItems.TabIndex = 0;
 			this.grdItems.UseEmbeddedNavigator = true;
 			this.grdItems.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
