@@ -81,6 +81,18 @@ namespace FuelStation.Desktop.WinForms {
 				newItem.Price = Item.Price;
 				newItem.Cost = Item.Cost;
 				PostRow(newItem);
+			} 
+			else {
+				// handle updated row
+				var row = (ItemListDto)e.Row;
+				ItemEditDto updatedRow = new();
+				updatedRow.Id = row.Id;
+				updatedRow.Code = row.Code;
+				updatedRow.Description = row.Description;
+				updatedRow.ItemType = row.ItemType;
+				updatedRow.Price = row.Price;
+				updatedRow.Cost = row.Cost;
+				PutRow(updatedRow);
 			}
 		}
 
@@ -90,6 +102,16 @@ namespace FuelStation.Desktop.WinForms {
 				var response = await client.PostAsJsonAsync("https://localhost:7119/item", newItem);
 				response.EnsureSuccessStatusCode();
 				
+			}
+			GetItems();
+		}
+
+		private async Task PutRow(ItemEditDto updatedItem) {
+
+			using (HttpClient client = new HttpClient()) {
+				var response = await client.PutAsJsonAsync("https://localhost:7119/item", updatedItem);
+				response.EnsureSuccessStatusCode();
+
 			}
 			GetItems();
 		}
