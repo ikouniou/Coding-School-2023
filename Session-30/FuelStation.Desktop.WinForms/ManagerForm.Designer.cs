@@ -38,13 +38,20 @@
 			this.colCost = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.Transactions = new DevExpress.XtraBars.Navigation.TabNavigationPage();
 			this.ItemBs = new System.Windows.Forms.BindingSource(this.components);
+			this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
+			this.grdCustomers = new DevExpress.XtraGrid.GridControl();
+			this.grvCustomers = new DevExpress.XtraGrid.Views.Grid.GridView();
 			((System.ComponentModel.ISupportInitialize)(this.tabPane1)).BeginInit();
 			this.tabPane1.SuspendLayout();
+			this.customers.SuspendLayout();
 			this.Items.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.grdItems)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.grvItems)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.ItemBs)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.grdCustomers)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.grvCustomers)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tabPane1
@@ -70,6 +77,8 @@
 			// customers
 			// 
 			this.customers.Caption = "Customers";
+			this.customers.Controls.Add(this.grdCustomers);
+			this.customers.Controls.Add(this.textEdit2);
 			this.customers.Name = "customers";
 			this.customers.Size = new System.Drawing.Size(776, 385);
 			// 
@@ -188,6 +197,41 @@
 			this.Transactions.Name = "Transactions";
 			this.Transactions.Size = new System.Drawing.Size(776, 426);
 			// 
+			// textEdit2
+			// 
+			this.textEdit2.EditValue = "Customers";
+			this.textEdit2.Location = new System.Drawing.Point(3, 25);
+			this.textEdit2.Name = "textEdit2";
+			this.textEdit2.Properties.Appearance.BackColor = System.Drawing.SystemColors.Control;
+			this.textEdit2.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			this.textEdit2.Properties.Appearance.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+			this.textEdit2.Properties.Appearance.Options.UseBackColor = true;
+			this.textEdit2.Properties.Appearance.Options.UseFont = true;
+			this.textEdit2.Properties.Appearance.Options.UseForeColor = true;
+			this.textEdit2.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.textEdit2.Size = new System.Drawing.Size(130, 34);
+			this.textEdit2.TabIndex = 3;
+			// 
+			// grdCustomers
+			// 
+			this.grdCustomers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.grdCustomers.Location = new System.Drawing.Point(3, 65);
+			this.grdCustomers.MainView = this.grvCustomers;
+			this.grdCustomers.Name = "grdCustomers";
+			this.grdCustomers.Size = new System.Drawing.Size(770, 280);
+			this.grdCustomers.TabIndex = 4;
+			this.grdCustomers.UseEmbeddedNavigator = true;
+			this.grdCustomers.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.grvCustomers});
+			// 
+			// grvCustomers
+			// 
+			this.grvCustomers.GridControl = this.grdCustomers;
+			this.grvCustomers.Name = "grvCustomers";
+			this.grvCustomers.OptionsView.ShowGroupPanel = false;
+			// 
 			// ManagerForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -199,11 +243,15 @@
 			this.Load += new System.EventHandler(this.ManagerForm_Load);
 			((System.ComponentModel.ISupportInitialize)(this.tabPane1)).EndInit();
 			this.tabPane1.ResumeLayout(false);
+			this.customers.ResumeLayout(false);
 			this.Items.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.grdItems)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.grvItems)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.ItemBs)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.grdCustomers)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.grvCustomers)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -224,5 +272,8 @@
 		private DevExpress.XtraBars.Navigation.TabNavigationPage Transactions;
 		private DevExpress.XtraEditors.TextEdit textEdit1;
 		private BindingSource ItemBs;
+		private DevExpress.XtraEditors.TextEdit textEdit2;
+		private DevExpress.XtraGrid.GridControl grdCustomers;
+		private DevExpress.XtraGrid.Views.Grid.GridView grvCustomers;
 	}
 }
