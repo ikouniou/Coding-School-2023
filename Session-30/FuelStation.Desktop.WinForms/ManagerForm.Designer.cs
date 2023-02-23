@@ -49,6 +49,9 @@
 			// 
 			// tabPane1
 			// 
+			this.tabPane1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.tabPane1.Controls.Add(this.customers);
 			this.tabPane1.Controls.Add(this.Items);
 			this.tabPane1.Controls.Add(this.Transactions);
@@ -95,6 +98,9 @@
 			// 
 			// grdItems
 			// 
+			this.grdItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.grdItems.EmbeddedNavigator.ButtonClick += new DevExpress.XtraEditors.NavigatorButtonClickEventHandler(this.grdItems_EmbeddedNavigator_ButtonClick);
 			this.grdItems.Location = new System.Drawing.Point(19, 61);
 			this.grdItems.MainView = this.grvItems;
