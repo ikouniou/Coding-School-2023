@@ -113,8 +113,6 @@
 			this.colId.FieldName = "Id";
 			this.colId.MinWidth = 25;
 			this.colId.Name = "colId";
-			this.colId.Visible = true;
-			this.colId.VisibleIndex = 0;
 			this.colId.Width = 94;
 			// 
 			// colName
@@ -124,7 +122,7 @@
 			this.colName.MinWidth = 25;
 			this.colName.Name = "colName";
 			this.colName.Visible = true;
-			this.colName.VisibleIndex = 1;
+			this.colName.VisibleIndex = 0;
 			this.colName.Width = 94;
 			// 
 			// colSurname
@@ -134,7 +132,7 @@
 			this.colSurname.MinWidth = 25;
 			this.colSurname.Name = "colSurname";
 			this.colSurname.Visible = true;
-			this.colSurname.VisibleIndex = 2;
+			this.colSurname.VisibleIndex = 1;
 			this.colSurname.Width = 94;
 			// 
 			// colCardNumber
@@ -144,7 +142,7 @@
 			this.colCardNumber.MinWidth = 25;
 			this.colCardNumber.Name = "colCardNumber";
 			this.colCardNumber.Visible = true;
-			this.colCardNumber.VisibleIndex = 3;
+			this.colCardNumber.VisibleIndex = 2;
 			this.colCardNumber.Width = 94;
 			// 
 			// Transactions
