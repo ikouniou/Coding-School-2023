@@ -13,5 +13,7 @@ namespace FuelStation.Desktop.WinForms {
 		public CashierForm() {
 			InitializeComponent();
 		}
+
+		
 	}
 }
