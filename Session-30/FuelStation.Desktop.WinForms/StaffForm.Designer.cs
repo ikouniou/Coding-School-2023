@@ -41,6 +41,7 @@
 			// 
 			// grdItems
 			// 
+			this.grdItems.EmbeddedNavigator.ButtonClick += new DevExpress.XtraEditors.NavigatorButtonClickEventHandler(this.grdItems_EmbeddedNavigator_ButtonClick);
 			this.grdItems.Location = new System.Drawing.Point(12, 70);
 			this.grdItems.MainView = this.grvItems;
 			this.grdItems.Name = "grdItems";
