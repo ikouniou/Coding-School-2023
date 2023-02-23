@@ -41,6 +41,10 @@
 			this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
 			this.grdCustomers = new DevExpress.XtraGrid.GridControl();
 			this.grvCustomers = new DevExpress.XtraGrid.Views.Grid.GridView();
+			this.colIdCustomer = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.colSurname = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.colCardNumber = new DevExpress.XtraGrid.Columns.GridColumn();
 			((System.ComponentModel.ISupportInitialize)(this.tabPane1)).BeginInit();
 			this.tabPane1.SuspendLayout();
 			this.customers.SuspendLayout();
@@ -228,9 +232,52 @@
 			// 
 			// grvCustomers
 			// 
+			this.grvCustomers.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colIdCustomer,
+            this.colName,
+            this.colSurname,
+            this.colCardNumber});
 			this.grvCustomers.GridControl = this.grdCustomers;
 			this.grvCustomers.Name = "grvCustomers";
 			this.grvCustomers.OptionsView.ShowGroupPanel = false;
+			// 
+			// colIdCustomer
+			// 
+			this.colIdCustomer.Caption = "Id";
+			this.colIdCustomer.FieldName = "Id";
+			this.colIdCustomer.MinWidth = 25;
+			this.colIdCustomer.Name = "colIdCustomer";
+			this.colIdCustomer.Width = 94;
+			// 
+			// colName
+			// 
+			this.colName.Caption = "Name";
+			this.colName.FieldName = "Name";
+			this.colName.MinWidth = 25;
+			this.colName.Name = "colName";
+			this.colName.Visible = true;
+			this.colName.VisibleIndex = 0;
+			this.colName.Width = 94;
+			// 
+			// colSurname
+			// 
+			this.colSurname.Caption = "Surname";
+			this.colSurname.FieldName = "Surname";
+			this.colSurname.MinWidth = 25;
+			this.colSurname.Name = "colSurname";
+			this.colSurname.Visible = true;
+			this.colSurname.VisibleIndex = 1;
+			this.colSurname.Width = 94;
+			// 
+			// colCardNumber
+			// 
+			this.colCardNumber.Caption = "Card Number";
+			this.colCardNumber.FieldName = "CardNumber";
+			this.colCardNumber.MinWidth = 25;
+			this.colCardNumber.Name = "colCardNumber";
+			this.colCardNumber.Visible = true;
+			this.colCardNumber.VisibleIndex = 2;
+			this.colCardNumber.Width = 94;
 			// 
 			// ManagerForm
 			// 
@@ -275,5 +322,9 @@
 		private DevExpress.XtraEditors.TextEdit textEdit2;
 		private DevExpress.XtraGrid.GridControl grdCustomers;
 		private DevExpress.XtraGrid.Views.Grid.GridView grvCustomers;
+		private DevExpress.XtraGrid.Columns.GridColumn colIdCustomer;
+		private DevExpress.XtraGrid.Columns.GridColumn colName;
+		private DevExpress.XtraGrid.Columns.GridColumn colSurname;
+		private DevExpress.XtraGrid.Columns.GridColumn colCardNumber;
 	}
 }
