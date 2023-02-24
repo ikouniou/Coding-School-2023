@@ -32,6 +32,7 @@
 			// 
 			// btnManager
 			// 
+			this.btnManager.Anchor = System.Windows.Forms.AnchorStyles.None;
 			this.btnManager.Location = new System.Drawing.Point(127, 319);
 			this.btnManager.Name = "btnManager";
 			this.btnManager.Size = new System.Drawing.Size(158, 56);
@@ -41,6 +42,7 @@
 			// 
 			// btnCashier
 			// 
+			this.btnCashier.Anchor = System.Windows.Forms.AnchorStyles.None;
 			this.btnCashier.Location = new System.Drawing.Point(645, 319);
 			this.btnCashier.Name = "btnCashier";
 			this.btnCashier.Size = new System.Drawing.Size(158, 56);
@@ -50,6 +52,7 @@
 			// 
 			// btnStaff
 			// 
+			this.btnStaff.Anchor = System.Windows.Forms.AnchorStyles.None;
 			this.btnStaff.Location = new System.Drawing.Point(390, 319);
 			this.btnStaff.Name = "btnStaff";
 			this.btnStaff.Size = new System.Drawing.Size(158, 56);
@@ -59,6 +62,7 @@
 			// 
 			// textEdit1
 			// 
+			this.textEdit1.Anchor = System.Windows.Forms.AnchorStyles.None;
 			this.textEdit1.EditValue = "Login As:";
 			this.textEdit1.Enabled = false;
 			this.textEdit1.Location = new System.Drawing.Point(366, 100);
