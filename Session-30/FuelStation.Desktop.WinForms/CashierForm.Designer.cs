@@ -59,6 +59,7 @@
 			this.CustomersBs = new System.Windows.Forms.BindingSource(this.components);
 			this.TransactionsBs = new System.Windows.Forms.BindingSource(this.components);
 			this.TransactionLinesBs = new System.Windows.Forms.BindingSource(this.components);
+			this.repEmployees = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
 			((System.ComponentModel.ISupportInitialize)(this.tabPane1)).BeginInit();
 			this.tabPane1.SuspendLayout();
 			this.Customers.SuspendLayout();
@@ -76,6 +77,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.CustomersBs)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.TransactionsBs)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.TransactionLinesBs)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repEmployees)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tabPane1
@@ -340,7 +342,8 @@
 			this.grdTransactions.MainView = this.grvTransactions;
 			this.grdTransactions.Name = "grdTransactions";
 			this.grdTransactions.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repCustomers});
+            this.repCustomers,
+            this.repEmployees});
 			this.grdTransactions.Size = new System.Drawing.Size(770, 250);
 			this.grdTransactions.TabIndex = 4;
 			this.grdTransactions.UseEmbeddedNavigator = true;
@@ -448,6 +451,17 @@
 			this.textEdit2.Size = new System.Drawing.Size(159, 34);
 			this.textEdit2.TabIndex = 3;
 			// 
+			// repEmployees
+			// 
+			this.repEmployees.AutoHeight = false;
+			this.repEmployees.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.repEmployees.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Name"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Surname", "Surname"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Employee Type", "Employee Type")});
+			this.repEmployees.Name = "repEmployees";
+			// 
 			// CashierForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -474,6 +488,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.CustomersBs)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.TransactionsBs)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.TransactionLinesBs)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repEmployees)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -515,5 +530,6 @@
 		private BindingSource TransactionsBs;
 		private BindingSource TransactionLinesBs;
 		private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repCustomers;
+		private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repEmployees;
 	}
 }
