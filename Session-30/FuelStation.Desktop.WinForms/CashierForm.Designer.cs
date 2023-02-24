@@ -177,7 +177,8 @@
 			// 
 			// grdTranssactionLines
 			// 
-			this.grdTranssactionLines.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.grdTranssactionLines.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.grdTranssactionLines.Location = new System.Drawing.Point(3, 380);
 			this.grdTranssactionLines.MainView = this.grvTransactionLines;
