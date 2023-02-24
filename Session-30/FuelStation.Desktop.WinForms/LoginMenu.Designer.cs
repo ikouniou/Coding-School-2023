@@ -33,6 +33,7 @@
 			this.panelLeft = new System.Windows.Forms.Panel();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
+			this.label4 = new System.Windows.Forms.Label();
 			this.panelRight.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.panelLeft.SuspendLayout();
@@ -83,6 +84,7 @@
 			// panelRight
 			// 
 			this.panelRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(145)))), ((int)(((byte)(80)))));
+			this.panelRight.Controls.Add(this.label4);
 			this.panelRight.Controls.Add(this.label1);
 			this.panelRight.Controls.Add(this.pictureBox1);
 			this.panelRight.Dock = System.Windows.Forms.DockStyle.Left;
@@ -149,6 +151,16 @@
 			this.label2.TabIndex = 3;
 			this.label2.Text = "Login";
 			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.ForeColor = System.Drawing.Color.White;
+			this.label4.Location = new System.Drawing.Point(78, 495);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(232, 20);
+			this.label4.TabIndex = 2;
+			this.label4.Text = "Fuel Up - Power On - Drive Ahead";
+			// 
 			// LoginMenu
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -179,5 +191,6 @@
 		private Label label1;
 		private Label label2;
 		private Label label3;
+		private Label label4;
 	}
 }
