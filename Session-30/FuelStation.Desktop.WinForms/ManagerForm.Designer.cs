@@ -93,6 +93,7 @@
 			this.grdCustomers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.grdCustomers.EmbeddedNavigator.ButtonClick += new DevExpress.XtraEditors.NavigatorButtonClickEventHandler(this.grdCustomers_EmbeddedNavigator_ButtonClick);
 			this.grdCustomers.Location = new System.Drawing.Point(3, 65);
 			this.grdCustomers.MainView = this.grvCustomers;
 			this.grdCustomers.Name = "grdCustomers";

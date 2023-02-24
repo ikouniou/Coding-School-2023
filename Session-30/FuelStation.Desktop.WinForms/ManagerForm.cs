@@ -2,6 +2,7 @@
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
+using FuelStation.Model;
 using FuelStation.Web.Blazor.Shared.Customer;
 using FuelStation.Web.Blazor.Shared.Item;
 using System;
@@ -224,7 +225,10 @@ namespace FuelStation.Desktop.WinForms {
 		private void grvCustomers_RowDeleted(object sender, DevExpress.Data.RowDeletedEventArgs e) {
 
 			int deletedRowId = ((CustomerListDto)e.Row).Id;
-			DeleteRowCustomer(deletedRowId);
+			if(deletedRowId != 0) {
+
+				DeleteRowCustomer(deletedRowId);
+			}
 
 		}
 
@@ -249,12 +253,22 @@ namespace FuelStation.Desktop.WinForms {
 			} else {
 				// handle updated row
 				var row = (CustomerListDto)e.Row;
-				CustomerEditDto updatedRow = new();
-				updatedRow.Id = row.Id;
-				updatedRow.Name = row.Name;
-				updatedRow.Surname = row.Surname;
-				updatedRow.CardNumber = row.CardNumber;
-				PutRowCustomer(updatedRow);
+				if(row.Id !=0) {
+					CustomerEditDto updatedRow = new();
+					updatedRow.Id = row.Id;
+					updatedRow.Name = row.Name;
+					updatedRow.Surname = row.Surname;
+					updatedRow.CardNumber = row.CardNumber;
+					PutRowCustomer(updatedRow);
+				} 
+				else {
+					CustomerEditDto newCustomer = new();
+					newCustomer.Name = row.Name;
+					newCustomer.Surname = row.Surname;
+					newCustomer.CardNumber = row.CardNumber;
+					PostRowCustomer(newCustomer);
+				}
+				
 			}
 		}
 
