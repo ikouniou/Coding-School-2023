@@ -31,8 +31,8 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.panelLeft = new System.Windows.Forms.Panel();
-			this.label2 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
+			this.label2 = new System.Windows.Forms.Label();
 			this.panelRight.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.panelLeft.SuspendLayout();
@@ -41,10 +41,8 @@
 			// btnManager
 			// 
 			this.btnManager.Anchor = System.Windows.Forms.AnchorStyles.None;
-			this.btnManager.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(145)))), ((int)(((byte)(80)))));
 			this.btnManager.Appearance.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
 			this.btnManager.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(145)))), ((int)(((byte)(80)))));
-			this.btnManager.Appearance.Options.UseBorderColor = true;
 			this.btnManager.Appearance.Options.UseFont = true;
 			this.btnManager.Appearance.Options.UseForeColor = true;
 			this.btnManager.Location = new System.Drawing.Point(127, 200);
@@ -127,19 +125,9 @@
 			this.panelLeft.Size = new System.Drawing.Size(427, 524);
 			this.panelLeft.TabIndex = 6;
 			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Font = new System.Drawing.Font("Arial", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(145)))), ((int)(((byte)(80)))));
-			this.label2.Location = new System.Drawing.Point(17, 44);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(109, 42);
-			this.label2.TabIndex = 3;
-			this.label2.Text = "Login";
-			// 
 			// label3
 			// 
+			this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
 			this.label3.AutoSize = true;
 			this.label3.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
 			this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(145)))), ((int)(((byte)(80)))));
@@ -148,6 +136,18 @@
 			this.label3.Size = new System.Drawing.Size(260, 19);
 			this.label3.TabIndex = 4;
 			this.label3.Text = "Please select your Employee Type";
+			// 
+			// label2
+			// 
+			this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
+			this.label2.AutoSize = true;
+			this.label2.Font = new System.Drawing.Font("Arial", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(145)))), ((int)(((byte)(80)))));
+			this.label2.Location = new System.Drawing.Point(17, 44);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(109, 42);
+			this.label2.TabIndex = 3;
+			this.label2.Text = "Login";
 			// 
 			// LoginMenu
 			// 
