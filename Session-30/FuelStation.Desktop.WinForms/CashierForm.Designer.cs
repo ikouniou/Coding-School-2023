@@ -444,7 +444,7 @@
 			this.repEmployees.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Name"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Surname", "Surname"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Employee Type", "Employee Type")});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("EmployeeType", "Employee Type")});
 			this.repEmployees.Name = "repEmployees";
 			// 
 			// textEdit2
