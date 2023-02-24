@@ -42,6 +42,10 @@ namespace FuelStation.Desktop.WinForms {
 
 				CustomersBs.DataSource = data;
 				grdCustomers.DataSource = CustomersBs;
+
+				repCustomers.DataSource = data;
+				repCustomers.DisplayMember = "Surname";
+				repCustomers.ValueMember = "Id";
 			}
 
 		}
@@ -182,5 +186,6 @@ namespace FuelStation.Desktop.WinForms {
 			}
 
 		}
+
 	}
 }
