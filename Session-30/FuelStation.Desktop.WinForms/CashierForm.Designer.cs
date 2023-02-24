@@ -56,6 +56,8 @@
 			this.colTotalValue = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colCustomerId = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colEmployeeId = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.TransactionsBs = new System.Windows.Forms.BindingSource(this.components);
+			this.TransactionLinesBs = new System.Windows.Forms.BindingSource(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.tabPane1)).BeginInit();
 			this.tabPane1.SuspendLayout();
 			this.Customers.SuspendLayout();
@@ -70,6 +72,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.grvTransactions)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.CustomersBs)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.TransactionsBs)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.TransactionLinesBs)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tabPane1
@@ -451,6 +455,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.grvTransactions)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.CustomersBs)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.TransactionsBs)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.TransactionLinesBs)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -489,5 +495,7 @@
 		private DevExpress.XtraGrid.Columns.GridColumn colTotalValue;
 		private DevExpress.XtraGrid.Columns.GridColumn colCustomerId;
 		private DevExpress.XtraGrid.Columns.GridColumn colEmployeeId;
+		private BindingSource TransactionsBs;
+		private BindingSource TransactionLinesBs;
 	}
 }
