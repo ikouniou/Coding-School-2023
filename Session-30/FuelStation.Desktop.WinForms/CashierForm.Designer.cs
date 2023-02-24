@@ -38,6 +38,9 @@
 			this.CustomersBs = new System.Windows.Forms.BindingSource(this.components);
 			this.grdTransactions = new DevExpress.XtraGrid.GridControl();
 			this.grvTransactions = new DevExpress.XtraGrid.Views.Grid.GridView();
+			this.textEdit3 = new DevExpress.XtraEditors.TextEdit();
+			this.grdTranssactionLines = new DevExpress.XtraGrid.GridControl();
+			this.grvTransactionLines = new DevExpress.XtraGrid.Views.Grid.GridView();
 			((System.ComponentModel.ISupportInitialize)(this.tabPane1)).BeginInit();
 			this.tabPane1.SuspendLayout();
 			this.Customers.SuspendLayout();
@@ -49,6 +52,9 @@
 			((System.ComponentModel.ISupportInitialize)(this.CustomersBs)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.grdTransactions)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.grvTransactions)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.grdTranssactionLines)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.grvTransactionLines)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tabPane1
@@ -63,9 +69,9 @@
 			this.tabPane1.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] {
             this.Customers,
             this.Transactions});
-			this.tabPane1.RegularSize = new System.Drawing.Size(776, 490);
+			this.tabPane1.RegularSize = new System.Drawing.Size(776, 616);
 			this.tabPane1.SelectedPage = this.Customers;
-			this.tabPane1.Size = new System.Drawing.Size(776, 490);
+			this.tabPane1.Size = new System.Drawing.Size(776, 616);
 			this.tabPane1.TabIndex = 0;
 			this.tabPane1.Text = "tabPane1";
 			// 
@@ -162,10 +168,12 @@
 			// Transactions
 			// 
 			this.Transactions.Caption = "Transactions";
+			this.Transactions.Controls.Add(this.grdTranssactionLines);
+			this.Transactions.Controls.Add(this.textEdit3);
 			this.Transactions.Controls.Add(this.grdTransactions);
 			this.Transactions.Controls.Add(this.textEdit2);
 			this.Transactions.Name = "Transactions";
-			this.Transactions.Size = new System.Drawing.Size(776, 449);
+			this.Transactions.Size = new System.Drawing.Size(776, 575);
 			// 
 			// textEdit2
 			// 
@@ -185,6 +193,9 @@
 			// 
 			// grdTransactions
 			// 
+			this.grdTransactions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.grdTransactions.Location = new System.Drawing.Point(3, 70);
 			this.grdTransactions.MainView = this.grvTransactions;
 			this.grdTransactions.Name = "grdTransactions";
@@ -200,11 +211,47 @@
 			this.grvTransactions.Name = "grvTransactions";
 			this.grvTransactions.OptionsView.ShowGroupPanel = false;
 			// 
+			// textEdit3
+			// 
+			this.textEdit3.EditValue = "Transaction Lines";
+			this.textEdit3.Enabled = false;
+			this.textEdit3.Location = new System.Drawing.Point(3, 297);
+			this.textEdit3.Name = "textEdit3";
+			this.textEdit3.Properties.Appearance.BackColor = System.Drawing.SystemColors.Control;
+			this.textEdit3.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			this.textEdit3.Properties.Appearance.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+			this.textEdit3.Properties.Appearance.Options.UseBackColor = true;
+			this.textEdit3.Properties.Appearance.Options.UseFont = true;
+			this.textEdit3.Properties.Appearance.Options.UseForeColor = true;
+			this.textEdit3.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.textEdit3.Size = new System.Drawing.Size(210, 34);
+			this.textEdit3.TabIndex = 5;
+			// 
+			// grdTranssactionLines
+			// 
+			this.grdTranssactionLines.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.grdTranssactionLines.Location = new System.Drawing.Point(3, 337);
+			this.grdTranssactionLines.MainView = this.grvTransactionLines;
+			this.grdTranssactionLines.Name = "grdTranssactionLines";
+			this.grdTranssactionLines.Size = new System.Drawing.Size(770, 220);
+			this.grdTranssactionLines.TabIndex = 6;
+			this.grdTranssactionLines.UseEmbeddedNavigator = true;
+			this.grdTranssactionLines.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.grvTransactionLines});
+			// 
+			// grvTransactionLines
+			// 
+			this.grvTransactionLines.GridControl = this.grdTranssactionLines;
+			this.grvTransactionLines.Name = "grvTransactionLines";
+			this.grvTransactionLines.OptionsView.ShowGroupPanel = false;
+			// 
 			// CashierForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(800, 514);
+			this.ClientSize = new System.Drawing.Size(800, 640);
 			this.Controls.Add(this.tabPane1);
 			this.Name = "CashierForm";
 			this.Text = "Cashier";
@@ -220,6 +267,9 @@
 			((System.ComponentModel.ISupportInitialize)(this.CustomersBs)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.grdTransactions)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.grvTransactions)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.grdTranssactionLines)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.grvTransactionLines)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -240,5 +290,8 @@
 		private DevExpress.XtraEditors.TextEdit textEdit2;
 		private DevExpress.XtraGrid.GridControl grdTransactions;
 		private DevExpress.XtraGrid.Views.Grid.GridView grvTransactions;
+		private DevExpress.XtraGrid.GridControl grdTranssactionLines;
+		private DevExpress.XtraGrid.Views.Grid.GridView grvTransactionLines;
+		private DevExpress.XtraEditors.TextEdit textEdit3;
 	}
 }
