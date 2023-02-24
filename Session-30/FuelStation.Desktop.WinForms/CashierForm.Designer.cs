@@ -55,11 +55,11 @@
 			this.colCustomerId = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.repCustomers = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
 			this.colEmployeeId = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.repEmployees = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
 			this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
 			this.CustomersBs = new System.Windows.Forms.BindingSource(this.components);
 			this.TransactionsBs = new System.Windows.Forms.BindingSource(this.components);
 			this.TransactionLinesBs = new System.Windows.Forms.BindingSource(this.components);
-			this.repEmployees = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
 			((System.ComponentModel.ISupportInitialize)(this.tabPane1)).BeginInit();
 			this.tabPane1.SuspendLayout();
 			this.Customers.SuspendLayout();
@@ -73,11 +73,11 @@
 			((System.ComponentModel.ISupportInitialize)(this.grdTransactions)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.grvTransactions)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repCustomers)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repEmployees)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.CustomersBs)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.TransactionsBs)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.TransactionLinesBs)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.repEmployees)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tabPane1
@@ -428,12 +428,24 @@
 			// colEmployeeId
 			// 
 			this.colEmployeeId.Caption = "Employee Id";
+			this.colEmployeeId.ColumnEdit = this.repEmployees;
 			this.colEmployeeId.FieldName = "EmployeeId";
 			this.colEmployeeId.MinWidth = 25;
 			this.colEmployeeId.Name = "colEmployeeId";
 			this.colEmployeeId.Visible = true;
 			this.colEmployeeId.VisibleIndex = 5;
 			this.colEmployeeId.Width = 94;
+			// 
+			// repEmployees
+			// 
+			this.repEmployees.AutoHeight = false;
+			this.repEmployees.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.repEmployees.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Name"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Surname", "Surname"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Employee Type", "Employee Type")});
+			this.repEmployees.Name = "repEmployees";
 			// 
 			// textEdit2
 			// 
@@ -450,17 +462,6 @@
 			this.textEdit2.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.textEdit2.Size = new System.Drawing.Size(159, 34);
 			this.textEdit2.TabIndex = 3;
-			// 
-			// repEmployees
-			// 
-			this.repEmployees.AutoHeight = false;
-			this.repEmployees.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-			this.repEmployees.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Name"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Surname", "Surname"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Employee Type", "Employee Type")});
-			this.repEmployees.Name = "repEmployees";
 			// 
 			// CashierForm
 			// 
@@ -484,11 +485,11 @@
 			((System.ComponentModel.ISupportInitialize)(this.grdTransactions)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.grvTransactions)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repCustomers)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repEmployees)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.CustomersBs)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.TransactionsBs)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.TransactionLinesBs)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.repEmployees)).EndInit();
 			this.ResumeLayout(false);
 
 		}

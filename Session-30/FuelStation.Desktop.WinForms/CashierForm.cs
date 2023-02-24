@@ -5,6 +5,7 @@ using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraSpreadsheet.TileLayout;
 using FuelStation.Model;
 using FuelStation.Web.Blazor.Shared.Customer;
+using FuelStation.Web.Blazor.Shared.Employee;
 using FuelStation.Web.Blazor.Shared.Transaction;
 using System;
 using System.Collections.Generic;
@@ -30,9 +31,21 @@ namespace FuelStation.Desktop.WinForms {
 		private void CashierForm_Load(object sender, EventArgs e) {
 
 			GetCustomers();
+			GetEmployees();
 			GetTransactions();
 		}
 
+		private async Task GetEmployees() {
+			using (HttpClient client = new HttpClient()) {
+
+				var response = await client.GetAsync("https://localhost:7119/employee");
+				var data = await response.Content.ReadAsAsync<List<EmployeeListDto>>();
+
+				repEmployees.DataSource = data;
+				repEmployees.DisplayMember = "Surname";
+				repEmployees.ValueMember = "Id";
+			}
+		}
 		private async Task GetCustomers() {
 
 			using (HttpClient client = new HttpClient()) {
