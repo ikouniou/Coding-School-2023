@@ -451,7 +451,7 @@ namespace FuelStation.Desktop.WinForms {
 						newTransactionLine.TotalValue = newTransactionLine.NetValue - newTransactionLine.DiscountValue;
 						newTransactionLine.TransactionId = transactionLine.TransactionId;
 						newTransactionLine.ItemId = transactionLine.ItemId;
-						PostRowTransactionLine(newTransactionLine);
+						await PostRowTransactionLine(newTransactionLine);
 						var updatedTransaction = await GetLinesOfTransactions(newTransactionLine.TransactionId);
 						await UpdateTransactionTotalValue(updatedTransaction);
 						
@@ -494,7 +494,7 @@ namespace FuelStation.Desktop.WinForms {
 						updatedRow.TotalValue = updatedRow.NetValue - updatedRow.DiscountValue;
 						updatedRow.TransactionId = row.TransactionId;
 						updatedRow.ItemId = row.ItemId;
-						PutRowTransactionLine(updatedRow);
+						await PutRowTransactionLine(updatedRow);
 						var updatedTransaction = await GetLinesOfTransactions(updatedRow.TransactionId);
 						await UpdateTransactionTotalValue(updatedTransaction);
 						
@@ -513,7 +513,7 @@ namespace FuelStation.Desktop.WinForms {
 						newTransactionLine.TotalValue = newTransactionLine.NetValue - newTransactionLine.DiscountValue;
 						newTransactionLine.TransactionId = row.TransactionId;
 						newTransactionLine.ItemId = row.ItemId;
-						PostRowTransactionLine(newTransactionLine);
+						await PostRowTransactionLine(newTransactionLine);
 						var updatedTransaction = await GetLinesOfTransactions(newTransactionLine.TransactionId);
 						await UpdateTransactionTotalValue(updatedTransaction);
 						
