@@ -1,5 +1,5 @@
 ﻿namespace FuelStation.Desktop.WinForms {
-	partial class StaffMenu {
+	partial class ManagerMenu {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
@@ -23,16 +23,31 @@
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StaffMenu));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManagerMenu));
+			this.btnCustomersTransactions = new DevExpress.XtraEditors.SimpleButton();
 			this.label3 = new System.Windows.Forms.Label();
+			this.label2 = new System.Windows.Forms.Label();
 			this.btnItems = new DevExpress.XtraEditors.SimpleButton();
 			this.panelRight = new System.Windows.Forms.Panel();
-			this.label4 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.panelRight.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.SuspendLayout();
+			// 
+			// btnCustomersTransactions
+			// 
+			this.btnCustomersTransactions.Anchor = System.Windows.Forms.AnchorStyles.None;
+			this.btnCustomersTransactions.Appearance.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			this.btnCustomersTransactions.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(145)))), ((int)(((byte)(80)))));
+			this.btnCustomersTransactions.Appearance.Options.UseFont = true;
+			this.btnCustomersTransactions.Appearance.Options.UseForeColor = true;
+			this.btnCustomersTransactions.Location = new System.Drawing.Point(506, 324);
+			this.btnCustomersTransactions.Name = "btnCustomersTransactions";
+			this.btnCustomersTransactions.Size = new System.Drawing.Size(178, 93);
+			this.btnCustomersTransactions.TabIndex = 15;
+			this.btnCustomersTransactions.Text = "Customers \r\nTransactions\r\nTransaction Lines";
+			this.btnCustomersTransactions.Click += new System.EventHandler(this.btnCustomersTransactions_Click);
 			// 
 			// label3
 			// 
@@ -40,11 +55,22 @@
 			this.label3.AutoSize = true;
 			this.label3.Font = new System.Drawing.Font("Arial", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
 			this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(145)))), ((int)(((byte)(80)))));
-			this.label3.Location = new System.Drawing.Point(436, 62);
+			this.label3.Location = new System.Drawing.Point(442, 54);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(92, 42);
-			this.label3.TabIndex = 7;
-			this.label3.Text = "Staff";
+			this.label3.Size = new System.Drawing.Size(181, 42);
+			this.label3.TabIndex = 14;
+			this.label3.Text = "Managers";
+			// 
+			// label2
+			// 
+			this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label2.AutoSize = true;
+			this.label2.ForeColor = System.Drawing.Color.White;
+			this.label2.Location = new System.Drawing.Point(82, 521);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(232, 20);
+			this.label2.TabIndex = 5;
+			this.label2.Text = "Fuel Up - Power On - Drive Ahead";
 			// 
 			// btnItems
 			// 
@@ -53,35 +79,24 @@
 			this.btnItems.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(145)))), ((int)(((byte)(80)))));
 			this.btnItems.Appearance.Options.UseFont = true;
 			this.btnItems.Appearance.Options.UseForeColor = true;
-			this.btnItems.Location = new System.Drawing.Point(548, 258);
+			this.btnItems.Location = new System.Drawing.Point(506, 178);
 			this.btnItems.Name = "btnItems";
-			this.btnItems.Size = new System.Drawing.Size(158, 56);
-			this.btnItems.TabIndex = 8;
+			this.btnItems.Size = new System.Drawing.Size(178, 93);
+			this.btnItems.TabIndex = 16;
 			this.btnItems.Text = "Items";
 			this.btnItems.Click += new System.EventHandler(this.btnItems_Click);
 			// 
 			// panelRight
 			// 
 			this.panelRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(145)))), ((int)(((byte)(80)))));
-			this.panelRight.Controls.Add(this.label4);
 			this.panelRight.Controls.Add(this.label1);
+			this.panelRight.Controls.Add(this.label2);
 			this.panelRight.Controls.Add(this.pictureBox1);
 			this.panelRight.Dock = System.Windows.Forms.DockStyle.Left;
 			this.panelRight.Location = new System.Drawing.Point(0, 0);
 			this.panelRight.Name = "panelRight";
-			this.panelRight.Size = new System.Drawing.Size(392, 555);
-			this.panelRight.TabIndex = 9;
-			// 
-			// label4
-			// 
-			this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.label4.AutoSize = true;
-			this.label4.ForeColor = System.Drawing.Color.White;
-			this.label4.Location = new System.Drawing.Point(81, 526);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(232, 20);
-			this.label4.TabIndex = 3;
-			this.label4.Text = "Fuel Up - Power On - Drive Ahead";
+			this.panelRight.Size = new System.Drawing.Size(392, 550);
+			this.panelRight.TabIndex = 17;
 			// 
 			// label1
 			// 
@@ -104,16 +119,17 @@
 			this.pictureBox1.TabIndex = 0;
 			this.pictureBox1.TabStop = false;
 			// 
-			// StaffMenu
+			// ManagerMenu
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(857, 555);
+			this.ClientSize = new System.Drawing.Size(800, 550);
 			this.Controls.Add(this.panelRight);
 			this.Controls.Add(this.btnItems);
+			this.Controls.Add(this.btnCustomersTransactions);
 			this.Controls.Add(this.label3);
-			this.Name = "StaffMenu";
-			this.Text = "Staff Menu";
+			this.Name = "ManagerMenu";
+			this.Text = "Manager Menu";
 			this.panelRight.ResumeLayout(false);
 			this.panelRight.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -123,11 +139,13 @@
 		}
 
 		#endregion
+
+		private DevExpress.XtraEditors.SimpleButton btnCustomersTransactions;
 		private Label label3;
+		private Label label2;
 		private DevExpress.XtraEditors.SimpleButton btnItems;
 		private Panel panelRight;
 		private Label label1;
 		private PictureBox pictureBox1;
-		private Label label4;
 	}
 }

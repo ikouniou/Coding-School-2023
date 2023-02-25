@@ -9,8 +9,8 @@ namespace FuelStation.Desktop.WinForms {
 		}
 
 		private void btnManager_Click(object sender, EventArgs e) {
-			ManagerForm managerForm = new();
-			managerForm.ShowDialog();
+			ManagerMenu managerMenu = new();
+			managerMenu.ShowDialog();
 		}
 
 		private void btnStaff_Click(object sender, EventArgs e) {
