@@ -35,6 +35,7 @@ namespace FuelStation.Desktop.WinForms {
 			grvTransactions.RowUpdated += grvTransactions_RowUpdated;
 
 			grvTransactionLines.RowDeleted += grvTransactionLines_RowDeleted;
+			grvTransactionLines.RowUpdated += grvTransactionLines_RowUpdated;
 		}
 
 		private void CashierForm_Load(object sender, EventArgs e) {
@@ -349,6 +350,77 @@ namespace FuelStation.Desktop.WinForms {
 				var response = await client.DeleteAsync($"https://localhost:7119/transactionLine/{row}");
 				GetTransactions();
 			}
+		}
+
+		private void grvTransactionLines_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e) {
+
+			if (e.RowHandle == GridControl.NewItemRowHandle) // check if the updated row is the new row
+			{
+				var transactionLine = (TransactionLineListDto)e.Row; // get the data object of the new row
+				TransactionLineEditDto newTransactionLine = new();
+				if (transactionLine.ItemId == 0) {
+					MessageBox.Show("All fields are required.");
+					GetTransactions();
+				} else {
+					newTransactionLine.Quantity = transactionLine.Quantity;
+					newTransactionLine.ItemPrice = transactionLine.ItemPrice;
+					newTransactionLine.NetValue = transactionLine.NetValue;
+					newTransactionLine.DiscountPercent = transactionLine.DiscountPercent;
+					newTransactionLine.DiscountValue = transactionLine.DiscountValue;
+					newTransactionLine.TotalValue = transactionLine.TotalValue;
+					newTransactionLine.TransactionId = transactionLine.TransactionId;
+					newTransactionLine.ItemId = transactionLine.ItemId;
+					PostRowTransactionLine(newTransactionLine);
+				}
+			} else {
+				// handle updated row
+				var row = (TransactionLineListDto)e.Row;
+				if (row.Id != 0) {
+					TransactionLineEditDto updatedRow = new();
+					updatedRow.Id = row.Id;
+					updatedRow.Quantity = row.Quantity;
+					updatedRow.ItemPrice = row.ItemPrice;
+					updatedRow.NetValue = row.NetValue;
+					updatedRow.DiscountPercent = row.DiscountPercent;
+					updatedRow.DiscountValue = row.DiscountValue;
+					updatedRow.TotalValue = row.TotalValue;
+					updatedRow.TransactionId = row.TransactionId;
+					updatedRow.ItemId = row.ItemId;
+					PutRowTransactionLine(updatedRow);
+				} else {
+					TransactionLineEditDto newTransactionLine = new();
+					newTransactionLine.Quantity = row.Quantity;
+					newTransactionLine.ItemPrice = row.ItemPrice;
+					newTransactionLine.NetValue = row.NetValue;
+					newTransactionLine.DiscountPercent = row.DiscountPercent;
+					newTransactionLine.DiscountValue = row.DiscountValue;
+					newTransactionLine.TotalValue = row.TotalValue;
+					newTransactionLine.TransactionId = row.TransactionId;
+					newTransactionLine.ItemId = row.ItemId;
+					PostRowTransactionLine(newTransactionLine);
+				}
+
+			}
+		}
+
+		private async Task PostRowTransactionLine(TransactionLineEditDto newTransactionLine) {
+
+			using (HttpClient client = new HttpClient()) {
+				var response = await client.PostAsJsonAsync("https://localhost:7119/transactionline", newTransactionLine);
+				response.EnsureSuccessStatusCode();
+
+			}
+			GetTransactions();
+		}
+
+		private async Task PutRowTransactionLine(TransactionLineEditDto updatedTransactionLine) {
+
+			using (HttpClient client = new HttpClient()) {
+				var response = await client.PutAsJsonAsync("https://localhost:7119/transactionline", updatedTransactionLine);
+				response.EnsureSuccessStatusCode();
+
+			}
+			GetTransactions();
 		}
 	}
 }
