@@ -376,12 +376,12 @@ namespace FuelStation.Desktop.WinForms {
 			if (e.RowHandle == GridControl.NewItemRowHandle) // check if the updated row is the new row
 			{
 				var transactionLine = (TransactionLineListDto)e.Row; // get the data object of the new row
-				var itemPrice = await GetItemById(transactionLine.ItemId);
 				TransactionLineEditDto newTransactionLine = new();
 				if (transactionLine.ItemId == 0) {
 					MessageBox.Show("All fields are required.");
 					GetTransactions();
 				} else {
+					var itemPrice = await GetItemById(transactionLine.ItemId);
 					newTransactionLine.Quantity = transactionLine.Quantity;
 					newTransactionLine.ItemPrice = itemPrice;
 					newTransactionLine.NetValue = transactionLine.Quantity * newTransactionLine.ItemPrice;
