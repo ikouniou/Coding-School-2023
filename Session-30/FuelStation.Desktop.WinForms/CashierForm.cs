@@ -364,10 +364,10 @@ namespace FuelStation.Desktop.WinForms {
 				} else {
 					newTransactionLine.Quantity = transactionLine.Quantity;
 					newTransactionLine.ItemPrice = transactionLine.ItemPrice;
-					newTransactionLine.NetValue = transactionLine.NetValue;
+					newTransactionLine.NetValue = transactionLine.Quantity * transactionLine.ItemPrice;
 					newTransactionLine.DiscountPercent = transactionLine.DiscountPercent;
-					newTransactionLine.DiscountValue = transactionLine.DiscountValue;
-					newTransactionLine.TotalValue = transactionLine.TotalValue;
+					newTransactionLine.DiscountValue = newTransactionLine.DiscountPercent / 100.0m * newTransactionLine.NetValue;
+					newTransactionLine.TotalValue = newTransactionLine.NetValue - newTransactionLine.DiscountValue;
 					newTransactionLine.TransactionId = transactionLine.TransactionId;
 					newTransactionLine.ItemId = transactionLine.ItemId;
 					PostRowTransactionLine(newTransactionLine);
@@ -380,10 +380,10 @@ namespace FuelStation.Desktop.WinForms {
 					updatedRow.Id = row.Id;
 					updatedRow.Quantity = row.Quantity;
 					updatedRow.ItemPrice = row.ItemPrice;
-					updatedRow.NetValue = row.NetValue;
+					updatedRow.NetValue = row.Quantity * row.ItemPrice;
 					updatedRow.DiscountPercent = row.DiscountPercent;
-					updatedRow.DiscountValue = row.DiscountValue;
-					updatedRow.TotalValue = row.TotalValue;
+					updatedRow.DiscountValue = updatedRow.DiscountPercent / 100.0m * updatedRow.NetValue;
+					updatedRow.TotalValue = updatedRow.NetValue - updatedRow.DiscountValue;
 					updatedRow.TransactionId = row.TransactionId;
 					updatedRow.ItemId = row.ItemId;
 					PutRowTransactionLine(updatedRow);
@@ -391,10 +391,10 @@ namespace FuelStation.Desktop.WinForms {
 					TransactionLineEditDto newTransactionLine = new();
 					newTransactionLine.Quantity = row.Quantity;
 					newTransactionLine.ItemPrice = row.ItemPrice;
-					newTransactionLine.NetValue = row.NetValue;
+					newTransactionLine.NetValue = row.Quantity * row.ItemPrice;
 					newTransactionLine.DiscountPercent = row.DiscountPercent;
-					newTransactionLine.DiscountValue = row.DiscountValue;
-					newTransactionLine.TotalValue = row.TotalValue;
+					newTransactionLine.DiscountValue = newTransactionLine.DiscountPercent / 100.0m * newTransactionLine.NetValue;
+					newTransactionLine.TotalValue = newTransactionLine.NetValue - newTransactionLine.DiscountValue;
 					newTransactionLine.TransactionId = row.TransactionId;
 					newTransactionLine.ItemId = row.ItemId;
 					PostRowTransactionLine(newTransactionLine);

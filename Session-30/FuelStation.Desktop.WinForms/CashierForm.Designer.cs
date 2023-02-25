@@ -269,6 +269,8 @@
 			this.colNetValue.FieldName = "NetValue";
 			this.colNetValue.MinWidth = 25;
 			this.colNetValue.Name = "colNetValue";
+			this.colNetValue.OptionsColumn.AllowEdit = false;
+			this.colNetValue.OptionsColumn.AllowFocus = false;
 			this.colNetValue.Visible = true;
 			this.colNetValue.VisibleIndex = 3;
 			this.colNetValue.Width = 94;
@@ -289,6 +291,8 @@
 			this.colDiscountValue.FieldName = "DiscountValue";
 			this.colDiscountValue.MinWidth = 25;
 			this.colDiscountValue.Name = "colDiscountValue";
+			this.colDiscountValue.OptionsColumn.AllowEdit = false;
+			this.colDiscountValue.OptionsColumn.AllowFocus = false;
 			this.colDiscountValue.Visible = true;
 			this.colDiscountValue.VisibleIndex = 5;
 			this.colDiscountValue.Width = 94;
@@ -299,6 +303,8 @@
 			this.colTotalValueTransactionLine.FieldName = "TotalValue";
 			this.colTotalValueTransactionLine.MinWidth = 25;
 			this.colTotalValueTransactionLine.Name = "colTotalValueTransactionLine";
+			this.colTotalValueTransactionLine.OptionsColumn.AllowEdit = false;
+			this.colTotalValueTransactionLine.OptionsColumn.AllowFocus = false;
 			this.colTotalValueTransactionLine.Visible = true;
 			this.colTotalValueTransactionLine.VisibleIndex = 6;
 			this.colTotalValueTransactionLine.Width = 94;
