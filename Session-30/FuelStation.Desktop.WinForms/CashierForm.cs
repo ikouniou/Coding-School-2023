@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.DataAccess.Native.Web;
+using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
@@ -245,12 +246,17 @@ namespace FuelStation.Desktop.WinForms {
 			{
 				var transaction = (TransactionListDto)e.Row; // get the data object of the new row
 				TransactionEditDto newTransaction = new();
-				newTransaction.Date = DateTime.Now;
-				newTransaction.PaymentMethod = transaction.PaymentMethod;
-				newTransaction.TotalValue = transaction.TotalValue;
-				newTransaction.CustomerId = transaction.CustomerId;
-				newTransaction.EmployeeId = transaction.EmployeeId;
-				PostRowTransaction(newTransaction);
+				if (transaction.CustomerId == 0 || transaction.EmployeeId == 0) {
+					MessageBox.Show("All fields are required.");
+					GetTransactions();
+				} else {
+					newTransaction.Date = DateTime.Now;
+					newTransaction.PaymentMethod = transaction.PaymentMethod;
+					newTransaction.TotalValue = transaction.TotalValue;
+					newTransaction.CustomerId = transaction.CustomerId;
+					newTransaction.EmployeeId = transaction.EmployeeId;
+					PostRowTransaction(newTransaction);
+				}
 			} else {
 				// handle updated row
 				var row = (TransactionListDto)e.Row;
@@ -295,5 +301,6 @@ namespace FuelStation.Desktop.WinForms {
 			}
 			GetTransactions();
 		}
+
 	}
 }
