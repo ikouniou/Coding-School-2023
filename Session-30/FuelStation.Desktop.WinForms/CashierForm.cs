@@ -219,7 +219,16 @@ namespace FuelStation.Desktop.WinForms {
 				var data = await response.Content.ReadAsAsync<List<TransactionListDto>>();
 
 				TransactionsBs.DataSource = data;
+				foreach (TransactionListDto transaction in data) {
+					decimal sum = 0;
+					foreach (TransactionLineListDto transactionLine in transaction.TransactionLines) {
+						sum += transactionLine.TotalValue;
+					}
+					transaction.TotalValue = sum;
+				}
 				grdTransactions.DataSource = TransactionsBs;
+
+				
 
 				TransactionLinesBs.DataSource = TransactionsBs;
 				TransactionLinesBs.DataMember = "TransactionLines";
