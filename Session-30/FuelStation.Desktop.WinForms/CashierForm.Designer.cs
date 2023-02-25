@@ -500,7 +500,7 @@
 			this.ClientSize = new System.Drawing.Size(800, 640);
 			this.Controls.Add(this.tabPane1);
 			this.Name = "CashierForm";
-			this.Text = "Cashier";
+			this.Text = "Customers - Transactions";
 			this.Load += new System.EventHandler(this.CashierForm_Load);
 			((System.ComponentModel.ISupportInitialize)(this.tabPane1)).EndInit();
 			this.tabPane1.ResumeLayout(false);

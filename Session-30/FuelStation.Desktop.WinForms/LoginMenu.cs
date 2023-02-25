@@ -19,8 +19,8 @@ namespace FuelStation.Desktop.WinForms {
 		}
 
 		private void btnCashier_Click(object sender, EventArgs e) {
-			CashierForm cashierForm = new();
-			cashierForm.ShowDialog();
+			CashierMenu cashierMenu = new();
+			cashierMenu.ShowDialog();
 		}
 	}
 }
