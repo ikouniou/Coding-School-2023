@@ -49,7 +49,17 @@ namespace FuelStation.Web.Blazor.Server.Controllers {
 				TotalValue = result.TotalValue,
 				CustomerId = result.CustomerId,
 				EmployeeId = result.EmployeeId,
-				//TransactionLines = result.TransactionLines
+				TransactionLines = result.TransactionLines.Select(transactionLine => new TransactionLineEditDto {
+					Id = transactionLine.Id,
+					Quantity = transactionLine.Quantity,
+					ItemPrice = transactionLine.ItemPrice,
+					NetValue = transactionLine.NetValue,
+					DiscountPercent = transactionLine.DiscountPercent,
+					DiscountValue = transactionLine.DiscountValue,
+					TotalValue = transactionLine.TotalValue,
+					TransactionId = transactionLine.TransactionId,
+					ItemId = transactionLine.ItemId
+				}).ToList()
 			};
 		}
 

@@ -1,4 +1,5 @@
-﻿using DevExpress.DataAccess.Native.Sql;
+﻿using DevExpress.ClipboardSource.SpreadsheetML;
+using DevExpress.DataAccess.Native.Sql;
 using DevExpress.DataAccess.Native.Web;
 using DevExpress.Mvvm.POCO;
 using DevExpress.XtraEditors;
@@ -224,13 +225,6 @@ namespace FuelStation.Desktop.WinForms {
 				var data = await response.Content.ReadAsAsync<List<TransactionListDto>>();
 
 				TransactionsBs.DataSource = data;
-				//foreach (TransactionListDto transaction in data) {
-				//	decimal sum = 0;
-				//	foreach (TransactionLineListDto transactionLine in transaction.TransactionLines) {
-				//		sum += transactionLine.TotalValue;
-				//	}
-				//	transaction.TotalValue = sum;
-				//}
 				grdTransactions.DataSource = TransactionsBs;
 
 				
@@ -241,6 +235,32 @@ namespace FuelStation.Desktop.WinForms {
 
 			}
 
+		}
+
+		private async Task<TransactionEditDto> GetLinesOfTransactions(int id) {
+			using (HttpClient client = new HttpClient()) {
+
+				var response = await client.GetAsync($"https://localhost:7119/transaction/{id}");
+				var data = await response.Content.ReadAsAsync<TransactionEditDto>();
+
+				decimal sum = 0;
+				foreach (TransactionLineEditDto transactionLine in data.TransactionLines) {
+					sum += transactionLine.TotalValue;
+				}
+				data.TotalValue = sum;
+
+				return data;
+				
+			}
+			
+		}
+
+		private async Task UpdateTransactionTotalValue(TransactionEditDto updatedTransaction) {
+			using (HttpClient client = new HttpClient()) {
+
+				var response = await client.PutAsJsonAsync($"https://localhost:7119/transaction", updatedTransaction);
+				response.EnsureSuccessStatusCode();
+			}
 		}
 
 		private void grdTransactions_EmbeddedNavigator_ButtonClick(object sender, NavigatorButtonClickEventArgs e) {
@@ -432,6 +452,9 @@ namespace FuelStation.Desktop.WinForms {
 						newTransactionLine.TransactionId = transactionLine.TransactionId;
 						newTransactionLine.ItemId = transactionLine.ItemId;
 						PostRowTransactionLine(newTransactionLine);
+						var updatedTransaction = await GetLinesOfTransactions(newTransactionLine.TransactionId);
+						await UpdateTransactionTotalValue(updatedTransaction);
+						
 					}
 					GetTransactions();
 					
@@ -472,6 +495,9 @@ namespace FuelStation.Desktop.WinForms {
 						updatedRow.TransactionId = row.TransactionId;
 						updatedRow.ItemId = row.ItemId;
 						PutRowTransactionLine(updatedRow);
+						var updatedTransaction = await GetLinesOfTransactions(updatedRow.TransactionId);
+						await UpdateTransactionTotalValue(updatedTransaction);
+						
 					} 
 					else {
 						TransactionLineEditDto newTransactionLine = new();
@@ -488,6 +514,9 @@ namespace FuelStation.Desktop.WinForms {
 						newTransactionLine.TransactionId = row.TransactionId;
 						newTransactionLine.ItemId = row.ItemId;
 						PostRowTransactionLine(newTransactionLine);
+						var updatedTransaction = await GetLinesOfTransactions(newTransactionLine.TransactionId);
+						await UpdateTransactionTotalValue(updatedTransaction);
+						
 					}
 				}
 				GetTransactions();
