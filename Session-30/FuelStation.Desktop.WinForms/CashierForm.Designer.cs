@@ -259,6 +259,8 @@
 			this.colItemPrice.FieldName = "ItemPrice";
 			this.colItemPrice.MinWidth = 25;
 			this.colItemPrice.Name = "colItemPrice";
+			this.colItemPrice.OptionsColumn.AllowEdit = false;
+			this.colItemPrice.OptionsColumn.AllowFocus = false;
 			this.colItemPrice.Visible = true;
 			this.colItemPrice.VisibleIndex = 2;
 			this.colItemPrice.Width = 94;
