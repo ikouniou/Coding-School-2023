@@ -433,8 +433,6 @@
 			this.colTotalValue.FieldName = "TotalValue";
 			this.colTotalValue.MinWidth = 25;
 			this.colTotalValue.Name = "colTotalValue";
-			this.colTotalValue.OptionsColumn.AllowEdit = false;
-			this.colTotalValue.OptionsColumn.AllowFocus = false;
 			this.colTotalValue.Visible = true;
 			this.colTotalValue.VisibleIndex = 3;
 			this.colTotalValue.Width = 94;

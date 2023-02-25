@@ -1,5 +1,6 @@
 ﻿using DevExpress.DataAccess.Native.Sql;
 using DevExpress.DataAccess.Native.Web;
+using DevExpress.Mvvm.POCO;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid;
@@ -223,13 +224,13 @@ namespace FuelStation.Desktop.WinForms {
 				var data = await response.Content.ReadAsAsync<List<TransactionListDto>>();
 
 				TransactionsBs.DataSource = data;
-				foreach (TransactionListDto transaction in data) {
-					decimal sum = 0;
-					foreach (TransactionLineListDto transactionLine in transaction.TransactionLines) {
-						sum += transactionLine.TotalValue;
-					}
-					transaction.TotalValue = sum;
-				}
+				//foreach (TransactionListDto transaction in data) {
+				//	decimal sum = 0;
+				//	foreach (TransactionLineListDto transactionLine in transaction.TransactionLines) {
+				//		sum += transactionLine.TotalValue;
+				//	}
+				//	transaction.TotalValue = sum;
+				//}
 				grdTransactions.DataSource = TransactionsBs;
 
 				
@@ -284,8 +285,13 @@ namespace FuelStation.Desktop.WinForms {
 					MessageBox.Show("All fields are required.");
 					GetTransactions();
 				} else {
+					if(transaction.TotalValue > 50 && transaction.PaymentMethod.ToString() == "CreditCard") {
+						MessageBox.Show("The only acceptable payment method is Cash.");
+						newTransaction.PaymentMethod = Model.Enums.PaymentMethod.Cash;
+					} else {
+						newTransaction.PaymentMethod = transaction.PaymentMethod;
+					}
 					newTransaction.Date = DateTime.Now;
-					newTransaction.PaymentMethod = transaction.PaymentMethod;
 					newTransaction.TotalValue = transaction.TotalValue;
 					newTransaction.CustomerId = transaction.CustomerId;
 					newTransaction.EmployeeId = transaction.EmployeeId;
@@ -296,17 +302,27 @@ namespace FuelStation.Desktop.WinForms {
 				var row = (TransactionListDto)e.Row;
 				if (row.Id != 0) {
 					TransactionEditDto updatedRow = new();
+					if (row.TotalValue > 50 && row.PaymentMethod.ToString() == "CreditCard") {
+						MessageBox.Show("The only acceptable payment method is Cash.");
+						updatedRow.PaymentMethod = Model.Enums.PaymentMethod.Cash;
+					} else {
+						updatedRow.PaymentMethod = row.PaymentMethod;
+					}
 					updatedRow.Id = row.Id;
 					updatedRow.Date = row.Date;
-					updatedRow.PaymentMethod = row.PaymentMethod;
 					updatedRow.TotalValue = row.TotalValue;
 					updatedRow.CustomerId = row.CustomerId;
 					updatedRow.EmployeeId = row.EmployeeId;
 					PutRowTransaction(updatedRow);
 				} else {
 					TransactionEditDto newTransaction = new();
+					if (row.TotalValue > 50 && row.PaymentMethod.ToString() == "CreditCard") {
+						MessageBox.Show("The only acceptable payment method is Cash.");
+						newTransaction.PaymentMethod = Model.Enums.PaymentMethod.Cash;
+					} else {
+						newTransaction.PaymentMethod = row.PaymentMethod;
+					}
 					newTransaction.Date = DateTime.Now;
-					newTransaction.PaymentMethod = row.PaymentMethod;
 					newTransaction.TotalValue = row.TotalValue;
 					newTransaction.CustomerId = row.CustomerId;
 					newTransaction.EmployeeId = row.EmployeeId;
