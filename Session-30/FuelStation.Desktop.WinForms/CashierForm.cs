@@ -36,6 +36,7 @@ namespace FuelStation.Desktop.WinForms {
 
 			grvTransactionLines.RowDeleted += grvTransactionLines_RowDeleted;
 			grvTransactionLines.RowUpdated += grvTransactionLines_RowUpdated;
+			grvTransactionLines.ValidatingEditor += grvTransactionLines_ValidatingEditor;
 		}
 
 		private void CashierForm_Load(object sender, EventArgs e) {
@@ -364,13 +365,13 @@ namespace FuelStation.Desktop.WinForms {
 			}
 		}
 
-		private async Task<decimal> GetItemById(int id) {
+		private async Task<ItemEditDto> GetItemById(int id) {
 			using (HttpClient client = new HttpClient()) {
 
 				var response = await client.GetAsync($"https://localhost:7119/item/{id}");
 				var item = await response.Content.ReadAsAsync<ItemEditDto>();
 
-				return item.Price;
+				return item;
 			}
 		}
 
@@ -384,11 +385,15 @@ namespace FuelStation.Desktop.WinForms {
 					MessageBox.Show("All fields are required.");
 					GetTransactions();
 				} else {
-					var itemPrice = await GetItemById(transactionLine.ItemId);
+					var item = await GetItemById(transactionLine.ItemId);
 					newTransactionLine.Quantity = transactionLine.Quantity;
-					newTransactionLine.ItemPrice = itemPrice;
+					newTransactionLine.ItemPrice = item.Price;
 					newTransactionLine.NetValue = transactionLine.Quantity * newTransactionLine.ItemPrice;
-					newTransactionLine.DiscountPercent = transactionLine.DiscountPercent;
+					if(item.ItemType.ToString() == "Fuel" && newTransactionLine.NetValue > 20) {
+						newTransactionLine.DiscountPercent = 10;
+					} else {
+						newTransactionLine.DiscountPercent = 0;
+					}
 					newTransactionLine.DiscountValue = newTransactionLine.DiscountPercent / 100.0m * newTransactionLine.NetValue;
 					newTransactionLine.TotalValue = newTransactionLine.NetValue - newTransactionLine.DiscountValue;
 					newTransactionLine.TransactionId = transactionLine.TransactionId;
@@ -398,14 +403,19 @@ namespace FuelStation.Desktop.WinForms {
 			} else {
 				// handle updated row
 				var row = (TransactionLineListDto)e.Row;
-				var itemPrice = await GetItemById(row.ItemId);
+				var item = await GetItemById(row.ItemId);
 				if (row.Id != 0) {
 					TransactionLineEditDto updatedRow = new();
 					updatedRow.Id = row.Id;
 					updatedRow.Quantity = row.Quantity;
-					updatedRow.ItemPrice = itemPrice;
+					updatedRow.ItemPrice = item.Price;
 					updatedRow.NetValue = row.Quantity * updatedRow.ItemPrice;
-					updatedRow.DiscountPercent = row.DiscountPercent;
+					if(item.ItemType.ToString() == "Fuel" && updatedRow.NetValue > 20) {
+						updatedRow.DiscountPercent = 10;
+					}
+					else {
+						updatedRow.DiscountPercent = 0;
+					}
 					updatedRow.DiscountValue = updatedRow.DiscountPercent / 100.0m * updatedRow.NetValue;
 					updatedRow.TotalValue = updatedRow.NetValue - updatedRow.DiscountValue;
 					updatedRow.TransactionId = row.TransactionId;
@@ -414,9 +424,14 @@ namespace FuelStation.Desktop.WinForms {
 				} else {
 					TransactionLineEditDto newTransactionLine = new();
 					newTransactionLine.Quantity = row.Quantity;
-					newTransactionLine.ItemPrice = itemPrice;
+					newTransactionLine.ItemPrice = item.Price;
 					newTransactionLine.NetValue = row.Quantity * newTransactionLine.ItemPrice;
-					newTransactionLine.DiscountPercent = row.DiscountPercent;
+					if(item.ItemType.ToString() == "Fuel" && newTransactionLine.NetValue > 20) {
+						newTransactionLine.DiscountPercent = 10;
+					}
+					else {
+						newTransactionLine.DiscountPercent = 0;
+					}
 					newTransactionLine.DiscountValue = newTransactionLine.DiscountPercent / 100.0m * newTransactionLine.NetValue;
 					newTransactionLine.TotalValue = newTransactionLine.NetValue - newTransactionLine.DiscountValue;
 					newTransactionLine.TransactionId = row.TransactionId;
@@ -445,6 +460,27 @@ namespace FuelStation.Desktop.WinForms {
 
 			}
 			GetTransactions();
+		}
+
+		private void grvTransactionLines_ValidatingEditor(object sender, BaseContainerValidateEditorEventArgs e) {
+			GridView view = sender as GridView;
+
+			if(view.FocusedColumn.FieldName == "Quantity") {
+				double quantity = 0;
+				if(string.IsNullOrEmpty(e.Value as string)) {
+					e.Valid = false;
+					e.ErrorText = "Quantity is required";
+				}
+				else if (!Double.TryParse(e.Value as String, out quantity)) {
+					e.Valid = false;
+					e.ErrorText = "Only numeric values are accepted.";
+				}
+				else if(quantity < 1 || quantity > 100) {
+					e.Valid = false;
+					e.ErrorText = "Quantity must be between 1 and 100";
+				}
+			}
+
 		}
 	}
 }

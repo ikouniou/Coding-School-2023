@@ -239,6 +239,8 @@
 			this.colIdTransacrionLine.FieldName = "Id";
 			this.colIdTransacrionLine.MinWidth = 25;
 			this.colIdTransacrionLine.Name = "colIdTransacrionLine";
+			this.colIdTransacrionLine.OptionsColumn.AllowEdit = false;
+			this.colIdTransacrionLine.OptionsColumn.AllowFocus = false;
 			this.colIdTransacrionLine.Visible = true;
 			this.colIdTransacrionLine.VisibleIndex = 0;
 			this.colIdTransacrionLine.Width = 94;
@@ -283,6 +285,8 @@
 			this.colDiscountPercent.FieldName = "DiscountPercent";
 			this.colDiscountPercent.MinWidth = 25;
 			this.colDiscountPercent.Name = "colDiscountPercent";
+			this.colDiscountPercent.OptionsColumn.AllowEdit = false;
+			this.colDiscountPercent.OptionsColumn.AllowFocus = false;
 			this.colDiscountPercent.Visible = true;
 			this.colDiscountPercent.VisibleIndex = 4;
 			this.colDiscountPercent.Width = 94;
@@ -395,6 +399,8 @@
 			this.colIdTransaction.FieldName = "Id";
 			this.colIdTransaction.MinWidth = 25;
 			this.colIdTransaction.Name = "colIdTransaction";
+			this.colIdTransaction.OptionsColumn.AllowEdit = false;
+			this.colIdTransaction.OptionsColumn.AllowFocus = false;
 			this.colIdTransaction.Visible = true;
 			this.colIdTransaction.VisibleIndex = 0;
 			this.colIdTransaction.Width = 94;
