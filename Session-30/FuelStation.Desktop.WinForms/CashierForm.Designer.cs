@@ -45,6 +45,7 @@
 			this.colTotalValueTransactionLine = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colTransactionId = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colItemId = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.repItems = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
 			this.textEdit3 = new DevExpress.XtraEditors.TextEdit();
 			this.grdTransactions = new DevExpress.XtraGrid.GridControl();
 			this.grvTransactions = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -60,7 +61,6 @@
 			this.CustomersBs = new System.Windows.Forms.BindingSource(this.components);
 			this.TransactionsBs = new System.Windows.Forms.BindingSource(this.components);
 			this.TransactionLinesBs = new System.Windows.Forms.BindingSource(this.components);
-			this.repItems = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
 			((System.ComponentModel.ISupportInitialize)(this.tabPane1)).BeginInit();
 			this.tabPane1.SuspendLayout();
 			this.Customers.SuspendLayout();
@@ -70,6 +70,7 @@
 			this.Transactions.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.grdTranssactionLines)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.grvTransactionLines)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repItems)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.grdTransactions)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.grvTransactions)).BeginInit();
@@ -79,7 +80,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.CustomersBs)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.TransactionsBs)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.TransactionLinesBs)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.repItems)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tabPane1
@@ -205,6 +205,7 @@
 			this.grdTranssactionLines.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.grdTranssactionLines.EmbeddedNavigator.ButtonClick += new DevExpress.XtraEditors.NavigatorButtonClickEventHandler(this.grdTranssactionLines_EmbeddedNavigator_ButtonClick);
 			this.grdTranssactionLines.Location = new System.Drawing.Point(3, 380);
 			this.grdTranssactionLines.MainView = this.grvTransactionLines;
 			this.grdTranssactionLines.Name = "grdTranssactionLines";
@@ -322,6 +323,17 @@
 			this.colItemId.Visible = true;
 			this.colItemId.VisibleIndex = 8;
 			this.colItemId.Width = 94;
+			// 
+			// repItems
+			// 
+			this.repItems.AutoHeight = false;
+			this.repItems.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.repItems.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Code", "Code"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Description", "Description"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ItemType", "Item Type")});
+			this.repItems.Name = "repItems";
 			// 
 			// textEdit3
 			// 
@@ -473,17 +485,6 @@
 			this.textEdit2.Size = new System.Drawing.Size(159, 34);
 			this.textEdit2.TabIndex = 3;
 			// 
-			// repItems
-			// 
-			this.repItems.AutoHeight = false;
-			this.repItems.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-			this.repItems.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Code", "Code"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Description", "Description"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ItemType", "Item Type")});
-			this.repItems.Name = "repItems";
-			// 
 			// CashierForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -502,6 +503,7 @@
 			this.Transactions.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.grdTranssactionLines)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.grvTransactionLines)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repItems)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.grdTransactions)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.grvTransactions)).EndInit();
@@ -511,7 +513,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.CustomersBs)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.TransactionsBs)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.TransactionLinesBs)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.repItems)).EndInit();
 			this.ResumeLayout(false);
 
 		}

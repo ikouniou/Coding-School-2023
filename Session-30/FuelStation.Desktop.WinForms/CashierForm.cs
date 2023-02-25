@@ -10,6 +10,7 @@ using FuelStation.Web.Blazor.Shared.Customer;
 using FuelStation.Web.Blazor.Shared.Employee;
 using FuelStation.Web.Blazor.Shared.Item;
 using FuelStation.Web.Blazor.Shared.Transaction;
+using FuelStation.Web.Blazor.Shared.TransactionLine;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,6 +33,8 @@ namespace FuelStation.Desktop.WinForms {
 
 			grvTransactions.RowDeleted += grvTransactions_RowDeleted;
 			grvTransactions.RowUpdated += grvTransactions_RowUpdated;
+
+			grvTransactionLines.RowDeleted += grvTransactionLines_RowDeleted;
 		}
 
 		private void CashierForm_Load(object sender, EventArgs e) {
@@ -319,5 +322,33 @@ namespace FuelStation.Desktop.WinForms {
 			GetTransactions();
 		}
 
+		private void grdTranssactionLines_EmbeddedNavigator_ButtonClick(object sender, NavigatorButtonClickEventArgs e) {
+			if (e.Button.ButtonType == NavigatorButtonType.Remove) {
+				DialogResult result = MessageBox.Show("Do you want to delete the current row?", "Confirm deletion",
+					MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+				if (result == DialogResult.Yes) {
+					e.Handled = false; // Allow the row to be deleted
+				} else {
+					e.Handled = true; // Prevent the row from being deleted
+				}
+			}
+		}
+
+		private void grvTransactionLines_RowDeleted(object sender, DevExpress.Data.RowDeletedEventArgs e) {
+
+			int deletedRowId = ((TransactionLineListDto)e.Row).Id;
+			if (deletedRowId != 0) {
+				DeleteRowTransactionLine(deletedRowId);
+			}
+
+		}
+
+		private async Task DeleteRowTransactionLine(int row) {
+			using (HttpClient client = new HttpClient()) {
+
+				var response = await client.DeleteAsync($"https://localhost:7119/transactionLine/{row}");
+				GetTransactions();
+			}
+		}
 	}
 }
