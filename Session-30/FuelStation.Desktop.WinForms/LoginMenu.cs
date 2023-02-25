@@ -14,8 +14,8 @@ namespace FuelStation.Desktop.WinForms {
 		}
 
 		private void btnStaff_Click(object sender, EventArgs e) {
-			StaffForm staffForm = new();
-			staffForm.ShowDialog();
+			StaffMenu staffMenu = new();
+			staffMenu.ShowDialog();
 		}
 
 		private void btnCashier_Click(object sender, EventArgs e) {
