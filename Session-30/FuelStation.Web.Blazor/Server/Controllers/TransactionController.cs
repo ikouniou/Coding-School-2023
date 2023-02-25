@@ -1,6 +1,7 @@
 ﻿using FuelStation.EF.Repositories;
 using FuelStation.Model;
 using FuelStation.Web.Blazor.Shared.Transaction;
+using FuelStation.Web.Blazor.Shared.TransactionLine;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,7 +25,17 @@ namespace FuelStation.Web.Blazor.Server.Controllers {
 				TotalValue = item.TotalValue,
 				CustomerId = item.CustomerId,
 				EmployeeId = item.EmployeeId,
-				TransactionLines = item.TransactionLines
+				TransactionLines = item.TransactionLines.Select(transactionLine => new TransactionLineListDto {
+					Id = transactionLine.Id,
+					Quantity = transactionLine.Quantity,
+					ItemPrice = transactionLine.ItemPrice,
+					NetValue = transactionLine.NetValue,
+					DiscountPercent = transactionLine.DiscountPercent,
+					DiscountValue = transactionLine.DiscountValue,
+					TotalValue = transactionLine.TotalValue,
+					TransactionId = transactionLine.TransactionId,
+					ItemId = transactionLine.ItemId
+				}).ToList()
 			});
 		}
 
@@ -38,7 +49,7 @@ namespace FuelStation.Web.Blazor.Server.Controllers {
 				TotalValue = result.TotalValue,
 				CustomerId = result.CustomerId,
 				EmployeeId = result.EmployeeId,
-				TransactionLines = result.TransactionLines
+				//TransactionLines = result.TransactionLines
 			};
 		}
 
@@ -48,7 +59,7 @@ namespace FuelStation.Web.Blazor.Server.Controllers {
 			var newTransaction = new Transaction(transaction.PaymentMethod, transaction.TotalValue) {
 				CustomerId = transaction.CustomerId,
 				EmployeeId = transaction.EmployeeId,
-				TransactionLines = transaction.TransactionLines
+				//TransactionLines = transaction.TransactionLines
 			};
 			_transactionRepo.Add(newTransaction);
 		}
@@ -61,7 +72,7 @@ namespace FuelStation.Web.Blazor.Server.Controllers {
 			itemToUpdate.TotalValue = transaction.TotalValue;
 			itemToUpdate.CustomerId = transaction.CustomerId;
 			itemToUpdate.EmployeeId = transaction.EmployeeId;
-			itemToUpdate.TransactionLines = transaction.TransactionLines;
+			//itemToUpdate.TransactionLines = transaction.TransactionLines;
 			_transactionRepo.Update(transaction.Id, itemToUpdate);
 		}
 

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FuelStation.Web.Blazor.Shared.TransactionLine;
 
 namespace FuelStation.Web.Blazor.Shared.Transaction {
 	public class TransactionEditDto {
@@ -15,6 +16,6 @@ namespace FuelStation.Web.Blazor.Shared.Transaction {
 		public int CustomerId { get; set; }
 		public int EmployeeId { get; set; }
 
-		public List<FuelStation.Model.TransactionLine> TransactionLines { get; set; } = new();
+		public List<TransactionLineEditDto> TransactionLines { get; set; } = new();
 	}
 }

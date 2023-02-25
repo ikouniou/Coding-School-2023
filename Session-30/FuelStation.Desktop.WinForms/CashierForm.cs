@@ -196,6 +196,10 @@ namespace FuelStation.Desktop.WinForms {
 				TransactionsBs.DataSource = data;
 				grdTransactions.DataSource = TransactionsBs;
 
+				TransactionLinesBs.DataSource = TransactionsBs;
+				TransactionLinesBs.DataMember = "TransactionLines";
+				grdTranssactionLines.DataSource = TransactionLinesBs;
+
 			}
 
 		}
