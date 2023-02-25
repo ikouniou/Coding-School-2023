@@ -376,6 +376,7 @@ namespace FuelStation.Desktop.WinForms {
 		}
 
 		private async void grvTransactionLines_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e) {
+			GridView view = sender as GridView;
 
 			if (e.RowHandle == GridControl.NewItemRowHandle) // check if the updated row is the new row
 			{
@@ -385,59 +386,95 @@ namespace FuelStation.Desktop.WinForms {
 					MessageBox.Show("All fields are required.");
 					GetTransactions();
 				} else {
+					bool hasFuelType = false;
 					var item = await GetItemById(transactionLine.ItemId);
-					newTransactionLine.Quantity = transactionLine.Quantity;
-					newTransactionLine.ItemPrice = item.Price;
-					newTransactionLine.NetValue = transactionLine.Quantity * newTransactionLine.ItemPrice;
-					if(item.ItemType.ToString() == "Fuel" && newTransactionLine.NetValue > 20) {
-						newTransactionLine.DiscountPercent = 10;
-					} else {
-						newTransactionLine.DiscountPercent = 0;
+					if(item.ItemType.ToString() == "Fuel") {
+						for (int i = 0; i < view.DataRowCount; i++) {
+							if (i == view.FocusedRowHandle) {
+								continue;
+							}
+							int itemIdInGrid = (int)view.GetRowCellValue(i, "ItemId");
+							var itemTypeInGrid = await GetItemById(itemIdInGrid);
+							if (itemTypeInGrid.ItemType.ToString() == item.ItemType.ToString()) {
+								MessageBox.Show("A Transaction must have only one item that are type Fuel.");
+								hasFuelType = true;
+								break;
+							}
+						}
 					}
-					newTransactionLine.DiscountValue = newTransactionLine.DiscountPercent / 100.0m * newTransactionLine.NetValue;
-					newTransactionLine.TotalValue = newTransactionLine.NetValue - newTransactionLine.DiscountValue;
-					newTransactionLine.TransactionId = transactionLine.TransactionId;
-					newTransactionLine.ItemId = transactionLine.ItemId;
-					PostRowTransactionLine(newTransactionLine);
+					if(hasFuelType == false) {
+						newTransactionLine.Quantity = transactionLine.Quantity;
+						newTransactionLine.ItemPrice = item.Price;
+						newTransactionLine.NetValue = transactionLine.Quantity * newTransactionLine.ItemPrice;
+						if (item.ItemType.ToString() == "Fuel" && newTransactionLine.NetValue > 20) {
+							newTransactionLine.DiscountPercent = 10;
+						} else {
+							newTransactionLine.DiscountPercent = 0;
+						}
+						newTransactionLine.DiscountValue = newTransactionLine.DiscountPercent / 100.0m * newTransactionLine.NetValue;
+						newTransactionLine.TotalValue = newTransactionLine.NetValue - newTransactionLine.DiscountValue;
+						newTransactionLine.TransactionId = transactionLine.TransactionId;
+						newTransactionLine.ItemId = transactionLine.ItemId;
+						PostRowTransactionLine(newTransactionLine);
+					}
+					GetTransactions();
+					
 				}
 			} else {
 				// handle updated row
 				var row = (TransactionLineListDto)e.Row;
 				var item = await GetItemById(row.ItemId);
-				if (row.Id != 0) {
-					TransactionLineEditDto updatedRow = new();
-					updatedRow.Id = row.Id;
-					updatedRow.Quantity = row.Quantity;
-					updatedRow.ItemPrice = item.Price;
-					updatedRow.NetValue = row.Quantity * updatedRow.ItemPrice;
-					if(item.ItemType.ToString() == "Fuel" && updatedRow.NetValue > 20) {
-						updatedRow.DiscountPercent = 10;
+				bool hasFuelType = false;
+				if (item.ItemType.ToString() == "Fuel") {
+					for (int i = 0; i < view.DataRowCount; i++) {
+						if (i == view.FocusedRowHandle) {
+							continue;
+						}
+						int itemIdInGrid = (int)view.GetRowCellValue(i, "ItemId");
+						var itemTypeInGrid = await GetItemById(itemIdInGrid);
+						if (itemTypeInGrid.ItemType.ToString() == item.ItemType.ToString()) {
+							MessageBox.Show("A Transaction must have only one item that are type Fuel.");
+							hasFuelType = true;
+							break;
+						}
 					}
-					else {
-						updatedRow.DiscountPercent = 0;
-					}
-					updatedRow.DiscountValue = updatedRow.DiscountPercent / 100.0m * updatedRow.NetValue;
-					updatedRow.TotalValue = updatedRow.NetValue - updatedRow.DiscountValue;
-					updatedRow.TransactionId = row.TransactionId;
-					updatedRow.ItemId = row.ItemId;
-					PutRowTransactionLine(updatedRow);
-				} else {
-					TransactionLineEditDto newTransactionLine = new();
-					newTransactionLine.Quantity = row.Quantity;
-					newTransactionLine.ItemPrice = item.Price;
-					newTransactionLine.NetValue = row.Quantity * newTransactionLine.ItemPrice;
-					if(item.ItemType.ToString() == "Fuel" && newTransactionLine.NetValue > 20) {
-						newTransactionLine.DiscountPercent = 10;
-					}
-					else {
-						newTransactionLine.DiscountPercent = 0;
-					}
-					newTransactionLine.DiscountValue = newTransactionLine.DiscountPercent / 100.0m * newTransactionLine.NetValue;
-					newTransactionLine.TotalValue = newTransactionLine.NetValue - newTransactionLine.DiscountValue;
-					newTransactionLine.TransactionId = row.TransactionId;
-					newTransactionLine.ItemId = row.ItemId;
-					PostRowTransactionLine(newTransactionLine);
 				}
+				if(hasFuelType == false) {
+					if (row.Id != 0) {
+						TransactionLineEditDto updatedRow = new();
+						updatedRow.Id = row.Id;
+						updatedRow.Quantity = row.Quantity;
+						updatedRow.ItemPrice = item.Price;
+						updatedRow.NetValue = row.Quantity * updatedRow.ItemPrice;
+						if (item.ItemType.ToString() == "Fuel" && updatedRow.NetValue > 20) {
+							updatedRow.DiscountPercent = 10;
+						} else {
+							updatedRow.DiscountPercent = 0;
+						}
+						updatedRow.DiscountValue = updatedRow.DiscountPercent / 100.0m * updatedRow.NetValue;
+						updatedRow.TotalValue = updatedRow.NetValue - updatedRow.DiscountValue;
+						updatedRow.TransactionId = row.TransactionId;
+						updatedRow.ItemId = row.ItemId;
+						PutRowTransactionLine(updatedRow);
+					} 
+					else {
+						TransactionLineEditDto newTransactionLine = new();
+						newTransactionLine.Quantity = row.Quantity;
+						newTransactionLine.ItemPrice = item.Price;
+						newTransactionLine.NetValue = row.Quantity * newTransactionLine.ItemPrice;
+						if (item.ItemType.ToString() == "Fuel" && newTransactionLine.NetValue > 20) {
+							newTransactionLine.DiscountPercent = 10;
+						} else {
+							newTransactionLine.DiscountPercent = 0;
+						}
+						newTransactionLine.DiscountValue = newTransactionLine.DiscountPercent / 100.0m * newTransactionLine.NetValue;
+						newTransactionLine.TotalValue = newTransactionLine.NetValue - newTransactionLine.DiscountValue;
+						newTransactionLine.TransactionId = row.TransactionId;
+						newTransactionLine.ItemId = row.ItemId;
+						PostRowTransactionLine(newTransactionLine);
+					}
+				}
+				GetTransactions();
 
 			}
 		}
