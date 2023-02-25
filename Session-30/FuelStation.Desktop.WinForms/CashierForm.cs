@@ -361,18 +361,29 @@ namespace FuelStation.Desktop.WinForms {
 			}
 		}
 
+		private async Task<ItemEditDto> GetItemById(int id) {
+			using (HttpClient client = new HttpClient()) {
+
+				var response = await client.GetAsync($"https://localhost:7119/item/{id}");
+				var item = await response.Content.ReadAsAsync<ItemEditDto>();
+
+				return item;
+			}
+		}
+
 		private void grvTransactionLines_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e) {
 
 			if (e.RowHandle == GridControl.NewItemRowHandle) // check if the updated row is the new row
 			{
 				var transactionLine = (TransactionLineListDto)e.Row; // get the data object of the new row
+				var item = GetItemById(transactionLine.ItemId);
 				TransactionLineEditDto newTransactionLine = new();
 				if (transactionLine.ItemId == 0) {
 					MessageBox.Show("All fields are required.");
 					GetTransactions();
 				} else {
 					newTransactionLine.Quantity = transactionLine.Quantity;
-					newTransactionLine.ItemPrice = transactionLine.ItemPrice;
+					newTransactionLine.ItemPrice = item.Result.Price;
 					newTransactionLine.NetValue = transactionLine.Quantity * transactionLine.ItemPrice;
 					newTransactionLine.DiscountPercent = transactionLine.DiscountPercent;
 					newTransactionLine.DiscountValue = newTransactionLine.DiscountPercent / 100.0m * newTransactionLine.NetValue;
@@ -384,11 +395,12 @@ namespace FuelStation.Desktop.WinForms {
 			} else {
 				// handle updated row
 				var row = (TransactionLineListDto)e.Row;
+				var item = GetItemById(row.ItemId);
 				if (row.Id != 0) {
 					TransactionLineEditDto updatedRow = new();
 					updatedRow.Id = row.Id;
 					updatedRow.Quantity = row.Quantity;
-					updatedRow.ItemPrice = row.ItemPrice;
+					updatedRow.ItemPrice = item.Result.Price;
 					updatedRow.NetValue = row.Quantity * row.ItemPrice;
 					updatedRow.DiscountPercent = row.DiscountPercent;
 					updatedRow.DiscountValue = updatedRow.DiscountPercent / 100.0m * updatedRow.NetValue;
@@ -399,7 +411,7 @@ namespace FuelStation.Desktop.WinForms {
 				} else {
 					TransactionLineEditDto newTransactionLine = new();
 					newTransactionLine.Quantity = row.Quantity;
-					newTransactionLine.ItemPrice = row.ItemPrice;
+					newTransactionLine.ItemPrice = item.Result.Price;
 					newTransactionLine.NetValue = row.Quantity * row.ItemPrice;
 					newTransactionLine.DiscountPercent = row.DiscountPercent;
 					newTransactionLine.DiscountValue = newTransactionLine.DiscountPercent / 100.0m * newTransactionLine.NetValue;
