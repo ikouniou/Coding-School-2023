@@ -151,7 +151,7 @@
 			this.Controls.Add(this.grdItems);
 			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.Name = "StaffForm";
-			this.Text = "Staff";
+			this.Text = "Items";
 			this.Load += new System.EventHandler(this.StaffForm_Load);
 			((System.ComponentModel.ISupportInitialize)(this.grdItems)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.grvItems)).EndInit();
