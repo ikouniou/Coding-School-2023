@@ -28,6 +28,7 @@ namespace FuelStation.Desktop.WinForms {
 			grvCustomers.ValidatingEditor += grvCustomers_ValidatingEditor;
 
 			grvTransactions.RowDeleted += grvTransactions_RowDeleted;
+			grvTransactions.RowUpdated += grvTransactions_RowUpdated;
 		}
 
 		private void CashierForm_Load(object sender, EventArgs e) {
@@ -236,6 +237,63 @@ namespace FuelStation.Desktop.WinForms {
 					GetTransactions();
 				} 
 			}
+		}
+
+		private void grvTransactions_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e) {
+
+			if (e.RowHandle == GridControl.NewItemRowHandle) // check if the updated row is the new row
+			{
+				var transaction = (TransactionListDto)e.Row; // get the data object of the new row
+				TransactionEditDto newTransaction = new();
+				newTransaction.Date = DateTime.Now;
+				newTransaction.PaymentMethod = transaction.PaymentMethod;
+				newTransaction.TotalValue = transaction.TotalValue;
+				newTransaction.CustomerId = transaction.CustomerId;
+				newTransaction.EmployeeId = transaction.EmployeeId;
+				PostRowTransaction(newTransaction);
+			} else {
+				// handle updated row
+				var row = (TransactionListDto)e.Row;
+				if (row.Id != 0) {
+					TransactionEditDto updatedRow = new();
+					updatedRow.Id = row.Id;
+					updatedRow.Date = row.Date;
+					updatedRow.PaymentMethod = row.PaymentMethod;
+					updatedRow.TotalValue = row.TotalValue;
+					updatedRow.CustomerId = row.CustomerId;
+					updatedRow.EmployeeId = row.EmployeeId;
+					PutRowTransaction(updatedRow);
+				} else {
+					TransactionEditDto newTransaction = new();
+					newTransaction.Date = DateTime.Now;
+					newTransaction.PaymentMethod = row.PaymentMethod;
+					newTransaction.TotalValue = row.TotalValue;
+					newTransaction.CustomerId = row.CustomerId;
+					newTransaction.EmployeeId = row.EmployeeId;
+					PostRowTransaction(newTransaction);
+				}
+
+			}
+		}
+
+		private async Task PostRowTransaction(TransactionEditDto newTransaction) {
+
+			using (HttpClient client = new HttpClient()) {
+				var response = await client.PostAsJsonAsync("https://localhost:7119/transaction", newTransaction);
+				response.EnsureSuccessStatusCode();
+
+			}
+			GetTransactions();
+		}
+
+		private async Task PutRowTransaction(TransactionEditDto updatedTransaction) {
+
+			using (HttpClient client = new HttpClient()) {
+				var response = await client.PutAsJsonAsync("https://localhost:7119/transaction", updatedTransaction);
+				response.EnsureSuccessStatusCode();
+
+			}
+			GetTransactions();
 		}
 	}
 }
