@@ -1,4 +1,5 @@
-﻿using DevExpress.DataAccess.Native.Web;
+﻿using DevExpress.DataAccess.Native.Sql;
+using DevExpress.DataAccess.Native.Web;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid;
@@ -7,6 +8,7 @@ using DevExpress.XtraSpreadsheet.TileLayout;
 using FuelStation.Model;
 using FuelStation.Web.Blazor.Shared.Customer;
 using FuelStation.Web.Blazor.Shared.Employee;
+using FuelStation.Web.Blazor.Shared.Item;
 using FuelStation.Web.Blazor.Shared.Transaction;
 using System;
 using System.Collections.Generic;
@@ -35,6 +37,7 @@ namespace FuelStation.Desktop.WinForms {
 		private void CashierForm_Load(object sender, EventArgs e) {
 
 			GetCustomers();
+			GetItems();
 			GetEmployees();
 			GetTransactions();
 		}
@@ -63,6 +66,20 @@ namespace FuelStation.Desktop.WinForms {
 				repCustomers.DataSource = data;
 				repCustomers.DisplayMember = "Surname";
 				repCustomers.ValueMember = "Id";
+			}
+
+		}
+
+		private async Task GetItems() {
+
+			using (HttpClient client = new HttpClient()) {
+
+				var response = await client.GetAsync("https://localhost:7119/item");
+				var data = await response.Content.ReadAsAsync<List<ItemListDto>>();
+
+				repItems.DataSource = data;
+				repItems.DisplayMember = "Description";
+				repItems.ValueMember = "Id";
 			}
 
 		}
