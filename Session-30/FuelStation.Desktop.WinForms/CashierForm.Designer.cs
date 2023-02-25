@@ -338,6 +338,7 @@
 			// 
 			this.grdTransactions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.grdTransactions.EmbeddedNavigator.ButtonClick += new DevExpress.XtraEditors.NavigatorButtonClickEventHandler(this.grdTransactions_EmbeddedNavigator_ButtonClick);
 			this.grdTransactions.Location = new System.Drawing.Point(3, 70);
 			this.grdTransactions.MainView = this.grvTransactions;
 			this.grdTransactions.Name = "grdTransactions";

@@ -26,6 +26,8 @@ namespace FuelStation.Desktop.WinForms {
 			grvCustomers.RowDeleted += grvCustomers_RowDeleted;
 			grvCustomers.RowUpdated += grvCustomers_RowUpdated;
 			grvCustomers.ValidatingEditor += grvCustomers_ValidatingEditor;
+
+			grvTransactions.RowDeleted += grvTransactions_RowDeleted;
 		}
 
 		private void CashierForm_Load(object sender, EventArgs e) {
@@ -204,5 +206,36 @@ namespace FuelStation.Desktop.WinForms {
 
 		}
 
+		private void grdTransactions_EmbeddedNavigator_ButtonClick(object sender, NavigatorButtonClickEventArgs e) {
+			if (e.Button.ButtonType == NavigatorButtonType.Remove) {
+				DialogResult result = MessageBox.Show("Do you want to delete the current row?", "Confirm deletion",
+					MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+				if (result == DialogResult.Yes) {
+					e.Handled = false; // Allow the row to be deleted
+				} else {
+					e.Handled = true; // Prevent the row from being deleted
+				}
+			}
+		}
+
+		private void grvTransactions_RowDeleted(object sender, DevExpress.Data.RowDeletedEventArgs e) {
+
+			int deletedRowId = ((TransactionListDto)e.Row).Id;
+			if (deletedRowId != 0) {
+				DeleteRowTransaction(deletedRowId);
+			}
+
+		}
+
+		private async Task DeleteRowTransaction(int row) {
+			using (HttpClient client = new HttpClient()) {
+
+				var response = await client.DeleteAsync($"https://localhost:7119/transaction/{row}");
+				if (!response.IsSuccessStatusCode) {
+					MessageBox.Show("You can't delete this transaction.");
+					GetTransactions();
+				} 
+			}
+		}
 	}
 }
