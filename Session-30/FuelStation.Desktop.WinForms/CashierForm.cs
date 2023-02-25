@@ -113,7 +113,10 @@ namespace FuelStation.Desktop.WinForms {
 			using (HttpClient client = new HttpClient()) {
 
 				var response = await client.DeleteAsync($"https://localhost:7119/customer/{row}");
-
+				if (!response.IsSuccessStatusCode) {
+					MessageBox.Show("You can't delete this customer.");
+					GetCustomers();
+				}
 			}
 		}
 
