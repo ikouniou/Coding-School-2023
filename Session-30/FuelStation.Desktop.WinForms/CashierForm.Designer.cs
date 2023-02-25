@@ -379,6 +379,8 @@
 			this.colDate.FieldName = "Date";
 			this.colDate.MinWidth = 25;
 			this.colDate.Name = "colDate";
+			this.colDate.OptionsColumn.AllowEdit = false;
+			this.colDate.OptionsColumn.AllowFocus = false;
 			this.colDate.Visible = true;
 			this.colDate.VisibleIndex = 1;
 			this.colDate.Width = 94;
@@ -399,6 +401,8 @@
 			this.colTotalValue.FieldName = "TotalValue";
 			this.colTotalValue.MinWidth = 25;
 			this.colTotalValue.Name = "colTotalValue";
+			this.colTotalValue.OptionsColumn.AllowEdit = false;
+			this.colTotalValue.OptionsColumn.AllowFocus = false;
 			this.colTotalValue.Visible = true;
 			this.colTotalValue.VisibleIndex = 3;
 			this.colTotalValue.Width = 94;
