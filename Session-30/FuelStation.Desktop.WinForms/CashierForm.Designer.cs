@@ -38,14 +38,14 @@
 			this.grvTransactionLines = new DevExpress.XtraGrid.Views.Grid.GridView();
 			this.colIdTransacrionLine = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colQuantity = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.colItemId = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.repItems = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
 			this.colItemPrice = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colNetValue = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colDiscountPercent = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colDiscountValue = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colTotalValueTransactionLine = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colTransactionId = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.colItemId = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.repItems = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
 			this.textEdit3 = new DevExpress.XtraEditors.TextEdit();
 			this.grdTransactions = new DevExpress.XtraGrid.GridControl();
 			this.grvTransactions = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -255,78 +255,6 @@
 			this.colQuantity.VisibleIndex = 1;
 			this.colQuantity.Width = 94;
 			// 
-			// colItemPrice
-			// 
-			this.colItemPrice.Caption = "Item Price";
-			this.colItemPrice.FieldName = "ItemPrice";
-			this.colItemPrice.MinWidth = 25;
-			this.colItemPrice.Name = "colItemPrice";
-			this.colItemPrice.OptionsColumn.AllowEdit = false;
-			this.colItemPrice.OptionsColumn.AllowFocus = false;
-			this.colItemPrice.Visible = true;
-			this.colItemPrice.VisibleIndex = 2;
-			this.colItemPrice.Width = 94;
-			// 
-			// colNetValue
-			// 
-			this.colNetValue.Caption = "Net Value";
-			this.colNetValue.FieldName = "NetValue";
-			this.colNetValue.MinWidth = 25;
-			this.colNetValue.Name = "colNetValue";
-			this.colNetValue.OptionsColumn.AllowEdit = false;
-			this.colNetValue.OptionsColumn.AllowFocus = false;
-			this.colNetValue.Visible = true;
-			this.colNetValue.VisibleIndex = 3;
-			this.colNetValue.Width = 94;
-			// 
-			// colDiscountPercent
-			// 
-			this.colDiscountPercent.Caption = "Discount Percent %";
-			this.colDiscountPercent.FieldName = "DiscountPercent";
-			this.colDiscountPercent.MinWidth = 25;
-			this.colDiscountPercent.Name = "colDiscountPercent";
-			this.colDiscountPercent.OptionsColumn.AllowEdit = false;
-			this.colDiscountPercent.OptionsColumn.AllowFocus = false;
-			this.colDiscountPercent.Visible = true;
-			this.colDiscountPercent.VisibleIndex = 4;
-			this.colDiscountPercent.Width = 94;
-			// 
-			// colDiscountValue
-			// 
-			this.colDiscountValue.Caption = "Discount Value";
-			this.colDiscountValue.FieldName = "DiscountValue";
-			this.colDiscountValue.MinWidth = 25;
-			this.colDiscountValue.Name = "colDiscountValue";
-			this.colDiscountValue.OptionsColumn.AllowEdit = false;
-			this.colDiscountValue.OptionsColumn.AllowFocus = false;
-			this.colDiscountValue.Visible = true;
-			this.colDiscountValue.VisibleIndex = 5;
-			this.colDiscountValue.Width = 94;
-			// 
-			// colTotalValueTransactionLine
-			// 
-			this.colTotalValueTransactionLine.Caption = "Total Value";
-			this.colTotalValueTransactionLine.FieldName = "TotalValue";
-			this.colTotalValueTransactionLine.MinWidth = 25;
-			this.colTotalValueTransactionLine.Name = "colTotalValueTransactionLine";
-			this.colTotalValueTransactionLine.OptionsColumn.AllowEdit = false;
-			this.colTotalValueTransactionLine.OptionsColumn.AllowFocus = false;
-			this.colTotalValueTransactionLine.Visible = true;
-			this.colTotalValueTransactionLine.VisibleIndex = 6;
-			this.colTotalValueTransactionLine.Width = 94;
-			// 
-			// colTransactionId
-			// 
-			this.colTransactionId.Caption = "Transaction Id";
-			this.colTransactionId.FieldName = "TransactionId";
-			this.colTransactionId.MinWidth = 25;
-			this.colTransactionId.Name = "colTransactionId";
-			this.colTransactionId.OptionsColumn.AllowEdit = false;
-			this.colTransactionId.OptionsColumn.AllowFocus = false;
-			this.colTransactionId.Visible = true;
-			this.colTransactionId.VisibleIndex = 7;
-			this.colTransactionId.Width = 94;
-			// 
 			// colItemId
 			// 
 			this.colItemId.Caption = "Item Id";
@@ -335,7 +263,7 @@
 			this.colItemId.MinWidth = 25;
 			this.colItemId.Name = "colItemId";
 			this.colItemId.Visible = true;
-			this.colItemId.VisibleIndex = 8;
+			this.colItemId.VisibleIndex = 2;
 			this.colItemId.Width = 94;
 			// 
 			// repItems
@@ -348,6 +276,78 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Description", "Description"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ItemType", "Item Type")});
 			this.repItems.Name = "repItems";
+			// 
+			// colItemPrice
+			// 
+			this.colItemPrice.Caption = "Item Price";
+			this.colItemPrice.FieldName = "ItemPrice";
+			this.colItemPrice.MinWidth = 25;
+			this.colItemPrice.Name = "colItemPrice";
+			this.colItemPrice.OptionsColumn.AllowEdit = false;
+			this.colItemPrice.OptionsColumn.AllowFocus = false;
+			this.colItemPrice.Visible = true;
+			this.colItemPrice.VisibleIndex = 3;
+			this.colItemPrice.Width = 94;
+			// 
+			// colNetValue
+			// 
+			this.colNetValue.Caption = "Net Value";
+			this.colNetValue.FieldName = "NetValue";
+			this.colNetValue.MinWidth = 25;
+			this.colNetValue.Name = "colNetValue";
+			this.colNetValue.OptionsColumn.AllowEdit = false;
+			this.colNetValue.OptionsColumn.AllowFocus = false;
+			this.colNetValue.Visible = true;
+			this.colNetValue.VisibleIndex = 4;
+			this.colNetValue.Width = 94;
+			// 
+			// colDiscountPercent
+			// 
+			this.colDiscountPercent.Caption = "Discount Percent %";
+			this.colDiscountPercent.FieldName = "DiscountPercent";
+			this.colDiscountPercent.MinWidth = 25;
+			this.colDiscountPercent.Name = "colDiscountPercent";
+			this.colDiscountPercent.OptionsColumn.AllowEdit = false;
+			this.colDiscountPercent.OptionsColumn.AllowFocus = false;
+			this.colDiscountPercent.Visible = true;
+			this.colDiscountPercent.VisibleIndex = 5;
+			this.colDiscountPercent.Width = 94;
+			// 
+			// colDiscountValue
+			// 
+			this.colDiscountValue.Caption = "Discount Value";
+			this.colDiscountValue.FieldName = "DiscountValue";
+			this.colDiscountValue.MinWidth = 25;
+			this.colDiscountValue.Name = "colDiscountValue";
+			this.colDiscountValue.OptionsColumn.AllowEdit = false;
+			this.colDiscountValue.OptionsColumn.AllowFocus = false;
+			this.colDiscountValue.Visible = true;
+			this.colDiscountValue.VisibleIndex = 6;
+			this.colDiscountValue.Width = 94;
+			// 
+			// colTotalValueTransactionLine
+			// 
+			this.colTotalValueTransactionLine.Caption = "Total Value";
+			this.colTotalValueTransactionLine.FieldName = "TotalValue";
+			this.colTotalValueTransactionLine.MinWidth = 25;
+			this.colTotalValueTransactionLine.Name = "colTotalValueTransactionLine";
+			this.colTotalValueTransactionLine.OptionsColumn.AllowEdit = false;
+			this.colTotalValueTransactionLine.OptionsColumn.AllowFocus = false;
+			this.colTotalValueTransactionLine.Visible = true;
+			this.colTotalValueTransactionLine.VisibleIndex = 7;
+			this.colTotalValueTransactionLine.Width = 94;
+			// 
+			// colTransactionId
+			// 
+			this.colTransactionId.Caption = "Transaction Id";
+			this.colTransactionId.FieldName = "TransactionId";
+			this.colTransactionId.MinWidth = 25;
+			this.colTransactionId.Name = "colTransactionId";
+			this.colTransactionId.OptionsColumn.AllowEdit = false;
+			this.colTransactionId.OptionsColumn.AllowFocus = false;
+			this.colTransactionId.Visible = true;
+			this.colTransactionId.VisibleIndex = 8;
+			this.colTransactionId.Width = 94;
 			// 
 			// textEdit3
 			// 
@@ -560,7 +560,6 @@
 		private DevExpress.XtraGrid.Columns.GridColumn colDiscountValue;
 		private DevExpress.XtraGrid.Columns.GridColumn colTotalValueTransactionLine;
 		private DevExpress.XtraGrid.Columns.GridColumn colTransactionId;
-		private DevExpress.XtraGrid.Columns.GridColumn colItemId;
 		private DevExpress.XtraGrid.Columns.GridColumn colIdTransaction;
 		private DevExpress.XtraGrid.Columns.GridColumn colDate;
 		private DevExpress.XtraGrid.Columns.GridColumn colPaymentMethod;
@@ -572,5 +571,6 @@
 		private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repCustomers;
 		private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repEmployees;
 		private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repItems;
+		private DevExpress.XtraGrid.Columns.GridColumn colItemId;
 	}
 }
