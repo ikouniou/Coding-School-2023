@@ -258,6 +258,10 @@ namespace FuelStation.Desktop.WinForms {
 		private async Task UpdateTransactionTotalValue(TransactionEditDto updatedTransaction) {
 			using (HttpClient client = new HttpClient()) {
 
+				if(updatedTransaction.TotalValue > 50 && updatedTransaction.PaymentMethod.ToString() == "CreditCard") {
+					MessageBox.Show("The only acceptable payment method is Cash.");
+					updatedTransaction.PaymentMethod = Model.Enums.PaymentMethod.Cash;
+				}
 				var response = await client.PutAsJsonAsync($"https://localhost:7119/transaction", updatedTransaction);
 				response.EnsureSuccessStatusCode();
 			}
