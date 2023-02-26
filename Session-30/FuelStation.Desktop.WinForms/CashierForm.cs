@@ -422,6 +422,9 @@ namespace FuelStation.Desktop.WinForms {
 		private async void grvTransactionLines_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e) {
 			GridView view = sender as GridView;
 
+			int parentRowHandle = grvTransactions.FocusedRowHandle;
+			int transactionIdValue = (int)grvTransactions.GetRowCellValue(parentRowHandle, "Id");
+
 			if (e.RowHandle == GridControl.NewItemRowHandle) // check if the updated row is the new row
 			{
 				var transactionLine = (TransactionLineListDto)e.Row; // get the data object of the new row
@@ -457,7 +460,7 @@ namespace FuelStation.Desktop.WinForms {
 						}
 						newTransactionLine.DiscountValue = newTransactionLine.DiscountPercent / 100.0m * newTransactionLine.NetValue;
 						newTransactionLine.TotalValue = newTransactionLine.NetValue - newTransactionLine.DiscountValue;
-						newTransactionLine.TransactionId = transactionLine.TransactionId;
+						newTransactionLine.TransactionId = transactionIdValue;
 						newTransactionLine.ItemId = transactionLine.ItemId;
 						await PostRowTransactionLine(newTransactionLine);
 						var updatedTransaction = await GetLinesOfTransactions(newTransactionLine.TransactionId);
@@ -500,7 +503,7 @@ namespace FuelStation.Desktop.WinForms {
 						}
 						updatedRow.DiscountValue = updatedRow.DiscountPercent / 100.0m * updatedRow.NetValue;
 						updatedRow.TotalValue = updatedRow.NetValue - updatedRow.DiscountValue;
-						updatedRow.TransactionId = row.TransactionId;
+						updatedRow.TransactionId = transactionIdValue;
 						updatedRow.ItemId = row.ItemId;
 						await PutRowTransactionLine(updatedRow);
 						var updatedTransaction = await GetLinesOfTransactions(updatedRow.TransactionId);
@@ -519,7 +522,7 @@ namespace FuelStation.Desktop.WinForms {
 						}
 						newTransactionLine.DiscountValue = newTransactionLine.DiscountPercent / 100.0m * newTransactionLine.NetValue;
 						newTransactionLine.TotalValue = newTransactionLine.NetValue - newTransactionLine.DiscountValue;
-						newTransactionLine.TransactionId = row.TransactionId;
+						newTransactionLine.TransactionId = transactionIdValue;
 						newTransactionLine.ItemId = row.ItemId;
 						await PostRowTransactionLine(newTransactionLine);
 						var updatedTransaction = await GetLinesOfTransactions(newTransactionLine.TransactionId);
