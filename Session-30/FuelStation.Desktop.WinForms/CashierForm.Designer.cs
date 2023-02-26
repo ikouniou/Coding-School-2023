@@ -257,7 +257,7 @@
 			// 
 			// colItemId
 			// 
-			this.colItemId.Caption = "Item Id";
+			this.colItemId.Caption = "Item Description";
 			this.colItemId.ColumnEdit = this.repItems;
 			this.colItemId.FieldName = "ItemId";
 			this.colItemId.MinWidth = 25;
@@ -443,7 +443,7 @@
 			// 
 			// colCustomerId
 			// 
-			this.colCustomerId.Caption = "Customer Id";
+			this.colCustomerId.Caption = "Customer";
 			this.colCustomerId.ColumnEdit = this.repCustomers;
 			this.colCustomerId.FieldName = "CustomerId";
 			this.colCustomerId.MinWidth = 25;
@@ -465,7 +465,7 @@
 			// 
 			// colEmployeeId
 			// 
-			this.colEmployeeId.Caption = "Employee Id";
+			this.colEmployeeId.Caption = "Employee";
 			this.colEmployeeId.ColumnEdit = this.repEmployees;
 			this.colEmployeeId.FieldName = "EmployeeId";
 			this.colEmployeeId.MinWidth = 25;
