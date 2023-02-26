@@ -384,11 +384,15 @@ namespace FuelStation.Desktop.WinForms {
 			}
 		}
 
-		private void grvTransactionLines_RowDeleted(object sender, DevExpress.Data.RowDeletedEventArgs e) {
+		private async void grvTransactionLines_RowDeleted(object sender, DevExpress.Data.RowDeletedEventArgs e) {
 
 			int deletedRowId = ((TransactionLineListDto)e.Row).Id;
+			int transactionId = ((TransactionLineListDto)e.Row).TransactionId;
 			if (deletedRowId != 0) {
-				DeleteRowTransactionLine(deletedRowId);
+				await DeleteRowTransactionLine(deletedRowId);
+				var updatedTransaction = await GetLinesOfTransactions(transactionId);
+				await UpdateTransactionTotalValue(updatedTransaction);
+				await GetTransactions();
 			}
 
 		}
@@ -397,7 +401,7 @@ namespace FuelStation.Desktop.WinForms {
 			using (HttpClient client = new HttpClient()) {
 
 				var response = await client.DeleteAsync($"https://localhost:7119/transactionLine/{row}");
-				GetTransactions();
+				
 			}
 		}
 
