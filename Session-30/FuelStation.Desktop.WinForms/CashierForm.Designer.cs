@@ -222,13 +222,13 @@
 			this.grvTransactionLines.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colIdTransacrionLine,
             this.colQuantity,
+            this.colItemId,
             this.colItemPrice,
             this.colNetValue,
             this.colDiscountPercent,
             this.colDiscountValue,
             this.colTotalValueTransactionLine,
-            this.colTransactionId,
-            this.colItemId});
+            this.colTransactionId});
 			this.grvTransactionLines.GridControl = this.grdTranssactionLines;
 			this.grvTransactionLines.Name = "grvTransactionLines";
 			this.grvTransactionLines.OptionsView.ShowGroupPanel = false;
