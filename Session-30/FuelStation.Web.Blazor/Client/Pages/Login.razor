@@ -7,17 +7,19 @@
 
 <PageTitle>Fuel Station - Login</PageTitle>
 
-<h2 style="color:#009150">Login</h2>
-<p style="color:#009150">Please select your Employee Type</p>
+<div style="text-align:center">
 
-<div class="container login">
-    <div class="login-buttons" style="display:inline-flex;flex-direction:column">
-        <button style="color:#009150;border:1px solid #009150;padding:15px 100px;margin-top:30px" @onclick="() => LoginAs(EmployeeType.Manager)">Manager</button>
-        <button style="color:#009150;border:1px solid #009150;padding:15px 100px;margin-top:30px" @onclick="() => LoginAs(EmployeeType.Cashier)">Cashier</button>
-        <button style="color:#009150;border:1px solid #009150;padding:15px 100px;margin-top:30px" @onclick="() => LoginAs(EmployeeType.Staff)">Staff</button>
+    <h2 style="color:#009150">Login</h2>
+    <p style="color:#009150">Please select your Employee Type</p>
+
+    <div class="container login">
+        <div class="login-buttons" style="display:inline-flex;flex-direction:column">
+            <button style="color:#009150;border:1px solid #009150;padding:15px 100px;margin-top:30px" @onclick="() => LoginAs(EmployeeType.Manager)">Manager</button>
+            <button style="color:#009150;border:1px solid #009150;padding:15px 100px;margin-top:30px" @onclick="() => LoginAs(EmployeeType.Cashier)">Cashier</button>
+            <button style="color:#009150;border:1px solid #009150;padding:15px 100px;margin-top:30px" @onclick="() => LoginAs(EmployeeType.Staff)">Staff</button>
+        </div>
     </div>
 </div>
-
 @code {
 
     private void LoginAs(EmployeeType employeeType) {
