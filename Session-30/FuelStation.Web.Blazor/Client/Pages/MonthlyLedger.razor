@@ -100,9 +100,6 @@
 		decimal sum = 0;
 
 		foreach(var employee in employeeList) {
-			//if(employee.HireDateStart.Year <= year && employee.HireDateEnd.Year >= year && employee.HireDateStart.Month <= month && employee.HireDateEnd.Month <= month) {
-			//	sum += employee.SallaryPerMonth;
-			//}
 
 			if(employee.HireDateStart.Date <= yearMonth && employee.HireDateEnd.Date >= yearMonth) {
 				sum += employee.SallaryPerMonth;
@@ -116,6 +113,8 @@
 				sum += transactionLine.Quantity * item.Cost;
 			}
 		}
+		sum += 5000;
+
 		return sum;
 	}
 }
