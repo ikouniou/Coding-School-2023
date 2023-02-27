@@ -14,7 +14,7 @@
 	@if (errorMessage != null) {
 		<p class="text-danger">@errorMessage</p>
 	}
-	<button class="btn btn-outline-secondary" @onclick="CreateItem">Create</button>
+	<button class="btn btn-outline-success" @onclick="CreateItem">Create</button>
 
 	<table class="table table-striped table-hover">
 		<thead>
@@ -37,8 +37,8 @@
 					<td>@item.Price</td>
 					<td>@item.Cost</td>
 					<td>
-						<button class="btn btn-secondary" @onclick="()=> EditItem(item)">Edit</button>
-						<button class="btn btn-secondary" @onclick="() => DetailsItem(item)">Details</button>
+						<button class="btn btn-success" @onclick="()=> EditItem(item)">Edit</button>
+						@*<button class="btn btn-success" @onclick="() => DetailsItem(item)">Details</button>*@
 						<button class="btn btn-danger" @onclick="()=> DeleteItem(item)">Delete</button>
 					</td>
 				</tr>
