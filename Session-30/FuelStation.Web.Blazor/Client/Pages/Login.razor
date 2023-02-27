@@ -1,28 +1,29 @@
 ﻿@page "/login"
 @using FuelStation.Model.Enums;
+@using Microsoft.AspNetCore.Http;
+@using Microsoft.AspNetCore.Session;
 @inject NavigationManager navigationManager
+@*@inject IHttpContextAccessor httpContextAccessor*@
 
-<h3>Login as:</h3>
+<PageTitle>Fuel Station - Login</PageTitle>
 
-<div>
-	<button class="btn btn-secondary" @onclick="() => ManagerType()">Manager</button>
-	<button class="btn btn-secondary" @onclick="() => CashierType()">Cashier</button>
-	<button class="btn btn-secondary" @onclick="()=> StaffType()">Staff Member</button>
+<h2 style="color:#009150">Login</h2>
+<p style="color:#009150">Please select your Employee Type</p>
+
+<div class="container login">
+    <div class="login-buttons" style="display:inline-flex;flex-direction:column">
+        <button style="color:#009150;border:1px solid #009150;padding:15px 100px;margin-top:30px" @onclick="() => LoginAs(EmployeeType.Manager)">Manager</button>
+        <button style="color:#009150;border:1px solid #009150;padding:15px 100px;margin-top:30px" @onclick="() => LoginAs(EmployeeType.Cashier)">Cashier</button>
+        <button style="color:#009150;border:1px solid #009150;padding:15px 100px;margin-top:30px" @onclick="() => LoginAs(EmployeeType.Staff)">Staff</button>
+    </div>
 </div>
-
 
 @code {
 
-	private void ManagerType() {
-		navigationManager.NavigateTo("employeelist");
-	}
+    private void LoginAs(EmployeeType employeeType) {
+        //httpContextAccessor.HttpContext.Session.SetString("EmployeeType", employeeType.ToString());
+        navigationManager.NavigateTo("/");
+    }
 
-	private void CashierType() {
-		navigationManager.NavigateTo("customerlist");
-	}
-
-	private void StaffType() {
-		navigationManager.NavigateTo("itemlist");
-	}
 
 }
