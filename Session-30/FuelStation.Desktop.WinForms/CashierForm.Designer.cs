@@ -241,8 +241,6 @@
 			this.colIdTransacrionLine.Name = "colIdTransacrionLine";
 			this.colIdTransacrionLine.OptionsColumn.AllowEdit = false;
 			this.colIdTransacrionLine.OptionsColumn.AllowFocus = false;
-			this.colIdTransacrionLine.Visible = true;
-			this.colIdTransacrionLine.VisibleIndex = 0;
 			this.colIdTransacrionLine.Width = 94;
 			// 
 			// colQuantity
@@ -252,7 +250,7 @@
 			this.colQuantity.MinWidth = 25;
 			this.colQuantity.Name = "colQuantity";
 			this.colQuantity.Visible = true;
-			this.colQuantity.VisibleIndex = 1;
+			this.colQuantity.VisibleIndex = 0;
 			this.colQuantity.Width = 94;
 			// 
 			// colItemId
@@ -263,7 +261,7 @@
 			this.colItemId.MinWidth = 25;
 			this.colItemId.Name = "colItemId";
 			this.colItemId.Visible = true;
-			this.colItemId.VisibleIndex = 2;
+			this.colItemId.VisibleIndex = 1;
 			this.colItemId.Width = 94;
 			// 
 			// repItems
@@ -286,7 +284,7 @@
 			this.colItemPrice.OptionsColumn.AllowEdit = false;
 			this.colItemPrice.OptionsColumn.AllowFocus = false;
 			this.colItemPrice.Visible = true;
-			this.colItemPrice.VisibleIndex = 3;
+			this.colItemPrice.VisibleIndex = 2;
 			this.colItemPrice.Width = 94;
 			// 
 			// colNetValue
@@ -298,7 +296,7 @@
 			this.colNetValue.OptionsColumn.AllowEdit = false;
 			this.colNetValue.OptionsColumn.AllowFocus = false;
 			this.colNetValue.Visible = true;
-			this.colNetValue.VisibleIndex = 4;
+			this.colNetValue.VisibleIndex = 3;
 			this.colNetValue.Width = 94;
 			// 
 			// colDiscountPercent
@@ -310,7 +308,7 @@
 			this.colDiscountPercent.OptionsColumn.AllowEdit = false;
 			this.colDiscountPercent.OptionsColumn.AllowFocus = false;
 			this.colDiscountPercent.Visible = true;
-			this.colDiscountPercent.VisibleIndex = 5;
+			this.colDiscountPercent.VisibleIndex = 4;
 			this.colDiscountPercent.Width = 94;
 			// 
 			// colDiscountValue
@@ -322,7 +320,7 @@
 			this.colDiscountValue.OptionsColumn.AllowEdit = false;
 			this.colDiscountValue.OptionsColumn.AllowFocus = false;
 			this.colDiscountValue.Visible = true;
-			this.colDiscountValue.VisibleIndex = 6;
+			this.colDiscountValue.VisibleIndex = 5;
 			this.colDiscountValue.Width = 94;
 			// 
 			// colTotalValueTransactionLine
@@ -334,7 +332,7 @@
 			this.colTotalValueTransactionLine.OptionsColumn.AllowEdit = false;
 			this.colTotalValueTransactionLine.OptionsColumn.AllowFocus = false;
 			this.colTotalValueTransactionLine.Visible = true;
-			this.colTotalValueTransactionLine.VisibleIndex = 7;
+			this.colTotalValueTransactionLine.VisibleIndex = 6;
 			this.colTotalValueTransactionLine.Width = 94;
 			// 
 			// colTransactionId
@@ -345,8 +343,6 @@
 			this.colTransactionId.Name = "colTransactionId";
 			this.colTransactionId.OptionsColumn.AllowEdit = false;
 			this.colTransactionId.OptionsColumn.AllowFocus = false;
-			this.colTransactionId.Visible = true;
-			this.colTransactionId.VisibleIndex = 8;
 			this.colTransactionId.Width = 94;
 			// 
 			// textEdit3
@@ -393,6 +389,7 @@
             this.colEmployeeId});
 			this.grvTransactions.GridControl = this.grdTransactions;
 			this.grvTransactions.Name = "grvTransactions";
+			this.grvTransactions.OptionsView.ShowDetailButtons = false;
 			this.grvTransactions.OptionsView.ShowGroupPanel = false;
 			// 
 			// colIdTransaction
@@ -403,8 +400,6 @@
 			this.colIdTransaction.Name = "colIdTransaction";
 			this.colIdTransaction.OptionsColumn.AllowEdit = false;
 			this.colIdTransaction.OptionsColumn.AllowFocus = false;
-			this.colIdTransaction.Visible = true;
-			this.colIdTransaction.VisibleIndex = 0;
 			this.colIdTransaction.Width = 94;
 			// 
 			// colDate
@@ -416,7 +411,7 @@
 			this.colDate.OptionsColumn.AllowEdit = false;
 			this.colDate.OptionsColumn.AllowFocus = false;
 			this.colDate.Visible = true;
-			this.colDate.VisibleIndex = 1;
+			this.colDate.VisibleIndex = 0;
 			this.colDate.Width = 94;
 			// 
 			// colPaymentMethod
@@ -426,7 +421,7 @@
 			this.colPaymentMethod.MinWidth = 25;
 			this.colPaymentMethod.Name = "colPaymentMethod";
 			this.colPaymentMethod.Visible = true;
-			this.colPaymentMethod.VisibleIndex = 2;
+			this.colPaymentMethod.VisibleIndex = 1;
 			this.colPaymentMethod.Width = 94;
 			// 
 			// colTotalValue
@@ -438,7 +433,7 @@
 			this.colTotalValue.OptionsColumn.AllowEdit = false;
 			this.colTotalValue.OptionsColumn.AllowFocus = false;
 			this.colTotalValue.Visible = true;
-			this.colTotalValue.VisibleIndex = 3;
+			this.colTotalValue.VisibleIndex = 2;
 			this.colTotalValue.Width = 94;
 			// 
 			// colCustomerId
@@ -449,7 +444,7 @@
 			this.colCustomerId.MinWidth = 25;
 			this.colCustomerId.Name = "colCustomerId";
 			this.colCustomerId.Visible = true;
-			this.colCustomerId.VisibleIndex = 4;
+			this.colCustomerId.VisibleIndex = 3;
 			this.colCustomerId.Width = 94;
 			// 
 			// repCustomers
@@ -471,7 +466,7 @@
 			this.colEmployeeId.MinWidth = 25;
 			this.colEmployeeId.Name = "colEmployeeId";
 			this.colEmployeeId.Visible = true;
-			this.colEmployeeId.VisibleIndex = 5;
+			this.colEmployeeId.VisibleIndex = 4;
 			this.colEmployeeId.Width = 94;
 			// 
 			// repEmployees

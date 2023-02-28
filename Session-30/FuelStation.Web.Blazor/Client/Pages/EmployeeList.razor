@@ -81,7 +81,7 @@
 	private async Task DeleteItem(EmployeeListDto employee) {
 		
 		errorMessage = null;
-		var confirm = await jsRuntime.InvokeAsync<bool>("confirm", "Delete Item. Are you sure?");
+		var confirm = await jsRuntime.InvokeAsync<bool>("confirm", "Delete Employee. Are you sure?");
 		if (confirm) {
 			var response = await httpClient.DeleteAsync($"employee/{employee.Id}");
 			if (response.IsSuccessStatusCode) {
