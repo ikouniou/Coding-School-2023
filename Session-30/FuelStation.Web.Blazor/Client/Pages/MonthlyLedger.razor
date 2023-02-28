@@ -15,6 +15,23 @@
 	<LoadingSpinner Type="LoadingSpinnerType.Border" />
 } else {
 
+	<EditForm Model="rentingCost" OnValidSubmit="OnSave">
+			<DataAnnotationsValidator />
+
+			<div class="row">
+				<div class="col-md-2">
+					<label class="form-label">Renting Cost</label>
+					<InputNumber class="form-control" placeholder="@rentingCost" @bind-Value="@rentingCost" />
+					<ValidationMessage For="@(()=>rentingCost)" />
+				</div>
+			</div>
+			<div class="row mt-2">
+				<div class="col">
+					<button class="btn btn-success" type="submit">Save</button>
+					<button class="btn btn-danger" @onclick="OnClear">Clear</button>
+				</div>
+			</div>
+    </EditForm>
 	<table class="table table-striped table-hover">
 		<thead>
 			<tr>
@@ -46,6 +63,7 @@
 	private List<ItemListDto> itemList = new();
 	private List<TransactionListDto> transactionList = new();
 	bool isLoading { get; set; } = true;
+	private int rentingCost = 5000;
 
 	int year = 2021;
 	int month = 1;
@@ -56,6 +74,21 @@
 
 	protected override async Task OnInitializedAsync() {
 		await LoadItemsFromServer();
+		CalculateLedger();
+		isLoading = false;
+	}
+
+	private async Task LoadItemsFromServer() {
+		transactionList = await httpClient.GetFromJsonAsync<List<TransactionListDto>>("transaction");
+		employeeList = await httpClient.GetFromJsonAsync<List<EmployeeListDto>>("employee");
+		itemList = await httpClient.GetFromJsonAsync<List<ItemListDto>>("item");
+	}
+
+	private async Task OnSave() {
+		CalculateLedger();
+	}
+
+	private void CalculateLedger() {
 		for (int i = year; i <= yearNow; i++) {
 
 			for (int j = 1; j <= 12; j++) {
@@ -70,13 +103,10 @@
 				monthlyLedgerList.Add(monthlyLedger);
 			}
 		}
-		isLoading = false;
 	}
 
-	private async Task LoadItemsFromServer() {
-		transactionList = await httpClient.GetFromJsonAsync<List<TransactionListDto>>("transaction");
-		employeeList = await httpClient.GetFromJsonAsync<List<EmployeeListDto>>("employee");
-		itemList = await httpClient.GetFromJsonAsync<List<ItemListDto>>("item");
+	private void OnClear() {
+		monthlyLedgerList.Clear();
 	}
 
 	private decimal CalculateMonthlyIncome(DateTime date) {
@@ -113,7 +143,7 @@
 				sum += transactionLine.Quantity * item.Cost;
 			}
 		}
-		sum += 5000;
+		sum += rentingCost;
 
 		return sum;
 	}
