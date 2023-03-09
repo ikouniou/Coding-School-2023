@@ -205,5 +205,17 @@ namespace FuelStation.Desktop.WinForms {
 		
 		}
 
+		private void btnDeleteItem_Click(object sender, EventArgs e) {
+			
+			DialogResult result = MessageBox.Show("Do you want to delete the current row?", "Confirm deletion",
+					MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+			if (result == DialogResult.Yes) {
+				int deletedRowId = ((ItemListDto)ItemBs.Current).Id;
+				if (deletedRowId != 0) {
+					DeleteRow(deletedRowId);
+				}
+				ItemBs.RemoveCurrent();
+			}
+		}
 	}
 }

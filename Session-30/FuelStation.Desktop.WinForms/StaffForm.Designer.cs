@@ -34,6 +34,8 @@
 			this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.ItemBs = new System.Windows.Forms.BindingSource(this.components);
 			this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
+			this.btnAddItem = new System.Windows.Forms.Button();
+			this.btnDeleteItem = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.grdItems)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.grvItems)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.ItemBs)).BeginInit();
@@ -142,11 +144,34 @@
 			this.textEdit1.Size = new System.Drawing.Size(106, 34);
 			this.textEdit1.TabIndex = 1;
 			// 
+			// btnAddItem
+			// 
+			this.btnAddItem.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+			this.btnAddItem.Location = new System.Drawing.Point(12, 376);
+			this.btnAddItem.Name = "btnAddItem";
+			this.btnAddItem.Size = new System.Drawing.Size(106, 48);
+			this.btnAddItem.TabIndex = 2;
+			this.btnAddItem.Text = "Add";
+			this.btnAddItem.UseVisualStyleBackColor = true;
+			// 
+			// btnDeleteItem
+			// 
+			this.btnDeleteItem.ForeColor = System.Drawing.Color.Red;
+			this.btnDeleteItem.Location = new System.Drawing.Point(124, 376);
+			this.btnDeleteItem.Name = "btnDeleteItem";
+			this.btnDeleteItem.Size = new System.Drawing.Size(106, 48);
+			this.btnDeleteItem.TabIndex = 3;
+			this.btnDeleteItem.Text = "Delete";
+			this.btnDeleteItem.UseVisualStyleBackColor = true;
+			this.btnDeleteItem.Click += new System.EventHandler(this.btnDeleteItem_Click);
+			// 
 			// StaffForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Controls.Add(this.btnDeleteItem);
+			this.Controls.Add(this.btnAddItem);
 			this.Controls.Add(this.textEdit1);
 			this.Controls.Add(this.grdItems);
 			this.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -173,5 +198,7 @@
 		private BindingSource ItemBs;
 		private DevExpress.XtraEditors.TextEdit textEdit1;
 		private DevExpress.XtraGrid.Columns.GridColumn colId;
+		private Button btnAddItem;
+		private Button btnDeleteItem;
 	}
 }
