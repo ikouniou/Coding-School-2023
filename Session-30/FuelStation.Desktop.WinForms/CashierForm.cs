@@ -575,5 +575,47 @@ namespace FuelStation.Desktop.WinForms {
 			}
 
 		}
+
+		private void btnDeleteCustomer_Click(object sender, EventArgs e) {
+			
+			DialogResult result = MessageBox.Show("Do you want to delete the current row?", "Confirm deletion",
+					MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+			if (result == DialogResult.Yes) {
+				int deletedRowId = ((CustomerListDto)CustomersBs.Current).Id;
+				if (deletedRowId != 0) {
+					DeleteRow(deletedRowId);
+				}
+				CustomersBs.RemoveCurrent();
+			}
+		}
+
+		private void btnDeleteTransaction_Click(object sender, EventArgs e) {
+
+			DialogResult result = MessageBox.Show("Do you want to delete the current row?", "Confirm deletion",
+					MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+			if (result == DialogResult.Yes) {
+				int deletedRowId = ((TransactionListDto)TransactionsBs.Current).Id;
+				if (deletedRowId != 0) {
+					DeleteRowTransaction(deletedRowId);
+				}
+				TransactionsBs.RemoveCurrent();
+			}
+		}
+
+		private async void btnDeleteTransactionLine_Click(object sender, EventArgs e) {
+
+			DialogResult result = MessageBox.Show("Do you want to delete the current row?", "Confirm deletion",
+					MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+			if (result == DialogResult.Yes) {
+				int deletedRowId = ((TransactionLineListDto)TransactionLinesBs.Current).Id;
+				int transactionId = ((TransactionLineListDto)TransactionLinesBs.Current).TransactionId;
+				if (deletedRowId != 0) {
+					await DeleteRowTransactionLine(deletedRowId);
+					var updatedTransaction = await GetLinesOfTransactions(transactionId);
+					await UpdateTransactionTotalValue(updatedTransaction);
+					await GetTransactions();
+				}
+			}
+		}
 	}
 }

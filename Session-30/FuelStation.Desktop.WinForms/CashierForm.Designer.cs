@@ -128,6 +128,7 @@
 			this.btnDeleteCustomer.TabIndex = 9;
 			this.btnDeleteCustomer.Text = "Delete";
 			this.btnDeleteCustomer.UseVisualStyleBackColor = true;
+			this.btnDeleteCustomer.Click += new System.EventHandler(this.btnDeleteCustomer_Click);
 			// 
 			// btnAddCustomer
 			// 
@@ -244,6 +245,7 @@
 			this.btnDeleteTransactionLine.TabIndex = 10;
 			this.btnDeleteTransactionLine.Text = "Delete";
 			this.btnDeleteTransactionLine.UseVisualStyleBackColor = true;
+			this.btnDeleteTransactionLine.Click += new System.EventHandler(this.btnDeleteTransactionLine_Click);
 			// 
 			// btnAddTransactionLine
 			// 
@@ -259,17 +261,18 @@
 			// btnDeleteTransaction
 			// 
 			this.btnDeleteTransaction.ForeColor = System.Drawing.Color.Red;
-			this.btnDeleteTransaction.Location = new System.Drawing.Point(112, 326);
+			this.btnDeleteTransaction.Location = new System.Drawing.Point(115, 326);
 			this.btnDeleteTransaction.Name = "btnDeleteTransaction";
 			this.btnDeleteTransaction.Size = new System.Drawing.Size(106, 48);
 			this.btnDeleteTransaction.TabIndex = 8;
 			this.btnDeleteTransaction.Text = "Delete";
 			this.btnDeleteTransaction.UseVisualStyleBackColor = true;
+			this.btnDeleteTransaction.Click += new System.EventHandler(this.btnDeleteTransaction_Click);
 			// 
 			// btnAddTransaction
 			// 
 			this.btnAddTransaction.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-			this.btnAddTransaction.Location = new System.Drawing.Point(0, 326);
+			this.btnAddTransaction.Location = new System.Drawing.Point(3, 326);
 			this.btnAddTransaction.Name = "btnAddTransaction";
 			this.btnAddTransaction.Size = new System.Drawing.Size(106, 48);
 			this.btnAddTransaction.TabIndex = 7;
@@ -425,7 +428,7 @@
 			// 
 			this.textEdit3.EditValue = "Transaction Lines";
 			this.textEdit3.Enabled = false;
-			this.textEdit3.Location = new System.Drawing.Point(0, 425);
+			this.textEdit3.Location = new System.Drawing.Point(3, 425);
 			this.textEdit3.Name = "textEdit3";
 			this.textEdit3.Properties.Appearance.BackColor = System.Drawing.SystemColors.Control;
 			this.textEdit3.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
