@@ -61,6 +61,10 @@
 			this.CustomersBs = new System.Windows.Forms.BindingSource(this.components);
 			this.TransactionsBs = new System.Windows.Forms.BindingSource(this.components);
 			this.TransactionLinesBs = new System.Windows.Forms.BindingSource(this.components);
+			this.btnAddTransaction = new System.Windows.Forms.Button();
+			this.btnDeleteTransaction = new System.Windows.Forms.Button();
+			this.btnAddTransactionLine = new System.Windows.Forms.Button();
+			this.btnDeleteTransactionLine = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.tabPane1)).BeginInit();
 			this.tabPane1.SuspendLayout();
 			this.Customers.SuspendLayout();
@@ -94,9 +98,9 @@
 			this.tabPane1.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] {
             this.Customers,
             this.Transactions});
-			this.tabPane1.RegularSize = new System.Drawing.Size(776, 616);
+			this.tabPane1.RegularSize = new System.Drawing.Size(766, 816);
 			this.tabPane1.SelectedPage = this.Customers;
-			this.tabPane1.Size = new System.Drawing.Size(776, 616);
+			this.tabPane1.Size = new System.Drawing.Size(766, 816);
 			this.tabPane1.TabIndex = 0;
 			this.tabPane1.Text = "tabPane1";
 			// 
@@ -193,12 +197,16 @@
 			// Transactions
 			// 
 			this.Transactions.Caption = "Transactions";
+			this.Transactions.Controls.Add(this.btnDeleteTransactionLine);
+			this.Transactions.Controls.Add(this.btnAddTransactionLine);
+			this.Transactions.Controls.Add(this.btnDeleteTransaction);
+			this.Transactions.Controls.Add(this.btnAddTransaction);
 			this.Transactions.Controls.Add(this.grdTranssactionLines);
 			this.Transactions.Controls.Add(this.textEdit3);
 			this.Transactions.Controls.Add(this.grdTransactions);
 			this.Transactions.Controls.Add(this.textEdit2);
 			this.Transactions.Name = "Transactions";
-			this.Transactions.Size = new System.Drawing.Size(776, 575);
+			this.Transactions.Size = new System.Drawing.Size(766, 775);
 			// 
 			// grdTranssactionLines
 			// 
@@ -206,12 +214,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.grdTranssactionLines.EmbeddedNavigator.ButtonClick += new DevExpress.XtraEditors.NavigatorButtonClickEventHandler(this.grdTranssactionLines_EmbeddedNavigator_ButtonClick);
-			this.grdTranssactionLines.Location = new System.Drawing.Point(3, 380);
+			this.grdTranssactionLines.Location = new System.Drawing.Point(0, 465);
 			this.grdTranssactionLines.MainView = this.grvTransactionLines;
 			this.grdTranssactionLines.Name = "grdTranssactionLines";
 			this.grdTranssactionLines.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repItems});
-			this.grdTranssactionLines.Size = new System.Drawing.Size(770, 177);
+			this.grdTranssactionLines.Size = new System.Drawing.Size(760, 210);
 			this.grdTranssactionLines.TabIndex = 6;
 			this.grdTranssactionLines.UseEmbeddedNavigator = true;
 			this.grdTranssactionLines.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -349,7 +357,7 @@
 			// 
 			this.textEdit3.EditValue = "Transaction Lines";
 			this.textEdit3.Enabled = false;
-			this.textEdit3.Location = new System.Drawing.Point(0, 340);
+			this.textEdit3.Location = new System.Drawing.Point(0, 425);
 			this.textEdit3.Name = "textEdit3";
 			this.textEdit3.Properties.Appearance.BackColor = System.Drawing.SystemColors.Control;
 			this.textEdit3.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -372,7 +380,7 @@
 			this.grdTransactions.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repCustomers,
             this.repEmployees});
-			this.grdTransactions.Size = new System.Drawing.Size(770, 250);
+			this.grdTransactions.Size = new System.Drawing.Size(760, 250);
 			this.grdTransactions.TabIndex = 4;
 			this.grdTransactions.UseEmbeddedNavigator = true;
 			this.grdTransactions.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -496,11 +504,51 @@
 			this.textEdit2.Size = new System.Drawing.Size(159, 34);
 			this.textEdit2.TabIndex = 3;
 			// 
+			// btnAddTransaction
+			// 
+			this.btnAddTransaction.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+			this.btnAddTransaction.Location = new System.Drawing.Point(0, 326);
+			this.btnAddTransaction.Name = "btnAddTransaction";
+			this.btnAddTransaction.Size = new System.Drawing.Size(106, 48);
+			this.btnAddTransaction.TabIndex = 7;
+			this.btnAddTransaction.Text = "Add";
+			this.btnAddTransaction.UseVisualStyleBackColor = true;
+			// 
+			// btnDeleteTransaction
+			// 
+			this.btnDeleteTransaction.ForeColor = System.Drawing.Color.Red;
+			this.btnDeleteTransaction.Location = new System.Drawing.Point(112, 326);
+			this.btnDeleteTransaction.Name = "btnDeleteTransaction";
+			this.btnDeleteTransaction.Size = new System.Drawing.Size(106, 48);
+			this.btnDeleteTransaction.TabIndex = 8;
+			this.btnDeleteTransaction.Text = "Delete";
+			this.btnDeleteTransaction.UseVisualStyleBackColor = true;
+			// 
+			// btnAddTransactionLine
+			// 
+			this.btnAddTransactionLine.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+			this.btnAddTransactionLine.Location = new System.Drawing.Point(3, 681);
+			this.btnAddTransactionLine.Name = "btnAddTransactionLine";
+			this.btnAddTransactionLine.Size = new System.Drawing.Size(106, 48);
+			this.btnAddTransactionLine.TabIndex = 9;
+			this.btnAddTransactionLine.Text = "Add";
+			this.btnAddTransactionLine.UseVisualStyleBackColor = true;
+			// 
+			// btnDeleteTransactionLine
+			// 
+			this.btnDeleteTransactionLine.ForeColor = System.Drawing.Color.Red;
+			this.btnDeleteTransactionLine.Location = new System.Drawing.Point(115, 681);
+			this.btnDeleteTransactionLine.Name = "btnDeleteTransactionLine";
+			this.btnDeleteTransactionLine.Size = new System.Drawing.Size(106, 48);
+			this.btnDeleteTransactionLine.TabIndex = 10;
+			this.btnDeleteTransactionLine.Text = "Delete";
+			this.btnDeleteTransactionLine.UseVisualStyleBackColor = true;
+			// 
 			// CashierForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(800, 640);
+			this.ClientSize = new System.Drawing.Size(790, 840);
 			this.Controls.Add(this.tabPane1);
 			this.Name = "CashierForm";
 			this.Text = "Customers - Transactions";
@@ -567,5 +615,9 @@
 		private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repEmployees;
 		private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repItems;
 		private DevExpress.XtraGrid.Columns.GridColumn colItemId;
+		private Button btnAddTransaction;
+		private Button btnDeleteTransactionLine;
+		private Button btnAddTransactionLine;
+		private Button btnDeleteTransaction;
 	}
 }
