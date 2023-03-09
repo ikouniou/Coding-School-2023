@@ -26,6 +26,7 @@
 			this.components = new System.ComponentModel.Container();
 			this.tabPane1 = new DevExpress.XtraBars.Navigation.TabPane();
 			this.Customers = new DevExpress.XtraBars.Navigation.TabNavigationPage();
+			this.btnEndEditCustomer = new System.Windows.Forms.Button();
 			this.btnDeleteCustomer = new System.Windows.Forms.Button();
 			this.btnAddCustomer = new System.Windows.Forms.Button();
 			this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
@@ -36,6 +37,8 @@
 			this.colSurname = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colCardNumber = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.Transactions = new DevExpress.XtraBars.Navigation.TabNavigationPage();
+			this.btnEndEditTransactionLine = new System.Windows.Forms.Button();
+			this.btnEndEditTransaction = new System.Windows.Forms.Button();
 			this.btnDeleteTransactionLine = new System.Windows.Forms.Button();
 			this.btnAddTransactionLine = new System.Windows.Forms.Button();
 			this.btnDeleteTransaction = new System.Windows.Forms.Button();
@@ -111,12 +114,25 @@
 			this.Customers.Appearance.BackColor = System.Drawing.SystemColors.Control;
 			this.Customers.Appearance.Options.UseBackColor = true;
 			this.Customers.Caption = "Customers";
+			this.Customers.Controls.Add(this.btnEndEditCustomer);
 			this.Customers.Controls.Add(this.btnDeleteCustomer);
 			this.Customers.Controls.Add(this.btnAddCustomer);
 			this.Customers.Controls.Add(this.textEdit1);
 			this.Customers.Controls.Add(this.grdCustomers);
 			this.Customers.Name = "Customers";
 			this.Customers.Size = new System.Drawing.Size(766, 775);
+			// 
+			// btnEndEditCustomer
+			// 
+			this.btnEndEditCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.btnEndEditCustomer.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+			this.btnEndEditCustomer.Location = new System.Drawing.Point(294, 382);
+			this.btnEndEditCustomer.Name = "btnEndEditCustomer";
+			this.btnEndEditCustomer.Size = new System.Drawing.Size(106, 48);
+			this.btnEndEditCustomer.TabIndex = 10;
+			this.btnEndEditCustomer.Text = "End Edit";
+			this.btnEndEditCustomer.UseVisualStyleBackColor = true;
+			this.btnEndEditCustomer.Click += new System.EventHandler(this.btnEndEditCustomer_Click);
 			// 
 			// btnDeleteCustomer
 			// 
@@ -140,6 +156,7 @@
 			this.btnAddCustomer.TabIndex = 8;
 			this.btnAddCustomer.Text = "Add";
 			this.btnAddCustomer.UseVisualStyleBackColor = true;
+			this.btnAddCustomer.Click += new System.EventHandler(this.btnAddCustomer_Click);
 			// 
 			// textEdit1
 			// 
@@ -224,6 +241,8 @@
 			// Transactions
 			// 
 			this.Transactions.Caption = "Transactions";
+			this.Transactions.Controls.Add(this.btnEndEditTransactionLine);
+			this.Transactions.Controls.Add(this.btnEndEditTransaction);
 			this.Transactions.Controls.Add(this.btnDeleteTransactionLine);
 			this.Transactions.Controls.Add(this.btnAddTransactionLine);
 			this.Transactions.Controls.Add(this.btnDeleteTransaction);
@@ -234,6 +253,30 @@
 			this.Transactions.Controls.Add(this.textEdit2);
 			this.Transactions.Name = "Transactions";
 			this.Transactions.Size = new System.Drawing.Size(766, 775);
+			// 
+			// btnEndEditTransactionLine
+			// 
+			this.btnEndEditTransactionLine.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.btnEndEditTransactionLine.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+			this.btnEndEditTransactionLine.Location = new System.Drawing.Point(290, 681);
+			this.btnEndEditTransactionLine.Name = "btnEndEditTransactionLine";
+			this.btnEndEditTransactionLine.Size = new System.Drawing.Size(106, 48);
+			this.btnEndEditTransactionLine.TabIndex = 12;
+			this.btnEndEditTransactionLine.Text = "End Edit";
+			this.btnEndEditTransactionLine.UseVisualStyleBackColor = true;
+			this.btnEndEditTransactionLine.Click += new System.EventHandler(this.btnEndEditTransactionLine_Click);
+			// 
+			// btnEndEditTransaction
+			// 
+			this.btnEndEditTransaction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.btnEndEditTransaction.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+			this.btnEndEditTransaction.Location = new System.Drawing.Point(290, 326);
+			this.btnEndEditTransaction.Name = "btnEndEditTransaction";
+			this.btnEndEditTransaction.Size = new System.Drawing.Size(106, 48);
+			this.btnEndEditTransaction.TabIndex = 11;
+			this.btnEndEditTransaction.Text = "End Edit";
+			this.btnEndEditTransaction.UseVisualStyleBackColor = true;
+			this.btnEndEditTransaction.Click += new System.EventHandler(this.btnEndEditTransaction_Click);
 			// 
 			// btnDeleteTransactionLine
 			// 
@@ -257,6 +300,7 @@
 			this.btnAddTransactionLine.TabIndex = 9;
 			this.btnAddTransactionLine.Text = "Add";
 			this.btnAddTransactionLine.UseVisualStyleBackColor = true;
+			this.btnAddTransactionLine.Click += new System.EventHandler(this.btnAddTransactionLine_Click);
 			// 
 			// btnDeleteTransaction
 			// 
@@ -278,6 +322,7 @@
 			this.btnAddTransaction.TabIndex = 7;
 			this.btnAddTransaction.Text = "Add";
 			this.btnAddTransaction.UseVisualStyleBackColor = true;
+			this.btnAddTransaction.Click += new System.EventHandler(this.btnAddTransaction_Click);
 			// 
 			// grdTranssactionLines
 			// 
@@ -652,5 +697,8 @@
 		private Button btnDeleteTransaction;
 		private Button btnDeleteCustomer;
 		private Button btnAddCustomer;
+		private Button btnEndEditCustomer;
+		private Button btnEndEditTransactionLine;
+		private Button btnEndEditTransaction;
 	}
 }

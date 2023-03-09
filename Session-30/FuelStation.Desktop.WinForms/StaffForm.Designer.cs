@@ -36,6 +36,8 @@
 			this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
 			this.btnAddItem = new System.Windows.Forms.Button();
 			this.btnDeleteItem = new System.Windows.Forms.Button();
+			this.btnEndEditItem = new System.Windows.Forms.Button();
+			this.btnCancelEditItem = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.grdItems)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.grvItems)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.ItemBs)).BeginInit();
@@ -154,6 +156,7 @@
 			this.btnAddItem.TabIndex = 2;
 			this.btnAddItem.Text = "Add";
 			this.btnAddItem.UseVisualStyleBackColor = true;
+			this.btnAddItem.Click += new System.EventHandler(this.btnAddItem_Click);
 			// 
 			// btnDeleteItem
 			// 
@@ -167,11 +170,37 @@
 			this.btnDeleteItem.UseVisualStyleBackColor = true;
 			this.btnDeleteItem.Click += new System.EventHandler(this.btnDeleteItem_Click);
 			// 
+			// btnEndEditItem
+			// 
+			this.btnEndEditItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.btnEndEditItem.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+			this.btnEndEditItem.Location = new System.Drawing.Point(293, 376);
+			this.btnEndEditItem.Name = "btnEndEditItem";
+			this.btnEndEditItem.Size = new System.Drawing.Size(106, 48);
+			this.btnEndEditItem.TabIndex = 4;
+			this.btnEndEditItem.Text = "End Edit";
+			this.btnEndEditItem.UseVisualStyleBackColor = true;
+			this.btnEndEditItem.Click += new System.EventHandler(this.btnEndEditItem_Click);
+			// 
+			// btnCancelEditItem
+			// 
+			this.btnCancelEditItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.btnCancelEditItem.ForeColor = System.Drawing.Color.Red;
+			this.btnCancelEditItem.Location = new System.Drawing.Point(405, 376);
+			this.btnCancelEditItem.Name = "btnCancelEditItem";
+			this.btnCancelEditItem.Size = new System.Drawing.Size(106, 48);
+			this.btnCancelEditItem.TabIndex = 5;
+			this.btnCancelEditItem.Text = "Cancel Edit";
+			this.btnCancelEditItem.UseVisualStyleBackColor = true;
+			this.btnCancelEditItem.Click += new System.EventHandler(this.btnCancelEditItem_Click);
+			// 
 			// StaffForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Controls.Add(this.btnCancelEditItem);
+			this.Controls.Add(this.btnEndEditItem);
 			this.Controls.Add(this.btnDeleteItem);
 			this.Controls.Add(this.btnAddItem);
 			this.Controls.Add(this.textEdit1);
@@ -202,5 +231,7 @@
 		private DevExpress.XtraGrid.Columns.GridColumn colId;
 		private Button btnAddItem;
 		private Button btnDeleteItem;
+		private Button btnEndEditItem;
+		private Button btnCancelEditItem;
 	}
 }

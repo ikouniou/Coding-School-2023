@@ -217,5 +217,18 @@ namespace FuelStation.Desktop.WinForms {
 				ItemBs.RemoveCurrent();
 			}
 		}
+
+		private void btnAddItem_Click(object sender, EventArgs e) {
+
+			ItemBs.AddNew();
+		}
+
+		private void btnEndEditItem_Click(object sender, EventArgs e) {
+			ItemBs.EndEdit();
+		}
+
+		private void btnCancelEditItem_Click(object sender, EventArgs e) {
+			//ItemBs.CancelEdit();
+		}
 	}
 }

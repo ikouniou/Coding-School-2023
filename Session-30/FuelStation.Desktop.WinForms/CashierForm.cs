@@ -617,5 +617,29 @@ namespace FuelStation.Desktop.WinForms {
 				}
 			}
 		}
+
+		private void btnAddCustomer_Click(object sender, EventArgs e) {
+			CustomersBs.AddNew();
+		}
+
+		private void btnAddTransaction_Click(object sender, EventArgs e) {
+			TransactionsBs.AddNew();
+		}
+
+		private void btnAddTransactionLine_Click(object sender, EventArgs e) {
+			TransactionLinesBs.AddNew();
+		}
+
+		private void btnEndEditCustomer_Click(object sender, EventArgs e) {
+			CustomersBs.EndEdit();
+		}
+
+		private void btnEndEditTransaction_Click(object sender, EventArgs e) {
+			TransactionsBs.EndEdit();
+		}
+
+		private void btnEndEditTransactionLine_Click(object sender, EventArgs e) {
+			TransactionLinesBs.EndEdit();
+		}
 	}
 }
